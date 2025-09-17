@@ -9,6 +9,7 @@
     "dev": "vite",
     "start": "vite",
     "build": "vite build",
+    "build:migration": "vite build --base=/InteractiveCV/migration/",
     "build:dev": "vite build --mode development",
     "lint": "eslint .",
     "preview": "vite preview"

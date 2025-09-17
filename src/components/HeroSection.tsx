@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import heroImage from "@/assets/hero-bg.jpg";
+import profileImage from "@/assets/hero_profile_picture.jpg";
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -49,7 +50,7 @@ const HeroSection = () => {
               <div className="w-full h-full rounded-full bg-card flex items-center justify-center">
                 <div className="w-72 h-72 rounded-full bg-gradient-to-br from-primary/20 to-accent/20 flex items-center justify-center">
                   <img 
-                    src="src/assets/hero_profile_picture.jpg" 
+                    src={profileImage} 
                     alt="Profile" 
                     className="w-full h-full object-cover rounded-full" 
                   />
