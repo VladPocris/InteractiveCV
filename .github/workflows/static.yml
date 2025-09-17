@@ -11,11 +11,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
+
       - uses: actions/setup-node@v4
         with:
           node-version: 18
+
+      - run: echo "BRANCH_NAME=${GITHUB_REF##*/}" >> $GITHUB_ENV
+
       - run: npm ci
+
       - run: npm run build
+
       - uses: actions/upload-pages-artifact@v3
         with:
           path: ./dist
@@ -28,7 +34,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github-pages
+      name: production
       url: https://vladpocris.github.io/InteractiveCV/
     steps:
       - uses: actions/deploy-pages@v4
@@ -41,7 +47,7 @@ jobs:
       pages: write
       id-token: write
     environment:
-      name: github-pages
+      name: migration
       url: https://vladpocris.github.io/InteractiveCV/migration/
     steps:
       - uses: actions/deploy-pages@v4
