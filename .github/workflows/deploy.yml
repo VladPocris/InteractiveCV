@@ -1,8 +1,8 @@
-name: Deploy static root and migration app to GitHub Pages
+name: Deploy static root (OldCV) and migration app to GitHub Pages
 
 on:
   push:
-    branches: [ main, React_Migration ]
+    branches: [ main ]
 
 permissions:
   contents: read
@@ -17,66 +17,33 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout current branch
+      - name: Checkout main
         uses: actions/checkout@v4
 
       - name: Prepare output directory
         run: mkdir -p ./out
 
-      - name: Checkout main for root site (when building from React_Migration)
-        if: github.ref_name != 'main'
-        uses: actions/checkout@v4
-        with:
-          ref: main
-          path: main_branch
-
-      - name: Copy root site from main branch root
-        if: github.ref_name != 'main'
+      - name: Copy static root from OldCV/
         run: |
-          sudo apt-get update && sudo apt-get install -y rsync
-          rsync -av main_branch/ ./out/ \
-            --exclude ".git/" \
-            --exclude ".github/" \
-            --exclude "node_modules/" \
-            --exclude "dist/" \
-            --exclude ".gitignore"
+          if [ -d OldCV ]; then
+            cp -r OldCV/* ./out/
+          else
+            echo "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>InteractiveCV</title></head><body><h1>Root site not found</h1><p>Create an <code>OldCV/</code> folder on <code>main</code> with your static site.</p></body></html>" > ./out/index.html
+          fi
 
-      - name: Copy root site from current branch root (main)
-        if: github.ref_name == 'main'
-        run: |
-          sudo apt-get update && sudo apt-get install -y rsync
-          rsync -av ./ ./out/ \
-            --exclude ".git/" \
-            --exclude ".github/" \
-            --exclude "node_modules/" \
-            --exclude "dist/" \
-            --exclude ".gitignore"
-
-      - name: Setup Node for migration build
-        uses: actions/setup-node@v4
-        with:
-          node-version: 20
-          cache: npm
-
-      - name: Install dependencies (current branch)
-        if: github.ref_name == 'React_Migration'
-        run: npm ci
-
-      - name: Build migration (from current branch if React_Migration)
-        if: github.ref_name == 'React_Migration'
-        env:
-          VITE_DEPLOY_SUBPATH: migration
-        run: npm run build:migration
-
-      - name: Checkout React_Migration into subfolder (when on main)
-        if: github.ref_name == 'main'
+      - name: Checkout React_Migration into subfolder
         uses: actions/checkout@v4
         with:
           ref: React_Migration
           path: react_branch
 
-      - name: Install and build migration (when on main)
-        if: github.ref_name == 'main'
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: npm
+
+      - name: Install and build migration app
         working-directory: react_branch
         env:
           VITE_DEPLOY_SUBPATH: migration
@@ -84,14 +51,7 @@ jobs:
           npm ci
           npm run build:migration
 
-      - name: Stage migration app under /migration (from current branch)
-        if: github.ref_name == 'React_Migration'
-        run: |
-          mkdir -p ./out/migration
-          cp -r dist/* ./out/migration/
-
-      - name: Stage migration app under /migration (from checked-out React_Migration)
-        if: github.ref_name == 'main'
+      - name: Stage migration app under /migration
         run: |
           mkdir -p ./out/migration
           cp -r react_branch/dist/* ./out/migration/
