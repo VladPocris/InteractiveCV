@@ -29,17 +29,13 @@ jobs:
       - name: Install
         run: npm ci
 
-      - name: Build static root (from public/ or root index.html)
+      - name: Build static root (from static-root/ folder)
         run: |
           mkdir -p ./out
-          # Copy static content meant for root
-          if [ -d public ]; then cp -r public/* ./out/; fi
-          # Prefer built dist root if exists, else use repo root index.html
-          if [ -f dist/index.html ]; then
-            # If you keep a prebuilt root site under dist, copy it
-            cp -r dist/* ./out/
-          elif [ -f index.html ]; then
-            cp index.html ./out/index.html
+          if [ -d static-root ]; then
+            cp -r static-root/* ./out/
+          else
+            echo "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>InteractiveCV</title></head><body><h1>Root site not found</h1><p>Create a <code>static-root/</code> folder with your static site (HTML/CSS/JS) to publish at /InteractiveCV/.</p></body></html>" > ./out/index.html
           fi
 
       - name: Build migration React app
