@@ -59,6 +59,7 @@ jobs:
           cache: npm
 
       - name: Install dependencies (current branch)
+        if: github.ref_name == 'React_Migration'
         run: npm ci
 
       - name: Build migration (from current branch if React_Migration)
