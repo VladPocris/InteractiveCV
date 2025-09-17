@@ -1,0 +1,161 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* CV Portfolio Design System */
+
+@layer base {
+  :root {
+    /* Core Colors */
+    --background: 222 84% 5%;
+    --foreground: 210 40% 98%;
+    
+    --primary: 271 76% 53%;
+    --primary-foreground: 210 40% 98%;
+    --primary-glow: 271 81% 56%;
+    
+    --secondary: 217 32% 18%;
+    --secondary-foreground: 210 40% 98%;
+    
+    --muted: 217 32% 18%;
+    --muted-foreground: 215 20% 65%;
+    
+    --accent: 240 73% 65%;
+    --accent-foreground: 222 47% 11%;
+    
+    --card: 217 32% 15%;
+    --card-foreground: 210 40% 98%;
+    
+    --popover: 217 32% 15%;
+    --popover-foreground: 210 40% 98%;
+    
+    --border: 217 32% 20%;
+    --input: 217 32% 20%;
+    --ring: 271 76% 53%;
+    
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 210 40% 98%;
+
+    /* Custom Portfolio Colors */
+    --gradient-primary: linear-gradient(135deg, hsl(271, 76%, 53%), hsl(240, 73%, 65%));
+    --gradient-secondary: linear-gradient(135deg, hsl(217, 32%, 18%), hsl(217, 32%, 25%));
+    --gradient-text: linear-gradient(135deg, hsl(210, 40%, 98%), hsl(215, 20%, 65%));
+    --gradient-hero: linear-gradient(135deg, hsl(271, 76%, 53%) 0%, hsl(240, 73%, 65%) 50%, hsl(217, 32%, 18%) 100%);
+    
+    /* Shadows & Effects */
+    --shadow-glow: 0 0 30px hsl(271 76% 53% / 0.3);
+    --shadow-card: 0 10px 30px -10px hsl(0 0% 0% / 0.3);
+    --shadow-elevation: 0 25px 50px -12px hsl(0 0% 0% / 0.25);
+    
+    /* Animation Timings */
+    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-spring: all 0.5s cubic-bezier(0.34, 1.56, 0.64, 1);
+    
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-background text-foreground font-sans;
+    background: hsl(var(--background));
+    background-image: var(--gradient-hero);
+    background-attachment: fixed;
+    overflow-x: hidden;
+  }
+}
+
+@layer components {
+  /* Gradient Text */
+  .gradient-text {
+    background: var(--gradient-text);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    @apply font-semibold;
+  }
+  
+  /* Gradient Button */
+  .btn-gradient {
+    background: var(--gradient-primary);
+    @apply text-primary-foreground px-6 py-3 rounded-lg font-medium transition-all duration-300;
+    box-shadow: var(--shadow-glow);
+  }
+  
+  .btn-gradient:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-elevation);
+  }
+  
+  /* Glass Card Effect */
+  .glass-card {
+    @apply rounded-xl border border-white/10;
+    background: rgba(255, 255, 255, 0.05);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+  
+  /* Parallax Sections */
+  .parallax-section {
+    @apply relative min-h-screen flex items-center justify-center;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+  }
+  
+  /* Navigation Link Hover Effect */
+  .nav-link-effect {
+    @apply relative transition-colors duration-300;
+  }
+  
+  .nav-link-effect::after {
+    @apply absolute bottom-0 left-0 w-0 h-0.5 bg-primary transition-all duration-300;
+    content: '';
+  }
+  
+  .nav-link-effect:hover::after {
+    @apply w-full;
+  }
+  
+  /* Smooth Animations */
+  .animate-slide-up {
+    @apply opacity-0 translate-y-8 transition-all duration-700 ease-out;
+  }
+  
+  .animate-slide-up.in-view {
+    @apply opacity-100 translate-y-0;
+  }
+  
+  .animate-slide-left {
+    @apply opacity-0 -translate-x-8 transition-all duration-700 ease-out;
+  }
+  
+  .animate-slide-left.in-view {
+    @apply opacity-100 translate-x-0;
+  }
+  
+  .animate-slide-right {
+    @apply opacity-0 translate-x-8 transition-all duration-700 ease-out;
+  }
+  
+  .animate-slide-right.in-view {
+    @apply opacity-100 translate-x-0;
+  }
+  
+  .animate-fade-in {
+    @apply opacity-0 transition-opacity duration-1000 ease-out;
+  }
+  
+  .animate-fade-in.in-view {
+    @apply opacity-100;
+  }
+}
