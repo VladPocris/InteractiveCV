@@ -17,36 +17,83 @@ jobs:
   build-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+      - name: Checkout current branch
         uses: actions/checkout@v4
 
-      - name: Setup Node
+      - name: Prepare output directory
+        run: mkdir -p ./out
+
+      - name: Checkout main for root site (when building from React_Migration)
+        if: github.ref_name != 'main'
+        uses: actions/checkout@v4
+        with:
+          ref: main
+          path: main_branch
+
+      - name: Copy root site from main branch root
+        if: github.ref_name != 'main'
+        run: |
+          sudo apt-get update && sudo apt-get install -y rsync
+          rsync -av main_branch/ ./out/ \
+            --exclude ".git/" \
+            --exclude ".github/" \
+            --exclude "node_modules/" \
+            --exclude "dist/" \
+            --exclude ".gitignore"
+
+      - name: Copy root site from current branch root (main)
+        if: github.ref_name == 'main'
+        run: |
+          sudo apt-get update && sudo apt-get install -y rsync
+          rsync -av ./ ./out/ \
+            --exclude ".git/" \
+            --exclude ".github/" \
+            --exclude "node_modules/" \
+            --exclude "dist/" \
+            --exclude ".gitignore"
+
+      - name: Setup Node for migration build
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: npm
 
-      - name: Install
+      - name: Install dependencies (current branch)
         run: npm ci
 
-      - name: Build static root (from static-root/ folder)
-        run: |
-          mkdir -p ./out
-          if [ -d static-root ]; then
-            cp -r static-root/* ./out/
-          else
-            echo "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>InteractiveCV</title></head><body><h1>Root site not found</h1><p>Create a <code>static-root/</code> folder with your static site (HTML/CSS/JS) to publish at /InteractiveCV/.</p></body></html>" > ./out/index.html
-          fi
-
-      - name: Build migration React app
+      - name: Build migration (from current branch if React_Migration)
+        if: github.ref_name == 'React_Migration'
         env:
           VITE_DEPLOY_SUBPATH: migration
         run: npm run build:migration
 
-      - name: Stage migration app under subfolder
+      - name: Checkout React_Migration into subfolder (when on main)
+        if: github.ref_name == 'main'
+        uses: actions/checkout@v4
+        with:
+          ref: React_Migration
+          path: react_branch
+
+      - name: Install and build migration (when on main)
+        if: github.ref_name == 'main'
+        working-directory: react_branch
+        env:
+          VITE_DEPLOY_SUBPATH: migration
+        run: |
+          npm ci
+          npm run build:migration
+
+      - name: Stage migration app under /migration (from current branch)
+        if: github.ref_name == 'React_Migration'
         run: |
           mkdir -p ./out/migration
           cp -r dist/* ./out/migration/
+
+      - name: Stage migration app under /migration (from checked-out React_Migration)
+        if: github.ref_name == 'main'
+        run: |
+          mkdir -p ./out/migration
+          cp -r react_branch/dist/* ./out/migration/
 
       - name: Setup Pages
         uses: actions/configure-pages@v5
