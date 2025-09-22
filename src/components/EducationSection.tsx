@@ -5,6 +5,7 @@ import educationImage from "@/assets/education-bg.jpg";
 const EducationSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeYear, setActiveYear] = useState(0);
+  const [activeSemester, setActiveSemester] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
 
   const educationData = [
@@ -14,78 +15,149 @@ const EducationSection = () => {
       years: [
         {
           year: "Y4 (2024-2025)",
-          gpa: "N/A (Classification achieved to date 2:1)",
-          semester: "Semester 1",
-          subjects: [
-            { name: "Information Management", progress: 50 },
-            { name: "Applied Machine Learning", progress: 50 },
-            { name: "Enterprise Performance Architecture", progress: 50 },
-          ]
+          gpa: "3.73 (1st Class Honours - 1:1)",
+          semesters: [
+            {
+              name: "Semester 1",
+              subjects: [
+                { name: "Final Year Project", progress: 100 },
+                { name: "Interactive Media Design", progress: 83 },
+                { name: "Algorithms & Computation", progress: 82 },
+                { name: "Applied Machine Learning", progress: 78.4 },
+                { name: "Enterprise App Development 1", progress: 77 },
+                { name: "Information Management", progress: 57.2 },
+              ],
+            },
+            {
+              name: "Semester 2",
+              subjects: [
+                { name: "Final Year Project", progress: 100 },
+                { name: "Enterprise App Development 2", progress: 89 },
+                { name: "Computational Theory", progress: 80.1 },
+                { name: "Applied Artificial Intelligence and Deep Learning", progress: 80.1 },
+                { name: "Enterprise Performance Architecture", progress: 67.4 },
+              ],
+            },
+          ],
         },
         {
           year: "Y3 (2023-2024)",
-          gpa: "68.2% (2:1)",
-          semester: "Full Year",
-          subjects: [
-            { name: "Advanced Software Development", progress: 75 },
-            { name: "Database Systems", progress: 82 },
-            { name: "Web Development", progress: 88 },
-            { name: "Mobile App Development", progress: 71 },
-          ]
+          gpa: "2.88",
+          semesters: [
+            {
+              name: "Semester 1",
+              subjects: [
+                { name: "Data Analysis", progress: 72 },
+                { name: "Data Structures & Algorithms", progress: 64 },
+                { name: "Server-side Web Development", progress: 62 },
+                { name: "Operating Systems", progress: 60 },
+                { name: "Cloud Services & Distributed Computing", progress: 55.11 },
+                { name: "Big Data Technologies", progress: 48.4 },
+              ],
+            },
+            {
+              name: "Semester 2",
+              subjects: [
+                { name: "Experiential Learning", progress: 75 },
+              ],
+            },
+          ],
         },
         {
           year: "Y2 (2022-2023)",
-          gpa: "72.1% (2:1)",
-          semester: "Full Year",
-          subjects: [
-            { name: "Object Oriented Programming", progress: 78 },
-            { name: "Data Structures & Algorithms", progress: 85 },
-            { name: "Software Engineering", progress: 79 },
-            { name: "Computer Networks", progress: 68 },
-          ]
+          gpa: "3.15",
+          semesters: [
+            {
+              name: "Semester 1",
+              subjects: [
+                { name: "Discrete Mathematics 1", progress: 90 },
+                { name: "Software Quality Assessment & Testing", progress: 87 },
+                { name: "Client-side Web Development", progress: 73 },
+                { name: "Advanced Database Technologies", progress: 70.99 },
+                { name: "Information Security", progress: 70 },
+                { name: "Software Development 3", progress: 56 },
+                { name: "Network Fundamentals", progress: 54 },
+              ],
+            },
+            {
+              name: "Semester 2",
+              subjects: [
+                { name: "Discrete Maths 2", progress: 84 },
+                { name: "Management Science", progress: 76 },
+                { name: "Routing & Switching Essentials", progress: 72.9 },
+                { name: "Information Security", progress: 68 },
+                { name: "Database Admin & Analysis", progress: 60.97 },
+                { name: "Networking Fundamentals", progress: 49.835 },
+                { name: "Software Development 4", progress: 42 },
+                { name: "Project", progress: 40 },
+              ],
+            },
+          ],
         },
         {
           year: "Y1 (2021-2022)",
-          gpa: "76.3% (2:1)",
-          semester: "Full Year",
-          subjects: [
-            { name: "Programming Fundamentals", progress: 82 },
-            { name: "Mathematics for Computing", progress: 74 },
-            { name: "Computer Systems", progress: 81 },
-            { name: "Web Technologies", progress: 73 },
-          ]
+          gpa: "Advanced Entry to Year 2",
         }
       ]
     },
     {
       title: "Computer Networking and Cyber Security (Level 6)",
-      institution: "Previous Institution",
+      institution: "Bray Institute Of Further Education",
       years: [
         {
-          year: "2020-2021",
-          gpa: "Distinction",
-          semester: "Full Year",
-          subjects: [
-            { name: "Network Security", progress: 87 },
-            { name: "Ethical Hacking", progress: 92 },
-            { name: "Firewall Configuration", progress: 83 },
-          ]
+          year: "2021-2022",
+          gpa: "Distinction (1:1)",
+          semesters: [
+            {
+              name: "Semester 1",
+              subjects: [
+                { name: "Network Infrastructure", progress: 100 },
+                { name: "Mobile Technologies", progress: 100 },
+                { name: "Information Technology Administration", progress: 100 },
+                { name: "Systems Software", progress: 100 },
+                { name: "Work Experience", progress: 100 },
+              ],
+            },
+            {
+              name: "Semester 2",
+              subjects: [
+                { name: "Communications", progress: 100 },
+                { name: "Physical and Logical Networking", progress: 100 },
+                { name: "Object Oriented Programming", progress: 100 },
+                { name: "Mathematics", progress: 100 },
+              ],
+            },
+          ],
         }
       ]
     },
     {
       title: "Computer Science (Level 5)",
-      institution: "Foundation College",
+      institution: "Bray Institute Of Further Education",
       years: [
         {
-          year: "2019-2020",
-          gpa: "Merit",
-          semester: "Full Year",
-          subjects: [
-            { name: "Programming Basics", progress: 78 },
-            { name: "Computer Hardware", progress: 85 },
-            { name: "Software Applications", progress: 82 },
-          ]
+          year: "2020-2021",
+          gpa: "Distinction (1:1)",
+          semesters: [
+            {
+              name: "Semester 1",
+              subjects: [
+                { name: "Computer Systems Hardware", progress: 100 },
+                { name: "Mobile Technologies", progress: 100 },
+                { name: "Maths for Information Technology", progress: 100 },
+                { name: "Programming and Design Principles", progress: 100 },
+              ],
+            },
+            {
+              name: "Semester 2",
+              subjects: [
+                { name: "Operating Systems", progress: 100 },
+                { name: "Networking Essentials", progress: 100 },
+                { name: "Personal and Professional Development", progress: 100 },
+                { name: "Communications", progress: 79 },
+              ],
+            },
+          ],
         }
       ]
     },
@@ -94,14 +166,77 @@ const EducationSection = () => {
       institution: "Republic of Moldova",
       years: [
         {
-          year: "2018-2019",
-          gpa: "Good Standing",
-          semester: "Final Year",
-          subjects: [
-            { name: "Mathematics", progress: 85 },
-            { name: "Physics", progress: 78 },
-            { name: "Computer Science", progress: 92 },
-          ]
+          year: "2017-2020",
+          gpa: "87.3 (Eminent)",
+          semesters: [
+            {
+              name: "General Grades for Years X-XII",
+              subjects: [
+                { name: "Personal Development", progress: 100 },
+                { name: "Physical Education", progress: 100 },
+                { name: "Computer Science", progress: 98.9 },
+                { name: "Mathematics", progress: 91.7 },
+                { name: "Geography", progress: 90.1 },
+                { name: "Biology", progress: 87.9 },
+                { name: "Physics and Astronomy", progress: 87.4 },
+                { name: "Civic Education", progress: 87 },
+                { name: "English Language", progress: 82.2 },
+                { name: "History of the Romanians and World History", progress: 81.2 },
+                { name: "Romanian Language and Literature", progress: 79.2 },
+                { name: "Chemistry", progress: 75.7 },
+              ],
+            },
+            {
+              name: "Exam Subjects",
+              subjects: [
+                { name: "Mathematics", progress: 90 },
+                { name: "Geography", progress: 90 },
+                { name: "Romanian Language and Literature", progress: 80 },
+                { name: "English Language", progress: 80 },
+              ],
+            },
+          ],
+        }
+      ]
+    },
+    {
+      title: "Gymnasium (Lower Secondary Education, equivalent to Junior Cycle)",
+      institution: "Republic of Moldova",
+      years: [
+        {
+          year: "2008-2017",
+          gpa: "84.2 (Eminent)",
+          semesters: [
+            {
+              name: "General Grades for Years I-IX",
+              subjects: [
+                { name: "Visual Arts", progress: 100 },
+                { name: "Physical Education", progress: 94.5 },
+                { name: "Technology Education", progress: 91.2 },
+                { name: "Biology", progress: 91 },
+                { name: "Music Education", progress: 90 },
+                { name: "Geography", progress: 90 },
+                { name: "Science", progress: 90 },
+                { name: "Mathematics", progress: 82 },
+                { name: "Russian Language", progress: 81.2 },
+                { name: "Physics", progress: 80.7 },
+                { name: "Civic Education", progress: 80 },
+                { name: "Chemistry", progress: 77.5 },
+                { name: "Romanian Language and Literature", progress: 77 },
+                { name: "Computer Science", progress: 76.2 },
+                { name: "English Language", progress: 73.7 },
+                { name: "History of the Romanians and World History", progress: 72.8 },
+              ],
+            },
+            {
+              name: "Exam Subjects",
+              subjects: [
+                { name: "Geography", progress: 80 },
+                { name: "Romanian Language and Literature", progress: 70 },
+                { name: "Romanian Language and Literature", progress: 60 },
+              ],
+            },
+          ],
         }
       ]
     }
@@ -152,6 +287,7 @@ const EducationSection = () => {
                   onClick={() => {
                     setActiveTab(index);
                     setActiveYear(0);
+                    setActiveSemester(0);
                   }}
                   className={`text-xs sm:text-sm px-2 sm:px-3 py-2 w-full lg:w-auto lg:flex-1 lg:mx-1 mb-2 lg:mb-0 text-center break-words ${
                     activeTab === index 
@@ -189,6 +325,28 @@ const EducationSection = () => {
             </div>
           )}
 
+          {/* Semester Tabs (when a year has multiple semesters) */}
+          {educationData[activeTab].years[activeYear].semesters && educationData[activeTab].years[activeYear].semesters.length > 1 && (
+            <div className="border-b border-white/10 bg-black/10">
+              <div className="flex flex-wrap justify-center p-4 gap-2">
+                {educationData[activeTab].years[activeYear].semesters.map((sem, index) => (
+                  <Button
+                    key={index}
+                    variant={activeSemester === index ? "secondary" : "ghost"}
+                    onClick={() => setActiveSemester(index)}
+                    className={`text-sm flex-shrink-0 ${
+                      activeSemester === index 
+                        ? "bg-primary/20 text-primary border-primary" 
+                        : "text-foreground hover:bg-white/10"
+                    }`}
+                  >
+                    {sem.name}
+                  </Button>
+                ))}
+              </div>
+            </div>
+          )}
+
           {/* Content Display */}
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="text-center mb-8">
@@ -206,11 +364,13 @@ const EducationSection = () => {
             {/* Subjects and Progress */}
             <div className="space-y-6">
               <h5 className="text-base sm:text-lg font-semibold text-foreground text-center mb-6">
-                {educationData[activeTab].years[activeYear].semester}
+                {educationData[activeTab].years[activeYear].semesters
+                  ? educationData[activeTab].years[activeYear].semesters[activeSemester]?.name
+                  : ""}
               </h5>
               
               <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
-                {educationData[activeTab].years[activeYear].subjects.map((subject, index) => (
+                {(educationData[activeTab].years[activeYear].semesters?.[activeSemester]?.subjects || []).map((subject, index) => (
                   <div key={index} className="space-y-2">
                     <div className="flex justify-between items-start">
                       <span className="text-foreground font-medium text-sm sm:text-base break-words flex-1 mr-2">{subject.name}</span>
