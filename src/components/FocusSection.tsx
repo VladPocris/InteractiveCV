@@ -6,52 +6,57 @@ const FocusSection = () => {
 
   const focusAreas = [
     {
-      title: "Full-Stack Development",
-      icon: "🔧",
-      description: "Experienced in both frontend and backend technologies, creating end-to-end solutions with modern frameworks and databases.",
-      skills: ["React", "Node.js", "TypeScript", "MongoDB", "PostgreSQL"],
-      proficiency: 90,
+      title: "Certifications",
+      icon: "📜",
+      description: "Foundational cloud, virtualization, and professional skills certifications earned during 2024.",
+      skills: [
+        "Red Hat Academy – Program Learner (2024)",
+        "AWS Academy Graduate – Cloud Foundations",
+        "VMware Cloud & Virtualization Concepts",
+        "VMware Data Center Virtualization Core (CTA‑DCV)",
+        "Working in a Digital World: Professional Skills"
+      ],
       color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Cloud & DevOps",
-      icon: "☁️",
-      description: "Skilled in cloud platforms and deployment strategies, ensuring scalable and reliable applications in production environments.",
-      skills: ["AWS", "Google Cloud", "Azure", "Docker", "CI/CD"],
-      proficiency: 85,
+      title: "Hackathons",
+      icon: "🏁",
+      description: "Hands‑on teamwork under time pressure across health and R&D themes.",
+      skills: [
+        "Ethicon Hackathon (May 2024)",
+        "RAD Hackathon (Apr 2024)",
+        "Health Hackathon (Mar 2024)"
+      ],
       color: "from-green-500 to-emerald-500"
     },
     {
-      title: "Machine Learning",
-      icon: "🤖",
-      description: "Applying AI and ML techniques to solve real-world problems, with experience in data analysis and predictive modeling.",
-      skills: ["Python", "TensorFlow", "Pandas", "Scikit-learn", "NLP"],
-      proficiency: 75,
+      title: "Interests",
+      icon: "🎥",
+      description: "Content creation (YouTube monetized) and sports—staying creative and disciplined.",
+      skills: ["YouTube Content Creation", "Monetization", "Sports"],
       color: "from-purple-500 to-pink-500"
     },
     {
-      title: "Mobile Development",
-      icon: "📱",
-      description: "Creating cross-platform mobile applications with native performance and modern user experiences.",
-      skills: ["React Native", "Flutter", "iOS", "Android", "Expo"],
-      proficiency: 80,
+      title: "Awards & Achievements",
+      icon: "🏆",
+      description: "Competitive results in martial arts and athletics.",
+      skills: [
+        "5× Taekwondo WTF tournament winner (MD/UA/BG)",
+        "High‑school long‑distance marathon winner",
+        "Consecutive 60m sprint winner"
+      ],
       color: "from-orange-500 to-red-500"
     },
     {
-      title: "UI/UX Design",
-      icon: "🎨",
-      description: "Designing intuitive and engaging user interfaces with focus on user experience and accessibility principles.",
-      skills: ["Figma", "Design Systems", "Prototyping", "User Research", "Accessibility"],
-      proficiency: 70,
+      title: "Career Goal",
+      icon: "💼",
+      description: "Actively pursuing roles as a Software Developer or Web Developer.",
+      skills: [
+        "Software Development",
+        "Web Development",
+        "Open to internships & graduate roles"
+      ],
       color: "from-indigo-500 to-purple-500"
-    },
-    {
-      title: "Project Leadership",
-      icon: "👥",
-      description: "Leading development teams and managing projects from conception to delivery using agile methodologies.",
-      skills: ["Team Management", "Agile", "Scrum", "Communication", "Problem Solving"],
-      proficiency: 88,
-      color: "from-yellow-500 to-orange-500"
     }
   ];
 
@@ -74,6 +79,9 @@ const FocusSection = () => {
   // Auto-rotate focus areas
   useEffect(() => {
     if (isVisible) {
+      // Respect reduced-motion and avoid auto-rotate on low-power devices
+      const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+      if (prefersReducedMotion) return;
       const interval = setInterval(() => {
         setActiveSkill((prev) => (prev + 1) % focusAreas.length);
       }, 4000);
@@ -93,9 +101,7 @@ const FocusSection = () => {
         <div className={`text-center mb-16 animate-slide-up ${isVisible ? "in-view" : ""}`}>
           <h2 className="gradient-text text-5xl lg:text-6xl font-bold mb-4">MY FOCUS</h2>
           <div className="w-24 h-1 bg-gradient-primary mx-auto mb-6" />
-          <p className="text-foreground text-lg max-w-2xl mx-auto">
-            Areas where I excel and continue to grow, combining technical expertise with creative problem-solving.
-          </p>
+          <p className="text-foreground text-lg max-w-2xl mx-auto">Areas of interest, recognition, and current goals.</p>
         </div>
 
         {/* Focus Areas Grid */}
@@ -117,22 +123,7 @@ const FocusSection = () => {
                 </h3>
               </div>
 
-              {/* Progress Bar */}
-              <div className="mb-4">
-                <div className="flex justify-between text-sm mb-2">
-                  <span className="text-foreground">Proficiency</span>
-                  <span className="text-primary font-semibold">{area.proficiency}%</span>
-                </div>
-                <div className="w-full bg-white/10 rounded-full h-2">
-                  <div 
-                    className={`bg-gradient-to-r ${area.color} rounded-full h-2 transition-all duration-1000`}
-                    style={{ 
-                      width: isVisible ? `${area.proficiency}%` : "0%",
-                      transitionDelay: `${index * 0.2}s`
-                    }}
-                  />
-                </div>
-              </div>
+              {/* Removed proficiency bar for a cleaner, more relevant presentation */}
 
               {/* Skills Tags */}
               <div className="flex flex-wrap gap-2">
@@ -165,16 +156,6 @@ const FocusSection = () => {
                   <h3 className="gradient-text text-3xl font-bold">
                     {focusAreas[activeSkill].title}
                   </h3>
-                  <div className="flex items-center mt-2">
-                    <span className="text-primary font-semibold mr-2">Proficiency:</span>
-                    <div className="flex-1 bg-white/10 rounded-full h-2 max-w-32">
-                      <div 
-                        className={`bg-gradient-to-r ${focusAreas[activeSkill].color} rounded-full h-2 transition-all duration-1000`}
-                        style={{ width: `${focusAreas[activeSkill].proficiency}%` }}
-                      />
-                    </div>
-                    <span className="text-primary font-semibold ml-2">{focusAreas[activeSkill].proficiency}%</span>
-                  </div>
                 </div>
               </div>
               <p className="text-foreground text-lg leading-relaxed mb-6">

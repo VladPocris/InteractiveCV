@@ -62,6 +62,7 @@
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   body {
@@ -110,6 +111,33 @@
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
+    overflow-x: clip;
+  }
+  
+  /* Disable fixed backgrounds on small screens to prevent jank and overflow */
+  @media (max-width: 640px) {
+    .parallax-section {
+      background-attachment: scroll;
+    }
+    /* Smaller base font for ultra-narrow devices like Galaxy S8+ */
+    html { font-size: 14px; }
+    /* Tighten Education subject rows */
+    .edu-subject { font-size: 0.8rem !important; line-height: 1.1rem; }
+    .edu-percent { font-size: 0.75rem !important; }
+  }
+
+  /* Extra narrow phones (≤360px logical width) */
+  @media (max-width: 360px) {
+    html { font-size: 13px; }
+    .edu-subject { font-size: 0.72rem !important; }
+    .edu-percent { font-size: 0.7rem !important; }
+  }
+  
+  /* Helper to aggressively wrap long text */
+  .break-anywhere {
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    hyphens: auto;
   }
   
   /* Navigation Link Hover Effect */

@@ -8,52 +8,62 @@ const ProjectsSection = () => {
 
   const projects = [
     {
-      title: "E-Commerce Platform",
-      description: "Full-stack e-commerce solution built with React, Node.js, and MongoDB. Features include user authentication, payment integration, and admin dashboard.",
-      technologies: ["React", "Node.js", "MongoDB", "Stripe", "JWT"],
-      github: "https://github.com/vladpocris/ecommerce",
-      live: "https://ecommerce-demo.com",
-      icon: "🛒"
+      title: "SmartRoute · Tallaght, IE",
+      description: "Android app that plans multi‑stop journeys with Google Places autocomplete and an optimised route drawn on Google Maps (Directions API). Generates a six‑digit trip code; an ASP.NET Core Web API (Azure App Service) persists trips & steps in Azure SQL and exposes CRUD. ‘Show details’ per‑leg cards with distance/time + on‑demand map previews; offline caching for instant reload.",
+      technologies: [
+        "Java 17",
+        "Android Studio",
+        "Google Maps SDK",
+        "Directions API",
+        "Places API",
+        "Retrofit",
+        "ASP.NET Core Web API",
+        "Azure SQL Database",
+        "Azure App Service",
+        "Git"
+      ],
+      github: "https://github.com/VladPocris/SmartRoute",
+      live: "https://smartroute-i92g.onrender.com/api/trips",
+      icon: "🗺️"
     },
     {
-      title: "Task Management App",
-      description: "Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
-      technologies: ["Vue.js", "Express.js", "Socket.io", "PostgreSQL"],
-      github: "https://github.com/vladpocris/taskmanager",
-      live: "https://taskmanager-demo.com",
-      icon: "📋"
+      title: "RenCloud · Tallaght, IE",
+      description: "Windows‑based video‑editing environment with timeline trim/split/rearrange, live thumbnails and audio waveforms. Integrates FFmpeg (advanced processing roadmap) and VLC/LibVLC for seamless, frame‑accurate playback. CI with GitHub Actions + SonarQube quality gates; WiX Toolset packaging produces an MSI installer. Plugin‑ready architecture for future extensibility.",
+      technologies: [
+        "C#",
+        ".NET 8",
+        "Windows Forms",
+        "FFmpeg",
+        "LibVLC",
+        "SonarQube",
+        "GitHub Actions",
+        "WiX Toolset",
+        "Git"
+      ],
+      github: "https://github.com/VladPocris/RenCloud",
+      live: "https://github.com/VladPocris/RenCloud/releases",
+      icon: "🎬"
     },
     {
-      title: "Weather Dashboard",
-      description: "Interactive weather dashboard with location-based forecasts, historical data visualization, and mobile-responsive design.",
-      technologies: ["React", "D3.js", "Weather API", "Tailwind CSS"],
-      github: "https://github.com/vladpocris/weather",
-      live: "https://weather-demo.com",
-      icon: "🌤️"
-    },
-    {
-      title: "Social Media Analytics",
-      description: "Analytics platform for social media performance tracking with data visualization and automated reporting features.",
-      technologies: ["Python", "Django", "Pandas", "Chart.js"],
-      github: "https://github.com/vladpocris/analytics",
-      live: "https://analytics-demo.com",
+      title: "BreachExplorer · Tallaght, IE",
+      description: "Blazor WebAssembly SPA that visualises global ‘Have I Been Pwned?’ breach stats: top‑15 incidents and per‑company charts with real‑time toggles. ‘Was I Breached?’ checks an email via a custom ASP.NET Core Web API proxy (Azure App Service) to bypass CORS and returns personalised guidance. Responsive design built with BlazorBootstrap.",
+      technologies: [
+        "C#",
+        ".NET 8",
+        "Blazor WebAssembly",
+        "ASP.NET Core Web API",
+        "Azure Blob Static Site",
+        "Azure App Service",
+        "Chart.js",
+        "Playwright",
+        "CSS",
+        "HTML",
+        "BlazorBootstrap",
+        "Git"
+      ],
+      github: "https://github.com/VladPocris/BreachExplorer",
+      live: "https://vladpocris.github.io/BreachExplorer/",
       icon: "📊"
-    },
-    {
-      title: "Mobile Fitness App",
-      description: "Cross-platform fitness tracking application with workout plans, progress tracking, and social features.",
-      technologies: ["React Native", "Firebase", "Redux", "Expo"],
-      github: "https://github.com/vladpocris/fitness",
-      live: "https://fitness-demo.com",
-      icon: "💪"
-    },
-    {
-      title: "AI Chatbot",
-      description: "Intelligent chatbot with natural language processing capabilities for customer support and automated responses.",
-      technologies: ["Python", "TensorFlow", "Flask", "NLP"],
-      github: "https://github.com/vladpocris/chatbot",
-      live: "https://chatbot-demo.com",
-      icon: "🤖"
     }
   ];
 
@@ -90,12 +100,21 @@ const ProjectsSection = () => {
           <div className="w-24 h-1 bg-gradient-primary mx-auto" />
         </div>
 
+        {/* Hosting Notice */}
+        <div className={`max-w-4xl mx-auto mb-10 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.1s" }}>
+          <div className="glass-card rounded-lg p-4 border border-yellow-400/30">
+            <p className="text-sm text-yellow-100">
+              Note: My Azure student subscription has ended, so I migrated some APIs and databases to free-tier services that may sleep when idle. If a live demo or API endpoint appears down, it likely just needs a manual restart per the provider's policy. Please <a href="#contact" className="underline underline-offset-4 text-yellow-200 hover:text-yellow-100">contact me</a> and I will bring it back online.
+            </p>
+          </div>
+        </div>
+
         {/* Projects Grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <div 
               key={index}
-              className={`glass-card rounded-xl p-6 hover:scale-105 transition-all duration-300 animate-slide-up ${isVisible ? "in-view" : ""}`}
+              className={`glass-card rounded-xl p-6 transition-transform duration-200 ease-out hover:-translate-y-1 transform-gpu animate-slide-up ${isVisible ? "in-view" : ""} overflow-hidden`}
               style={{ animationDelay: `${index * 0.1}s` }}
             >
               {/* Project Icon */}

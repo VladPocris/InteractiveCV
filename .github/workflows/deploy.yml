@@ -1,8 +1,9 @@
-name: Deploy static root (OldCV) and migration app to GitHub Pages
+name: Deploy Vite React app to GitHub Pages
 
 on:
   push:
     branches: [ main ]
+  workflow_dispatch:
 
 permissions:
   contents: read
@@ -10,62 +11,40 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
+  group: pages
   cancel-in-progress: true
 
 jobs:
-  build-and-deploy:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout main
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Prepare output directory
-        run: mkdir -p ./out
-
-      - name: Copy static root from OldCV/
-        run: |
-          if [ -d OldCV ]; then
-            cp -r OldCV/* ./out/
-          else
-            echo "<!doctype html><html><head><meta charset=\"utf-8\"><meta name=\"viewport\" content=\"width=device-width,initial-scale=1\"><title>InteractiveCV</title></head><body><h1>Root site not found</h1><p>Create an <code>OldCV/</code> folder on <code>main</code> with your static site.</p></body></html>" > ./out/index.html
-          fi
-
-      - name: Checkout React_Migration into subfolder
-        uses: actions/checkout@v4
-        with:
-          ref: React_Migration
-          path: react_branch
-
-      - name: Setup Node
+      - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
           node-version: 20
-          cache: npm
+          cache: 'npm'
 
-      - name: Install and build migration app
-        working-directory: react_branch
-        env:
-          VITE_DEPLOY_SUBPATH: migration
-        run: |
-          npm ci
-          npm run build:migration
+      - name: Install dependencies
+        run: npm ci
 
-      - name: Stage migration app under /migration
-        run: |
-          mkdir -p ./out/migration
-          cp -r react_branch/dist/* ./out/migration/
-
-      - name: Setup Pages
-        uses: actions/configure-pages@v5
+      - name: Build
+        run: npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: ./out
+          path: ./dist
 
+  deploy:
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    runs-on: ubuntu-latest
+    needs: build
+    steps:
       - name: Deploy to GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
-
-

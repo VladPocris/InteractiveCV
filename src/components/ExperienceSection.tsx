@@ -6,68 +6,80 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Full-Stack Developer Intern",
-      company: "Tech Solutions Ltd",
-      period: "June 2024 - August 2024",
-      location: "Dublin, Ireland",
+      title: "Freelance Webflow Developer & Content Creator",
+      company: "ItSpot · Tallaght, IE",
+      period: "Mar 2025 – Sep 2025",
+      location: "Tallaght, Ireland",
+      type: "Freelance",
+      description: "Designed and shipped a responsive marketing site in Webflow using CMS collections and integrated contact‑form submissions. Produced PC‑build video content for ItSpot’s YouTube channel.",
+      achievements: [
+        "Custom animations/interactions while keeping Core Web Vitals in the green",
+        "Created step‑by‑step Editor docs + delivered 30‑minute staff training",
+        "Scripted, recorded, and edited walkthrough videos end‑to‑end (VO + post)"
+      ],
+      technologies: ["Webflow", "CMS Collections", "Interactions", "Core Web Vitals", "SEO", "CapCut", "Adobe After Effects"],
+      icon: "🌐"
+    },
+    {
+      title: "OCIP — On Campus Internship",
+      company: "Technological University Dublin · Tallaght, IE",
+      period: "Jun 2024 – Sep 2024",
+      location: "Tallaght, Ireland",
       type: "Internship",
-      description: "Developed and maintained web applications using React and Node.js. Collaborated with senior developers on client projects and gained experience in agile development methodologies.",
+      description: "Supported students and faculty with skills tracking and documentation while pursuing structured professional development.",
       achievements: [
-        "Built responsive web components serving 10,000+ users",
-        "Improved application performance by 25%",
-        "Implemented REST APIs with comprehensive testing",
-        "Participated in code reviews and team standups"
+        "Positive feedback from ~80% of faculty for skill‑tracking reports",
+        "Awarded 100% discount for AWS Cloud Practitioner exam",
+        "Completed 5 technical certifications during the internship",
+        "Documented daily progress on skills and completed tasks"
       ],
-      technologies: ["React", "Node.js", "MongoDB", "Git", "Jira"],
-      icon: "💻"
+      technologies: ["AWS", "Reporting", "Documentation", "Organization"],
+      icon: "🎓"
     },
     {
-      title: "YouTube Content Creator",
-      company: "Personal Channel",
-      period: "2023 - Present",
-      location: "Remote",
-      type: "Self-Employed",
-      description: "Created educational content focused on programming tutorials and tech reviews. Built and managed a growing community while developing strong communication and video production skills.",
+      title: "Network Engineer",
+      company: "Capri · Bray, IE",
+      period: "Jun 2021 – Feb 2022",
+      location: "Bray, Ireland",
+      type: "Full-time",
+      description: "Delivered network performance improvements and end‑user enablement across the site.",
       achievements: [
-        "Generated 330,000+ views in 3 months",
-        "Reached 500,000+ total channel views",
-        "Built engaged subscriber base of 15,000+",
-        "Monetization eligibility achieved"
+        "Increased internet/Wi‑Fi throughput by ~120 Mbps",
+        "Trained 20 staff members, boosting productivity by ~15%",
+        "Improved connectivity for 20+ users; reduced downtime by ~80%"
       ],
-      technologies: ["Video Editing", "SEO", "Analytics", "Social Media"],
-      icon: "🎥"
+      technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
+      icon: "📶"
     },
     {
-      title: "IT Support Assistant",
-      company: "University IT Department",
-      period: "September 2023 - May 2024",
-      location: "Dublin, Ireland",
+      title: "Cleaning Specialist",
+      company: "Derrycourt Cleaning Specialists · Ireland",
+      period: "Sep 2023 – Oct 2023",
+      location: "Ireland · On‑site",
       type: "Part-time",
-      description: "Provided technical support to students and faculty. Troubleshot hardware and software issues while maintaining computer labs and network infrastructure.",
+      description: "Supported healthcare and commercial environments with high‑standard cleaning under strict protocols.",
       achievements: [
-        "Resolved 95% of support tickets within SLA",
-        "Assisted 200+ users weekly with technical issues",
-        "Maintained lab equipment and software updates",
-        "Created user guides and documentation"
+        "Followed infection‑control standards with specialized equipment/materials",
+        "Handled ad‑hoc requests with strong flexibility and time management",
+        "Completed daily logs and checklists for audit and H&S compliance"
       ],
-      technologies: ["Windows", "MacOS", "Network Admin", "Help Desk"],
-      icon: "🔧"
+      technologies: ["Infection Control", "H&S Compliance", "Time Management"],
+      icon: "🧹"
     },
     {
-      title: "Hackathon Team Leader",
-      company: "Various Events",
-      period: "2022 - Present",
-      location: "Ireland & International",
-      type: "Competition",
-      description: "Led development teams in multiple hackathon competitions, focusing on innovative solutions to real-world problems using cutting-edge technologies.",
+      title: "Cleaner",
+      company: "Ashbrook Facility Management (AFM) Ireland · Bray, IE",
+      period: "Aug 2021 – Sep 2023",
+      location: "Bray, Ireland · On‑site",
+      type: "Part-time",
+      description: "Maintained cleanliness across specialized facilities with optimized scheduling and resource management.",
       achievements: [
-        "Won 2nd place at Dublin Tech Hackathon 2024",
-        "Led team of 5 developers successfully",
-        "Developed AI-powered sustainability app in 48 hours",
-        "Presented solutions to industry judges"
+        "Reduced daily cleaning time from 5.5h to 4h with schedule improvements",
+        "Coordinated cleaning across labs, gym, and sports hall with 100% protocol adherence",
+        "Supported 5 school events by aligning cleaning scope, timing, and supplies"
       ],
-      technologies: ["Team Leadership", "Rapid Prototyping", "AI/ML", "Presentation"],
-      icon: "🏆"
+      technologies: ["Scheduling", "Resource Management", "Safety Protocols"],
+      icon: "🧽"
     }
   ];
 
@@ -105,9 +117,9 @@ const ExperienceSection = () => {
         </div>
 
         {/* Timeline */}
-        <div className="relative overflow-hidden">
+        <div className="relative overflow-visible">
           {/* Timeline Line - Hidden on mobile, visible on desktop */}
-          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-primary transform -translate-x-1/2" />
+          <div className="hidden lg:block absolute left-1/2 top-0 bottom-0 w-0.5 bg-gradient-primary transform -translate-x-1/2 pointer-events-none" />
 
           {/* Experience Items */}
           <div className="space-y-8 lg:space-y-12">
@@ -185,7 +197,7 @@ const ExperienceSection = () => {
                   <div className={`w-5/12 ${
                     index % 2 === 0 ? "mr-auto pr-8" : "ml-auto pl-8"
                   }`}>
-                    <div className="glass-card rounded-xl p-6 hover:scale-105 transition-all duration-300">
+                    <div className="glass-card rounded-xl p-6 transition-transform duration-300 ease-out hover:scale-105 transform-gpu relative hover:z-20">
                       {/* Experience Header */}
                       <div className="flex items-start justify-between mb-4">
                         <div className="flex items-center space-x-3 flex-1 min-w-0">

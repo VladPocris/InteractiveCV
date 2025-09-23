@@ -279,7 +279,7 @@ const EducationSection = () => {
         <div className={`glass-card rounded-2xl overflow-hidden animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.3s" }}>
           {/* Main Education Tabs */}
           <div className="border-b border-white/10">
-            <div className="flex flex-col space-y-2 lg:flex-row lg:flex-wrap lg:justify-between p-4 lg:space-y-0">
+            <div className="flex flex-col space-y-2 lg:flex-row lg:flex-wrap lg:justify-between p-4 lg:space-y-0 overflow-x-auto">
               {educationData.map((education, index) => (
                 <Button
                   key={index}
@@ -289,7 +289,7 @@ const EducationSection = () => {
                     setActiveYear(0);
                     setActiveSemester(0);
                   }}
-                  className={`text-xs sm:text-sm px-2 sm:px-3 py-2 w-full lg:w-auto lg:flex-1 lg:mx-1 mb-2 lg:mb-0 text-center break-words ${
+                  className={`text-xs sm:text-sm px-2 sm:px-3 py-2 w-full lg:w-auto lg:flex-1 lg:mx-1 mb-2 lg:mb-0 text-center break-words break-anywhere ${
                     activeTab === index 
                       ? "btn-gradient" 
                       : "text-foreground hover:bg-white/10"
@@ -350,10 +350,10 @@ const EducationSection = () => {
           {/* Content Display */}
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="text-center mb-8">
-              <h3 className="gradient-text text-xl sm:text-2xl font-bold mb-2 break-words">
+              <h3 className="gradient-text text-xl sm:text-2xl font-bold mb-2 break-words break-anywhere">
                 {educationData[activeTab].years[activeYear].year}
               </h3>
-              <h4 className="text-primary text-lg sm:text-xl font-semibold mb-1 break-words">
+              <h4 className="text-primary text-lg sm:text-xl font-semibold mb-1 break-words break-anywhere">
                 {educationData[activeTab].institution}
               </h4>
               <p className="text-foreground text-sm sm:text-base">
@@ -372,9 +372,9 @@ const EducationSection = () => {
               <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
                 {(educationData[activeTab].years[activeYear].semesters?.[activeSemester]?.subjects || []).map((subject, index) => (
                   <div key={index} className="space-y-2">
-                    <div className="flex justify-between items-start">
-                      <span className="text-foreground font-medium text-sm sm:text-base break-words flex-1 mr-2">{subject.name}</span>
-                      <span className="text-primary text-sm flex-shrink-0">{subject.progress}%</span>
+                    <div className="flex flex-wrap justify-between items-start gap-1 min-w-0">
+                      <span className="edu-subject text-foreground font-medium text-xs sm:text-sm break-anywhere flex-1 mr-2 min-w-0">{subject.name}</span>
+                      <span className="edu-percent text-primary text-xs sm:text-sm flex-shrink-0">{subject.progress}%</span>
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-2">
                       <div 

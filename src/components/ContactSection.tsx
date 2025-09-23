@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import emailjs from "@emailjs/browser";
 import { Button } from "./ui/button";
 import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
@@ -11,6 +12,7 @@ const ContactSection = () => {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     subject: "",
     message: ""
   });
@@ -44,26 +46,43 @@ const ContactSection = () => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    // Simulate form submission
+    const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY as string | undefined;
+    const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID as string | undefined;
+    const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID as string | undefined;
+
     try {
-      await new Promise(resolve => setTimeout(resolve, 2000));
-      
+      if (!publicKey || !serviceId || !templateId) {
+        throw new Error("Email service not configured");
+      }
+
+      const response = await emailjs.send(serviceId, templateId, {
+        // Commonly used variables in EmailJS templates
+        from_name: formData.name,
+        fullname: formData.name,
+        email: formData.email,
+        reply_to: formData.email,
+        phone: formData.phone,
+        subject: formData.subject,
+        message: formData.message,
+        to_email: "vpocris@gmail.com"
+      }, { publicKey });
+
+      if (response.status !== 200) {
+        throw new Error("EmailJS failed");
+      }
+
       toast({
-        title: "Message Sent Successfully!",
+        title: "Message sent!",
         description: "Thank you for reaching out. I'll get back to you soon.",
         variant: "default",
       });
 
-      setFormData({
-        name: "",
-        email: "",
-        subject: "",
-        message: ""
-      });
-    } catch (error) {
+      setFormData({ name: "", email: "", phone: "", subject: "", message: "" });
+    } catch (error: any) {
+      console.error("EmailJS error", error);
       toast({
-        title: "Error Sending Message",
-        description: "Please try again or contact me directly via email.",
+        title: "Error sending message",
+        description: (error?.message as string) || "Please try again or email me directly at vpocris@gmail.com.",
         variant: "destructive",
       });
     } finally {
@@ -213,6 +232,17 @@ const ContactSection = () => {
                       placeholder="your.email@example.com"
                     />
                   </div>
+                  <div>
+                    <label className="text-foreground font-medium mb-2 block">Phone (optional)</label>
+                    <Input
+                      name="phone"
+                      type="tel"
+                      value={formData.phone}
+                      onChange={handleInputChange}
+                      className="bg-secondary/50 border-white/10 text-foreground placeholder:text-muted-foreground"
+                      placeholder="Your phone number"
+                    />
+                  </div>
                 </div>
 
                 <div>
@@ -267,7 +297,7 @@ const ContactSection = () => {
         <div className={`text-center mt-16 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
           <div className="glass-card rounded-xl p-6">
             <p className="text-foreground mb-4">
-              © 2024 Vlad Pocris. Built with React, TypeScript, and Tailwind CSS.
+              © 2025 Vlad Pocris. Built with React, TypeScript, and Tailwind CSS.
             </p>
             <p className="text-muted-foreground text-sm">
               Thank you for visiting my portfolio. Looking forward to connecting with you!
