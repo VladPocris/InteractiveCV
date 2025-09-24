@@ -26,10 +26,10 @@ const HeroSection = () => {
         <div className="max-w-6xl mx-auto px-6 py-8">
           <div className="flex justify-between items-center">
             <div className={`animate-slide-left ${isLoaded ? "in-view" : ""}`}>
-              <h1 className="gradient-text text-lg font-bold">16/09</h1>
+              <h1 className="gradient-text text-lg font-bold">24/09</h1>
             </div>
             <div className={`animate-slide-up ${isLoaded ? "in-view" : ""}`} style={{ animationDelay: "0.2s" }}>
-              <h1 className="gradient-text text-2xl font-bold">CV</h1>
+              <h1 className="gradient-text text-2xl font-bold">Portfolio</h1>
             </div>
             <div className={`animate-slide-right ${isLoaded ? "in-view" : ""}`} style={{ animationDelay: "0.4s" }}>
               <h1 className="gradient-text text-lg font-bold">2025</h1>
