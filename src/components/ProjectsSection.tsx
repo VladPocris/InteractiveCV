@@ -173,13 +173,23 @@ const ProjectsSection = () => {
           <p className="text-foreground text-lg mb-6">
             Interested in seeing more of my work?
           </p>
-          <Button 
-            className="btn-gradient px-8 py-3 text-lg"
-            onClick={() => window.open("https://github.com/vladpocris", "_blank")}
-          >
-            <Github className="h-5 w-5 mr-2" />
-            View All Projects
-          </Button>
+          <div className="flex justify-center gap-4">
+            <Button 
+              className="btn-gradient px-8 py-3 text-lg"
+              onClick={() => window.open("https://github.com/vladpocris", "_blank")}
+            >
+              <Github className="h-5 w-5 mr-2" />
+              View All Projects
+            </Button>
+            <Button
+              variant="outline"
+              className="px-4 py-3 text-lg border-primary/30 text-primary hover:bg-primary/10 flex items-center"
+              onClick={() => window.open("https://github.com/VladPocris/InteractiveCV", "_blank")}
+            >
+              <Github className="h-5 w-5 mr-2" />
+              Portfolio Code
+            </Button>
+          </div>
         </div>
       </div>
     </section>
