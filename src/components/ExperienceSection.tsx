@@ -6,7 +6,21 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Freelance Webflow Developer & Content Creator",
+      title: "Dispatcher (Remote)",
+      company: "DWSmart LLC · Chisinau, Moldova Republic Of",
+      period: "Jun 2025 – Sep 2025",
+      location: "Chisinau, Moldova (Remote)",
+      type: "Contract",
+      description: "Coordinated daily logistics operations, optimized routes and managed client communications to maintain high on‑time delivery performance.",
+      achievements: [
+        "Coordinated daily logistics operations, optimizing routes and managing client communications; maintained 98% on‑time delivery rate and ensured revenue targets of $1.80+/mile.",
+        "Maintained consistent service quality while multitasking in a fast‑paced environment handling 2–3 trucks daily."
+      ],
+      technologies: ["Logistics Coordination", "Route Optimization", "Client Communications"],
+      icon: "🚚"
+    },
+    {
+      title: "Webflow Developer & Content Creator",
       company: "ItSpot · Tallaght, IE",
       period: "Mar 2025 – Sep 2025",
       location: "Tallaght, Ireland",
@@ -37,21 +51,6 @@ const ExperienceSection = () => {
       icon: "🎓"
     },
     {
-      title: "Network Engineer",
-      company: "Capri · Bray, IE",
-      period: "Jun 2021 – Feb 2022",
-      location: "Bray, Ireland",
-      type: "Full-time",
-      description: "Delivered network performance improvements and end‑user enablement across the site.",
-      achievements: [
-        "Increased internet/Wi‑Fi throughput by ~120 Mbps",
-        "Trained 20 staff members, boosting productivity by ~15%",
-        "Improved connectivity for 20+ users; reduced downtime by ~80%"
-      ],
-      technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
-      icon: "📶"
-    },
-    {
       title: "Cleaning Specialist",
       company: "Derrycourt Cleaning Specialists · Ireland",
       period: "Sep 2023 – Oct 2023",
@@ -80,6 +79,37 @@ const ExperienceSection = () => {
       ],
       technologies: ["Scheduling", "Resource Management", "Safety Protocols"],
       icon: "🧽"
+    },
+    {
+      title: "Network Engineer",
+      company: "Capri · Bray, IE",
+      period: "Jun 2021 – Feb 2022",
+      location: "Bray, Ireland",
+      type: "Full-time",
+      description: "Delivered network performance improvements and end‑user enablement across the site.",
+      achievements: [
+        "Increased internet/Wi‑Fi throughput by ~120 Mbps",
+        "Trained 20 staff members, boosting productivity by ~15%",
+        "Improved connectivity for 20+ users; reduced downtime by ~80%"
+      ],
+      technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
+      icon: "📶"
+    },
+    {
+      title: "Sales Assistant",
+      company: "Linella · Chisinau, Moldova",
+      period: "Jan 2019 – Jun 2019",
+      location: "Chisinau, Moldova",
+      type: "Full-time",
+      description: "Assisted customers with product selection, maintained store presentation, and supported the retail team to meet daily sales targets.",
+      achievements: [
+        "Guided customers through product selection, boosting sales and guaranteeing a consistently positive shopping experience.",
+        "Resolved over 30 customer queries per shift, achieving a 95% satisfaction rate through prompt issue resolution and clear communication.",
+        "Maintained store presentation and organized merchandise according to company standards.",
+        "Collaborated with retail team members to meet daily sales targets in a high‑traffic setting."
+      ],
+      technologies: ["Customer Service", "Merchandising", "Point of Sale"],
+      icon: "🛒"
     }
   ];
 
