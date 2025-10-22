@@ -8,8 +8,27 @@ const ProjectsSection = () => {
 
   const projects = [
     {
+      title: "CivPlayers Civ3 League · Online",
+      description: "Front‑end web application for a Civilization III multiplayer league with live leaderboards, event management, and ELO‑based team generation. Built responsive SPA with React 18 and TypeScript integrating real‑time CSV data from Google Sheets (<200ms fetch latency). Engineered brute‑force team balancing algorithm generating optimal 4‑8 player splits with probability analysis (<100ms computation). Developed comprehensive admin panel with ordered content blocks (paragraphs, images, links) and JSON export, reducing content update time by 80%. Created 40+ reusable UI components using shadcn/ui with custom Civ3 theme and mobile‑first design.",
+      technologies: [
+        "React 18",
+        "TypeScript",
+        "Vite",
+        "Tailwind CSS",
+        "Google Sheets API",
+        "shadcn/ui",
+        "Radix UI",
+        "GitHub Actions",
+        "GitHub Pages",
+        "Git"
+      ],
+      github: "https://github.com/VladPocris/CivPlayers-Civ3-League",
+      live: "https://vladpocris.github.io/CivPlayers-Civ3-League/",
+      icon: "🎮"
+    },
+    {
       title: "SmartRoute · Tallaght, IE",
-      description: "Android app that plans multi‑stop journeys with Google Places autocomplete and an optimised route drawn on Google Maps (Directions API). Generates a six‑digit trip code; an ASP.NET Core Web API (Azure App Service) persists trips & steps in Azure SQL and exposes CRUD. ‘Show details’ per‑leg cards with distance/time + on‑demand map previews; offline caching for instant reload.",
+      description: "Android app that plans multi‑stop journeys with Google Places autocomplete and an optimised route drawn on Google Maps (Directions API). Generates a six‑digit trip code; an ASP.NET Core Web API (Azure App Service) persists trips & steps in Azure SQL and exposes CRUD. 'Show details' per‑leg cards with distance/time + on‑demand map previews; offline caching for instant reload.",
       technologies: [
         "Java 17",
         "Android Studio",
