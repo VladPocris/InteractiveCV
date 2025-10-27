@@ -23,7 +23,7 @@ const ProjectsSection = () => {
         "Git"
       ],
       github: "https://github.com/VladPocris/CivPlayers-Civ3-League",
-      live: "https://vladpocris.github.io/CivPlayers-Civ3-League/",
+      live: "https://civplayersciv3league.com/",
       icon: "🎮"
     },
     {
