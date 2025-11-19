@@ -76,10 +76,8 @@ const FocusSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-rotate focus areas
   useEffect(() => {
     if (isVisible) {
-      // Respect reduced-motion and avoid auto-rotate on low-power devices
       const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
       if (prefersReducedMotion) return;
       const interval = setInterval(() => {
@@ -109,7 +107,7 @@ const FocusSection = () => {
           {focusAreas.map((area, index) => (
             <div 
               key={index}
-              className={`glass-card rounded-xl p-6 cursor-pointer transition-all duration-500 hover:scale-105 animate-slide-up ${
+              className={`content-section cursor-pointer transition-all duration-500 hover:scale-105 hover:border-primary/50 animate-slide-up ${
                 activeSkill === index ? "ring-2 ring-primary shadow-glow" : ""
               } ${isVisible ? "in-view" : ""}`}
               style={{ animationDelay: `${index * 0.1}s` }}
@@ -117,26 +115,27 @@ const FocusSection = () => {
             >
               {/* Icon and Title */}
               <div className="text-center mb-4">
-                <div className="text-4xl mb-3">{area.icon}</div>
-                <h3 className="gradient-text text-xl font-bold mb-2">
+                <div className="text-5xl mb-4">{area.icon}</div>
+                <h3 className="gradient-text text-xl font-bold mb-3">
                   {area.title}
                 </h3>
+                <p className="text-sm leading-relaxed text-foreground/90">
+                  {area.description}
+                </p>
               </div>
 
-              {/* Removed proficiency bar for a cleaner, more relevant presentation */}
-
               {/* Skills Tags */}
-              <div className="flex flex-wrap gap-2">
+              <div className="flex flex-wrap gap-2 justify-center mt-4">
                 {area.skills.slice(0, 3).map((skill, skillIndex) => (
                   <span 
                     key={skillIndex}
-                    className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30"
+                    className="tech-tag"
                   >
                     {skill}
                   </span>
                 ))}
                 {area.skills.length > 3 && (
-                  <span className="px-2 py-1 bg-muted/50 text-muted-foreground text-xs rounded-full">
+                  <span className="px-3 py-1.5 bg-muted/60 text-muted-foreground text-sm rounded-lg border border-white/20">
                     +{area.skills.length - 3} more
                   </span>
                 )}
@@ -146,49 +145,45 @@ const FocusSection = () => {
         </div>
 
         {/* Featured Focus Area */}
-        <div className={`glass-card rounded-2xl p-8 animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-center">
+        <div className={`content-section animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
             {/* Content */}
             <div>
               <div className="flex items-center space-x-4 mb-6">
-                <span className="text-5xl">{focusAreas[activeSkill].icon}</span>
+                <span className="text-6xl">{focusAreas[activeSkill].icon}</span>
                 <div>
                   <h3 className="gradient-text text-3xl font-bold">
                     {focusAreas[activeSkill].title}
                   </h3>
                 </div>
               </div>
-              <p className="text-foreground text-lg leading-relaxed mb-6">
+              <p className="text-lg leading-relaxed mb-6" style={{ color: 'hsl(210, 40%, 90%)' }}>
                 {focusAreas[activeSkill].description}
               </p>
             </div>
 
             {/* Skills Display */}
             <div>
-              <h4 className="text-primary font-semibold text-lg mb-4">Core Technologies & Skills</h4>
-              <div className="grid grid-cols-2 gap-3">
+              <h4 className="text-primary font-semibold text-lg mb-4">Details</h4>
+              <ul className="achievement-list">
                 {focusAreas[activeSkill].skills.map((skill, index) => (
-                  <div 
-                    key={index}
-                    className="flex items-center space-x-3 p-3 bg-secondary/30 rounded-lg border border-white/10"
-                  >
-                    <div className={`w-2 h-2 rounded-full bg-gradient-to-r ${focusAreas[activeSkill].color}`} />
-                    <span className="text-foreground font-medium">{skill}</span>
-                  </div>
+                  <li key={index}>
+                    {skill}
+                  </li>
                 ))}
-              </div>
+              </ul>
             </div>
           </div>
 
           {/* Navigation Dots */}
-          <div className="flex justify-center space-x-3 mt-8">
+          <div className="flex justify-center space-x-3 mt-8 pt-6 border-t border-white/10">
             {focusAreas.map((_, index) => (
               <button
                 key={index}
                 onClick={() => setActiveSkill(index)}
                 className={`w-3 h-3 rounded-full transition-all duration-300 ${
                   index === activeSkill 
-                    ? "bg-primary scale-110" 
+                    ? "bg-primary scale-125 shadow-glow" 
                     : "bg-white/30 hover:bg-white/50"
                 }`}
               />

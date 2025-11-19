@@ -6,6 +6,22 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
+      title: "Customer Assistant",
+      company: "Tesco · Ireland",
+      period: "Oct 2025 – Present",
+      location: "Ireland · On-site",
+      type: "Contract",
+      description: "Providing excellent customer service in a fast-paced retail environment, managing stock, and supporting daily store operations.",
+      achievements: [
+        "Delivering exceptional customer service and product knowledge across multiple departments",
+        "Efficiently handling checkouts and maintaining high accuracy in cash handling",
+        "Assisting with stock replenishment and maintaining store presentation standards",
+        "Supporting team members during peak hours to ensure smooth operations"
+      ],
+      technologies: ["Customer Service", "Point of Sale", "Inventory Management", "Team Collaboration"],
+      icon: "🛒"
+    },
+    {
       title: "Dispatcher (Remote)",
       company: "DWSmart LLC · Chisinau, Moldova Republic Of",
       period: "Jun 2025 – Sep 2025",

@@ -1,15 +1,50 @@
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { ExternalLink, Github } from "lucide-react";
+import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
 import projectsImage from "@/assets/projects-bg.jpg";
 
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
+  const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
   const projects = [
     {
-      title: "CivPlayers Civ3 League · Online",
-      description: "Front‑end web application for a Civilization III multiplayer league with live leaderboards, event management, and ELO‑based team generation. Built responsive SPA with React 18 and TypeScript integrating real‑time CSV data from Google Sheets (<200ms fetch latency). Engineered brute‑force team balancing algorithm generating optimal 4‑8 player splits with probability analysis (<100ms computation). Developed comprehensive admin panel with ordered content blocks (paragraphs, images, links) and JSON export, reducing content update time by 80%. Created 40+ reusable UI components using shadcn/ui with custom Civ3 theme and mobile‑first design.",
+      title: "HTML & CSS Practice Portfolio",
+      subtitle: "freeCodeCamp Responsive Web Design Certification",
+      description: "A collection of HTML and CSS practice projects completed while earning freeCodeCamp's Responsive Web Design certification, showcasing fundamental web development skills and responsive design principles.",
+      keyFeatures: [
+        "Responsive layouts",
+        "Semantic HTML5 markup and accessibility best practices",
+        "CSS animations and transitions for interactive elements",
+        "Mobile-first design approach across all projects",
+        "Form validation and user input handling",
+        "Cross-browser compatible implementations"
+      ],
+      technologies: [
+        "HTML5",
+        "CSS3",
+        "Flexbox",
+        "CSS Grid",
+        "Responsive Design",
+        "Media Queries",
+        "CSS Animations",
+        "Accessibility Best Practices"
+      ],
+      github: "https://github.com/VladPocris/HTML-CSS-WORK",
+      live: null,
+      icon: "📝",
+      color: "from-indigo-500 to-purple-500"
+    },
+    {
+      title: "CivPlayers Civ3 League",
+      subtitle: "Online Gaming Community Platform",
+      description: "Front-end web application for a Civilization III multiplayer league featuring live leaderboards, event management, and ELO-based team generation.",
+      keyFeatures: [
+        "Real-time CSV data integration from Google Sheets with <200ms fetch latency",
+        "Brute-force team balancing algorithm for optimal 4-8 player splits with probability analysis (<100ms computation)",
+        "Comprehensive admin panel with ordered content management and drag-and-drop functionality",
+        "Responsive SPA built with React 18 and TypeScript"
+      ],
       technologies: [
         "React 18",
         "TypeScript",
@@ -19,16 +54,25 @@ const ProjectsSection = () => {
         "shadcn/ui",
         "Radix UI",
         "GitHub Actions",
-        "GitHub Pages",
-        "Git"
+        "GitHub Pages"
       ],
       github: "https://github.com/VladPocris/CivPlayers-Civ3-League",
       live: "https://civplayersciv3league.com/",
-      icon: "🎮"
+      icon: "🎮",
+      color: "from-purple-500 to-pink-500"
     },
     {
-      title: "SmartRoute · Tallaght, IE",
-      description: "Android app that plans multi‑stop journeys with Google Places autocomplete and an optimised route drawn on Google Maps (Directions API). Generates a six‑digit trip code; an ASP.NET Core Web API (Azure App Service) persists trips & steps in Azure SQL and exposes CRUD. 'Show details' per‑leg cards with distance/time + on‑demand map previews; offline caching for instant reload.",
+      title: "SmartRoute",
+      subtitle: "Multi-Stop Journey Planning App",
+      description: "Android application that plans optimized multi-stop journeys with Google Places autocomplete and route visualization on Google Maps.",
+      keyFeatures: [
+        "Google Places autocomplete for destination search",
+        "Optimized routing using Google Maps Directions API",
+        "Six-digit trip code generation for easy sharing",
+        "ASP.NET Core Web API backend with Azure SQL persistence",
+        "Per-leg detail cards with distance/time and map previews",
+        "Offline caching for instant reload"
+      ],
       technologies: [
         "Java 17",
         "Android Studio",
@@ -36,18 +80,28 @@ const ProjectsSection = () => {
         "Directions API",
         "Places API",
         "Retrofit",
-        "ASP.NET Core Web API",
-        "Azure SQL Database",
-        "Azure App Service",
-        "Git"
+        "ASP.NET Core",
+        "Azure SQL",
+        "Azure App Service"
       ],
       github: "https://github.com/VladPocris/SmartRoute",
       live: "https://smartroute-i92g.onrender.com/api/trips",
-      icon: "🗺️"
+      icon: "🗺️",
+      color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "RenCloud · Tallaght, IE",
-      description: "Windows‑based video‑editing environment with timeline trim/split/rearrange, live thumbnails and audio waveforms. Integrates FFmpeg (advanced processing roadmap) and VLC/LibVLC for seamless, frame‑accurate playback. CI with GitHub Actions + SonarQube quality gates; WiX Toolset packaging produces an MSI installer. Plugin‑ready architecture for future extensibility.",
+      title: "RenCloud",
+      subtitle: "Windows Video Editing Environment",
+      description: "Professional Windows-based video editing application with timeline controls, live thumbnails, and audio waveforms.",
+      keyFeatures: [
+        "Timeline trim/split/rearrange with frame-accurate control",
+        "Live thumbnail previews and audio waveform visualization",
+        "FFmpeg integration for advanced video processing",
+        "VLC/LibVLC for seamless playback",
+        "CI/CD with GitHub Actions and SonarQube quality gates",
+        "MSI installer packaging with WiX Toolset",
+        "Plugin-ready architecture for future extensions"
+      ],
       technologies: [
         "C#",
         ".NET 8",
@@ -56,33 +110,40 @@ const ProjectsSection = () => {
         "LibVLC",
         "SonarQube",
         "GitHub Actions",
-        "WiX Toolset",
-        "Git"
+        "WiX Toolset"
       ],
       github: "https://github.com/VladPocris/RenCloud",
       live: "https://github.com/VladPocris/RenCloud/releases",
-      icon: "🎬"
+      icon: "🎬",
+      color: "from-orange-500 to-red-500"
     },
     {
-      title: "BreachExplorer · Tallaght, IE",
-      description: "Blazor WebAssembly SPA that visualises global ‘Have I Been Pwned?’ breach stats: top‑15 incidents and per‑company charts with real‑time toggles. ‘Was I Breached?’ checks an email via a custom ASP.NET Core Web API proxy (Azure App Service) to bypass CORS and returns personalised guidance. Responsive design built with BlazorBootstrap.",
+      title: "BreachExplorer",
+      subtitle: "Data Breach Visualization Tool",
+      description: "Blazor WebAssembly SPA that visualizes global 'Have I Been Pwned?' breach statistics with interactive charts and personalized breach checking.",
+      keyFeatures: [
+        "Top-15 global breach incidents visualization",
+        "Per-company breach charts with real-time toggles",
+        "Email breach checking via custom ASP.NET Core proxy",
+        "CORS bypass with Azure App Service backend",
+        "Personalized security guidance based on breach results",
+        "Responsive design with BlazorBootstrap"
+      ],
       technologies: [
         "C#",
         ".NET 8",
         "Blazor WebAssembly",
-        "ASP.NET Core Web API",
-        "Azure Blob Static Site",
+        "ASP.NET Core",
+        "Azure Static Sites",
         "Azure App Service",
         "Chart.js",
         "Playwright",
-        "CSS",
-        "HTML",
-        "BlazorBootstrap",
-        "Git"
+        "BlazorBootstrap"
       ],
       github: "https://github.com/VladPocris/BreachExplorer",
       live: "https://vladpocris.github.io/BreachExplorer/",
-      icon: "📊"
+      icon: "📊",
+      color: "from-green-500 to-emerald-500"
     }
   ];
 
@@ -113,101 +174,162 @@ const ProjectsSection = () => {
       <div className="absolute inset-0 bg-gradient-secondary opacity-60" />
       
       <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
-        {/* Section Title */}
         <div className={`text-center mb-16 animate-slide-up ${isVisible ? "in-view" : ""}`}>
-          <h2 className="gradient-text text-5xl lg:text-6xl font-bold mb-4">PROJECTS</h2>
-          <div className="w-24 h-1 bg-gradient-primary mx-auto" />
+          <h2 className="section-title text-5xl lg:text-6xl font-bold mb-4">PROJECTS</h2>
+          <div className="w-24 h-1 bg-gradient-primary mx-auto mb-6" />
+          <p className="text-foreground text-lg max-w-2xl mx-auto">
+            A selection of my recent development work showcasing full-stack capabilities, cloud integration, and modern frameworks.
+          </p>
         </div>
 
-        {/* Hosting Notice */}
-        <div className={`max-w-4xl mx-auto mb-10 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.1s" }}>
-          <div className="glass-card rounded-lg p-4 border border-yellow-400/30">
-            <p className="text-sm text-yellow-100">
-              Note: My Azure student subscription has ended, so I migrated some APIs and databases to free-tier services that may sleep when idle. If a live demo or API endpoint appears down, it likely just needs a manual restart per the provider's policy. Please <a href="#contact" className="underline underline-offset-4 text-yellow-200 hover:text-yellow-100">contact me</a> and I will bring it back online.
-            </p>
+        <div className={`max-w-5xl mx-auto mb-12 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.1s" }}>
+          <div className="content-section border-l-4 border-yellow-400/50">
+            <div className="flex items-start gap-3">
+              <span className="text-2xl">⚠️</span>
+              <div>
+                <p className="text-sm text-yellow-100 font-medium mb-1">Azure Migration Notice</p>
+                <p className="text-sm text-yellow-100/80">
+                  My Azure student subscription has ended, so some APIs and databases have been migrated to free-tier services that may sleep when idle. 
+                  If a live demo appears down, please <a href="#contact" className="underline underline-offset-2 text-yellow-200 hover:text-yellow-100 font-semibold">contact me</a> and I'll bring it back online.
+                </p>
+              </div>
+            </div>
           </div>
         </div>
 
-        {/* Projects Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="space-y-6 mb-16">
           {projects.map((project, index) => (
             <div 
               key={index}
-              className={`glass-card rounded-xl p-6 transition-transform duration-200 ease-out hover:-translate-y-1 transform-gpu animate-slide-up ${isVisible ? "in-view" : ""} overflow-hidden`}
-              style={{ animationDelay: `${index * 0.1}s` }}
+              className={`content-section transition-all duration-500 hover:border-primary/50 animate-slide-up ${isVisible ? "in-view" : ""}`}
+              style={{ animationDelay: `${index * 0.15}s` }}
             >
-              {/* Project Icon */}
-              <div className="text-4xl mb-4 text-center">
-                {project.icon}
-              </div>
+              <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
+                <div className="flex items-start gap-4 flex-1">
+                  <div className={`text-5xl flex-shrink-0 p-3 rounded-xl bg-gradient-to-br ${project.color} bg-opacity-10`}>
+                    {project.icon}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <h3 className="section-title text-2xl font-bold mb-1">
+                      {project.title}
+                    </h3>
+                    <p className="text-primary font-semibold mb-2">
+                      {project.subtitle}
+                    </p>
+                    <p className="text-foreground leading-relaxed">
+                      {project.description}
+                    </p>
+                  </div>
+                </div>
 
-              {/* Project Title */}
-              <h3 className="gradient-text text-xl font-bold mb-3 text-center">
-                {project.title}
-              </h3>
-
-              {/* Project Description */}
-              <p className="text-foreground text-sm leading-relaxed mb-4">
-                {project.description}
-              </p>
-
-              {/* Technologies */}
-              <div className="flex flex-wrap gap-2 mb-6">
-                {project.technologies.map((tech, techIndex) => (
-                  <span 
-                    key={techIndex}
-                    className="px-3 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30"
+                <div className="flex gap-3 flex-shrink-0">
+                  <Button 
+                    variant="outline"
+                    size="sm"
+                    className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
+                    onClick={() => window.open(project.github, "_blank")}
                   >
-                    {tech}
-                  </span>
-                ))}
+                    <Github className="h-4 w-4 mr-2" />
+                    Code
+                  </Button>
+                  {project.live ? (
+                    <Button 
+                      size="sm"
+                      className="btn-gradient"
+                      onClick={() => window.open(project.live, "_blank")}
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Live Demo
+                    </Button>
+                  ) : (
+                    <Button 
+                      size="sm"
+                      disabled
+                      className="px-4 py-2 bg-muted/40 text-muted-foreground cursor-not-allowed opacity-50"
+                      title="Repository only - no live demo available"
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Repo Only
+                    </Button>
+                  )}
+                </div>
               </div>
 
-              {/* Action Buttons */}
-              <div className="flex gap-3">
-                <Button 
-                  variant="outline"
-                  size="sm"
-                  className="flex-1 border-primary/30 text-primary hover:bg-primary/10"
-                  onClick={() => window.open(project.github, "_blank")}
+              <div className="mt-4 pt-4 border-t border-white/10">
+                <button
+                  onClick={() => setExpandedProject(expandedProject === index ? null : index)}
+                  className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium mb-3"
                 >
-                  <Github className="h-4 w-4 mr-2" />
-                  Code
-                </Button>
-                <Button 
-                  size="sm"
-                  className="flex-1 btn-gradient"
-                  onClick={() => window.open(project.live, "_blank")}
-                >
-                  <ExternalLink className="h-4 w-4 mr-2" />
-                  Live
-                </Button>
+                  {expandedProject === index ? (
+                    <>
+                      <ChevronUp className="h-4 w-4" />
+                      Hide Details
+                    </>
+                  ) : (
+                    <>
+                      <ChevronDown className="h-4 w-4" />
+                      Show Key Features & Technologies
+                    </>
+                  )}
+                </button>
+
+                {expandedProject === index && (
+                  <div className="space-y-4 animate-slide-up in-view">
+                    <div>
+                      <h4 className="text-primary font-semibold mb-2 flex items-center gap-2">
+                        <span>⚡</span> Key Features
+                      </h4>
+                      <ul className="achievement-list">
+                        {project.keyFeatures.map((feature, fIndex) => (
+                          <li key={fIndex}>{feature}</li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    <div>
+                      <h4 className="text-primary font-semibold mb-3 flex items-center gap-2">
+                        <span>🛠️</span> Technologies Used
+                      </h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.technologies.map((tech, techIndex) => (
+                          <span 
+                            key={techIndex}
+                            className="tech-tag"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           ))}
         </div>
 
-        {/* Call to Action */}
-        <div className={`text-center mt-16 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
-          <p className="text-foreground text-lg mb-6">
-            Interested in seeing more of my work?
-          </p>
-          <div className="flex justify-center gap-4">
-            <Button 
-              className="btn-gradient px-8 py-3 text-lg"
-              onClick={() => window.open("https://github.com/vladpocris", "_blank")}
-            >
-              <Github className="h-5 w-5 mr-2" />
-              View All Projects
-            </Button>
-            <Button
-              variant="outline"
-              className="px-4 py-3 text-lg border-primary/30 text-primary hover:bg-primary/10 flex items-center"
-              onClick={() => window.open("https://github.com/VladPocris/InteractiveCV", "_blank")}
-            >
-              <Github className="h-5 w-5 mr-2" />
-              Portfolio Code
-            </Button>
+        <div className={`text-center animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.8s" }}>
+          <div className="content-section max-w-3xl mx-auto">
+            <p className="text-foreground text-lg mb-6">
+              Want to see more of my work or collaborate on a project?
+            </p>
+            <div className="flex flex-col sm:flex-row justify-center gap-4">
+              <Button 
+                className="btn-gradient px-8 py-3 text-lg"
+                onClick={() => window.open("https://github.com/vladpocris", "_blank")}
+              >
+                <Github className="h-5 w-5 mr-2" />
+                View All Projects on GitHub
+              </Button>
+              <Button
+                variant="outline"
+                className="px-8 py-3 text-lg border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
+                onClick={() => window.open("https://github.com/VladPocris/InteractiveCV", "_blank")}
+              >
+                <Github className="h-5 w-5 mr-2" />
+                Portfolio Source Code
+              </Button>
+            </div>
           </div>
         </div>
       </div>
