@@ -8,13 +8,15 @@ const FocusSection = () => {
     {
       title: "Certifications",
       icon: "📜",
-      description: "Foundational cloud, virtualization, and professional skills certifications earned during 2024.",
+      description: "Continuous learning and formal certifications across web development, cloud, and virtualization.",
       skills: [
+        "FreeCodeCamp Responsive Web Design (2026)",
+        "FreeCodeCamp Legacy Responsive Web Design (2026)",
+        "FreeCodeCamp JavaScript Developer (2026)",
         "Red Hat Academy – Program Learner (2024)",
-        "AWS Academy Graduate – Cloud Foundations",
-        "VMware Cloud & Virtualization Concepts",
-        "VMware Data Center Virtualization Core (CTA‑DCV)",
-        "Working in a Digital World: Professional Skills"
+        "AWS Academy Graduate – AWS Academy Cloud Foundations",
+        "VMware Cloud and Virtualization Concepts",
+        "VMware Data Centre Virtualization Core Technical Skills (CTA‑DCV)"
       ],
       color: "from-blue-500 to-cyan-500"
     },
@@ -32,16 +34,20 @@ const FocusSection = () => {
     {
       title: "Interests",
       icon: "🎥",
-      description: "Content creation (YouTube monetized) and sports—staying creative and disciplined.",
-      skills: ["YouTube Content Creation", "Monetization", "Sports"],
+      description: "Continuous learning, content creation and sports — practical projects and community reach.",
+      skills: [
+        "Continuous learning: web dev, testing, cloud & systems engineering",
+        "YouTube content creation — 1M+ views, 15,000+ hours watch-time (YouTube Partner)",
+        "Sports"
+      ],
       color: "from-purple-500 to-pink-500"
     },
     {
       title: "Awards & Achievements",
       icon: "🏆",
-      description: "Competitive results in martial arts and athletics.",
+      description: "Competitive results in martial arts and athletics plus event participation.",
       skills: [
-        "5× Taekwondo WTF tournament winner (MD/UA/BG)",
+        "Five-time Taekwondo champion (Republic of Moldova, Ukraine, Bulgaria)",
         "High‑school long‑distance marathon winner",
         "Consecutive 60m sprint winner"
       ],
