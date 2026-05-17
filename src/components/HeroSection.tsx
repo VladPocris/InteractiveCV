@@ -164,7 +164,7 @@ const HeroSection = () => {
               <Button
                 variant="outline"
                 className="flex-1 border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
-                onClick={() => window.open("/cv/Vlad_Pocris_CV.pdf", "_blank")}
+                onClick={() => window.open(`${import.meta.env.BASE_URL}cv/Vlad_Pocris_CV.pdf`, "_blank")}
               >
                 <Download className="h-4 w-4 mr-2" />
                 Download CV
