@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import Navigation from "@/components/Navigation";
 import HeroSection from "@/components/HeroSection";
 import AboutSection from "@/components/AboutSection";
@@ -7,49 +7,53 @@ import ProjectsSection from "@/components/ProjectsSection";
 import ExperienceSection from "@/components/ExperienceSection";
 import FocusSection from "@/components/FocusSection";
 import ContactSection from "@/components/ContactSection";
+import LoadingScreen from "@/components/LoadingScreen";
+import SectionDivider from "@/components/SectionDivider";
+import ScrollProgress from "@/components/ScrollProgress";
 import { useScrollEffect } from "@/hooks/useScrollEffect";
 
 const Index = () => {
   const [isLoading, setIsLoading] = useState(true);
   const isScrolled = useScrollEffect();
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setIsLoading(false);
-    }, 1000);
+  const handleLoadComplete = useCallback(() => {
+    setIsLoading(false);
+  }, []);
 
-    return () => clearTimeout(timer);
+  useEffect(() => {
+    const handleMouseMove = (e: MouseEvent) => {
+      const x = e.clientX / window.innerWidth;
+      const y = e.clientY / window.innerHeight;
+      document.documentElement.style.setProperty("--mouse-x", String(x));
+      document.documentElement.style.setProperty("--mouse-y", String(y));
+    };
+
+    window.addEventListener("mousemove", handleMouseMove, { passive: true });
+    return () => window.removeEventListener("mousemove", handleMouseMove);
   }, []);
 
   if (isLoading) {
-    return (
-      <div className="fixed inset-0 bg-background flex items-center justify-center z-50">
-        <div className="text-center">
-          <div className="animate-pulse">
-            <div className="text-6xl mb-6">👨‍💻</div>
-            <div className="gradient-text text-2xl font-bold mb-4">Loading Portfolio</div>
-            <div className="flex justify-center space-x-2">
-              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
-              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "150ms" }} />
-              <div className="w-2 h-2 bg-primary rounded-full animate-bounce" style={{ animationDelay: "300ms" }} />
-            </div>
-          </div>
-        </div>
-      </div>
-    );
+    return <LoadingScreen onComplete={handleLoadComplete} />;
   }
 
   return (
     <div className="relative">
+      <ScrollProgress />
       <Navigation isScrolled={isScrolled} />
-      
-      <main>
+
+      <main role="main">
         <HeroSection />
+        <SectionDivider />
         <AboutSection />
+        <SectionDivider />
         <EducationSection />
+        <SectionDivider />
         <ProjectsSection />
+        <SectionDivider />
         <ExperienceSection />
+        <SectionDivider />
         <FocusSection />
+        <SectionDivider />
         <ContactSection />
       </main>
     </div>

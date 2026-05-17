@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { Button } from "./ui/button";
-import { ExternalLink, Github, ChevronDown, ChevronUp } from "lucide-react";
-import projectsImage from "@/assets/projects-bg.jpg";
+import { ExternalLink, Github, ChevronDown, ChevronUp, Star } from "lucide-react";
 
 const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
@@ -13,23 +12,13 @@ const ProjectsSection = () => {
       subtitle: "freeCodeCamp Responsive Web Design Certification",
       description: "A collection of HTML and CSS practice projects completed while earning freeCodeCamp's Responsive Web Design certification, showcasing fundamental web development skills and responsive design principles.",
       keyFeatures: [
-        "Responsive layouts",
+        "Responsive layouts with mobile-first design",
         "Semantic HTML5 markup and accessibility best practices",
         "CSS animations and transitions for interactive elements",
-        "Mobile-first design approach across all projects",
         "Form validation and user input handling",
         "Cross-browser compatible implementations"
       ],
-      technologies: [
-        "HTML5",
-        "CSS3",
-        "Flexbox",
-        "CSS Grid",
-        "Responsive Design",
-        "Media Queries",
-        "CSS Animations",
-        "Accessibility Best Practices"
-      ],
+      technologies: ["HTML5", "CSS3", "Flexbox", "CSS Grid", "Responsive Design", "Media Queries", "CSS Animations"],
       github: "https://github.com/VladPocris/HTML-CSS-WORK",
       live: null,
       icon: "📝",
@@ -39,23 +28,14 @@ const ProjectsSection = () => {
       title: "CivPlayers Civ3 League",
       subtitle: "Online Gaming Community Platform",
       description: "Front-end web application for a Civilization III multiplayer league featuring live leaderboards, event management, and ELO-based team generation.",
+      featured: true,
       keyFeatures: [
         "Real-time CSV data integration from Google Sheets with <200ms fetch latency",
         "Brute-force team balancing algorithm for optimal 4-8 player splits with probability analysis (<100ms computation)",
         "Comprehensive admin panel with ordered content management and drag-and-drop functionality",
         "Responsive SPA built with React 18 and TypeScript"
       ],
-      technologies: [
-        "React 18",
-        "TypeScript",
-        "Vite",
-        "Tailwind CSS",
-        "Google Sheets API",
-        "shadcn/ui",
-        "Radix UI",
-        "GitHub Actions",
-        "GitHub Pages"
-      ],
+      technologies: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Google Sheets API", "shadcn/ui", "Radix UI", "GitHub Actions", "GitHub Pages"],
       github: "https://github.com/VladPocris/CivPlayers-Civ3-League",
       live: "https://civplayersciv3league.com/",
       icon: "🎮",
@@ -73,17 +53,7 @@ const ProjectsSection = () => {
         "Per-leg detail cards with distance/time and map previews",
         "Offline caching for instant reload"
       ],
-      technologies: [
-        "Java 17",
-        "Android Studio",
-        "Google Maps SDK",
-        "Directions API",
-        "Places API",
-        "Retrofit",
-        "ASP.NET Core",
-        "Azure SQL",
-        "Azure App Service"
-      ],
+      technologies: ["Java 17", "Android Studio", "Google Maps SDK", "Directions API", "Places API", "Retrofit", "ASP.NET Core", "Azure SQL", "Azure App Service"],
       github: "https://github.com/VladPocris/SmartRoute",
       live: "https://smartroute-i92g.onrender.com/api/trips",
       icon: "🗺️",
@@ -99,19 +69,9 @@ const ProjectsSection = () => {
         "FFmpeg integration for advanced video processing",
         "VLC/LibVLC for seamless playback",
         "CI/CD with GitHub Actions and SonarQube quality gates",
-        "MSI installer packaging with WiX Toolset",
-        "Plugin-ready architecture for future extensions"
+        "MSI installer packaging with WiX Toolset"
       ],
-      technologies: [
-        "C#",
-        ".NET 8",
-        "Windows Forms",
-        "FFmpeg",
-        "LibVLC",
-        "SonarQube",
-        "GitHub Actions",
-        "WiX Toolset"
-      ],
+      technologies: ["C#", ".NET 8", "Windows Forms", "FFmpeg", "LibVLC", "SonarQube", "GitHub Actions", "WiX Toolset"],
       github: "https://github.com/VladPocris/RenCloud",
       live: "https://github.com/VladPocris/RenCloud/releases",
       icon: "🎬",
@@ -129,17 +89,7 @@ const ProjectsSection = () => {
         "Personalized security guidance based on breach results",
         "Responsive design with BlazorBootstrap"
       ],
-      technologies: [
-        "C#",
-        ".NET 8",
-        "Blazor WebAssembly",
-        "ASP.NET Core",
-        "Azure Static Sites",
-        "Azure App Service",
-        "Chart.js",
-        "Playwright",
-        "BlazorBootstrap"
-      ],
+      technologies: ["C#", ".NET 8", "Blazor WebAssembly", "ASP.NET Core", "Azure Static Sites", "Azure App Service", "Chart.js", "Playwright", "BlazorBootstrap"],
       github: "https://github.com/VladPocris/BreachExplorer",
       live: "https://vladpocris.github.io/BreachExplorer/",
       icon: "📊",
@@ -164,16 +114,8 @@ const ProjectsSection = () => {
   }, []);
 
   return (
-    <section 
-      id="projects" 
-      className="parallax-section relative"
-      style={{ 
-        backgroundImage: `linear-gradient(rgba(34, 34, 34, 0.8), rgba(34, 34, 34, 0.6)), url(${projectsImage})`,
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-secondary opacity-60" />
-      
-      <div className="relative z-10 max-w-6xl mx-auto px-6 py-20">
+    <section id="projects" className="relative min-h-screen py-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-6">
         <div className={`text-center mb-16 animate-slide-up ${isVisible ? "in-view" : ""}`}>
           <h2 className="section-title text-5xl lg:text-6xl font-bold mb-4">PROJECTS</h2>
           <div className="w-24 h-1 bg-gradient-primary mx-auto mb-6" />
@@ -182,14 +124,15 @@ const ProjectsSection = () => {
           </p>
         </div>
 
-        <div className={`max-w-5xl mx-auto mb-12 animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.1s" }}>
+        {/* Migration notice */}
+        <div className={`max-w-5xl mx-auto mb-12 animate-fade-in ${isVisible ? "in-view" : ""}`}>
           <div className="content-section border-l-4 border-yellow-400/50">
             <div className="flex items-start gap-3">
-              <span className="text-2xl">⚠️</span>
+              <span className="text-xl shrink-0 mt-0.5">⚠️</span>
               <div>
                 <p className="text-sm text-yellow-100 font-medium mb-1">Azure Migration Notice</p>
                 <p className="text-sm text-yellow-100/80">
-                  My Azure student subscription has ended, so some APIs and databases have been migrated to free-tier services that may sleep when idle. 
+                  My Azure student subscription has ended, so some APIs and databases have been migrated to free-tier services that may sleep when idle.
                   If a live demo appears down, please <a href="#contact" className="underline underline-offset-2 text-yellow-200 hover:text-yellow-100 font-semibold">contact me</a> and I'll bring it back online.
                 </p>
               </div>
@@ -199,20 +142,28 @@ const ProjectsSection = () => {
 
         <div className="space-y-6 mb-16">
           {projects.map((project, index) => (
-            <div 
+            <div
               key={index}
-              className={`content-section transition-all duration-500 hover:border-primary/50 animate-slide-up ${isVisible ? "in-view" : ""}`}
-              style={{ animationDelay: `${index * 0.15}s` }}
+              className={`content-section transition-all duration-500 animate-slide-up ${isVisible ? "in-view" : ""}`}
+              style={{ animationDelay: `${index * 0.12}s` }}
             >
               <div className="flex flex-col lg:flex-row lg:items-start lg:justify-between gap-4 mb-4">
                 <div className="flex items-start gap-4 flex-1">
-                  <div className={`text-5xl flex-shrink-0 p-3 rounded-xl bg-gradient-to-br ${project.color} bg-opacity-10`}>
+                  <div className={`text-4xl shrink-0 p-3 rounded-xl bg-gradient-to-br ${project.color} bg-opacity-10`}>
                     {project.icon}
                   </div>
                   <div className="flex-1 min-w-0">
-                    <h3 className="section-title text-2xl font-bold mb-1">
-                      {project.title}
-                    </h3>
+                    <div className="flex items-center gap-3 flex-wrap mb-1">
+                      <h3 className="section-title text-2xl font-bold">
+                        {project.title}
+                      </h3>
+                      {project.featured && (
+                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-yellow-500/15 text-yellow-400 text-xs font-semibold rounded-full border border-yellow-500/30">
+                          <Star className="h-3 w-3 fill-yellow-400" />
+                          Featured
+                        </span>
+                      )}
+                    </div>
                     <p className="text-primary font-semibold mb-2">
                       {project.subtitle}
                     </p>
@@ -222,18 +173,19 @@ const ProjectsSection = () => {
                   </div>
                 </div>
 
-                <div className="flex gap-3 flex-shrink-0">
-                  <Button 
+                <div className="flex gap-3 shrink-0">
+                  <Button
                     variant="outline"
                     size="sm"
-                    className="border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
+                    className="border-primary/40 text-primary hover:bg-primary/10"
                     onClick={() => window.open(project.github, "_blank")}
+                    aria-label={`View ${project.title} source code on GitHub`}
                   >
                     <Github className="h-4 w-4 mr-2" />
                     Code
                   </Button>
                   {project.live ? (
-                    <Button 
+                    <Button
                       size="sm"
                       className="btn-gradient"
                       onClick={() => window.open(project.live, "_blank")}
@@ -242,7 +194,7 @@ const ProjectsSection = () => {
                       Live Demo
                     </Button>
                   ) : (
-                    <Button 
+                    <Button
                       size="sm"
                       disabled
                       className="px-4 py-2 bg-muted/40 text-muted-foreground cursor-not-allowed opacity-50"
@@ -258,23 +210,30 @@ const ProjectsSection = () => {
               <div className="mt-4 pt-4 border-t border-white/10">
                 <button
                   onClick={() => setExpandedProject(expandedProject === index ? null : index)}
-                  className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium mb-3"
+                  className="flex items-center gap-2 text-primary hover:text-primary/80 transition-colors font-medium mb-3 group"
+                  aria-expanded={expandedProject === index}
                 >
-                  {expandedProject === index ? (
-                    <>
-                      <ChevronUp className="h-4 w-4" />
-                      Hide Details
-                    </>
-                  ) : (
-                    <>
-                      <ChevronDown className="h-4 w-4" />
-                      Show Key Features & Technologies
-                    </>
-                  )}
+                  <span className="transition-transform duration-200 group-hover:translate-y-0.5">
+                    {expandedProject === index ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                  </span>
+                  {expandedProject === index ? "Hide Details" : "Show Key Features & Technologies"}
                 </button>
 
-                {expandedProject === index && (
-                  <div className="space-y-4 animate-slide-up in-view">
+                <div
+                  className="transition-all duration-400 ease-in-out overflow-hidden"
+                  style={{
+                    maxHeight: expandedProject === index ? "600px" : "0px",
+                    opacity: expandedProject === index ? 1 : 0,
+                  }}
+                >
+                  <div className="space-y-4 pt-2">
+                    {/* Tech tags preview */}
+                    <div className="flex flex-wrap gap-2">
+                      {project.technologies.map((tech, techIndex) => (
+                        <span key={techIndex} className="tech-tag text-xs">{tech}</span>
+                      ))}
+                    </div>
+
                     <div>
                       <h4 className="text-primary font-semibold mb-2 flex items-center gap-2">
                         <span>⚡</span> Key Features
@@ -285,36 +244,20 @@ const ProjectsSection = () => {
                         ))}
                       </ul>
                     </div>
-
-                    <div>
-                      <h4 className="text-primary font-semibold mb-3 flex items-center gap-2">
-                        <span>🛠️</span> Technologies Used
-                      </h4>
-                      <div className="flex flex-wrap gap-2">
-                        {project.technologies.map((tech, techIndex) => (
-                          <span 
-                            key={techIndex}
-                            className="tech-tag"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
                   </div>
-                )}
+                </div>
               </div>
             </div>
           ))}
         </div>
 
-        <div className={`text-center animate-fade-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.8s" }}>
+        <div className={`text-center animate-fade-in ${isVisible ? "in-view" : ""}`}>
           <div className="content-section max-w-3xl mx-auto">
             <p className="text-foreground text-lg mb-6">
               Want to see more of my work or collaborate on a project?
             </p>
             <div className="flex flex-col sm:flex-row justify-center gap-4">
-              <Button 
+              <Button
                 className="btn-gradient px-8 py-3 text-lg"
                 onClick={() => window.open("https://github.com/vladpocris", "_blank")}
               >
@@ -323,7 +266,7 @@ const ProjectsSection = () => {
               </Button>
               <Button
                 variant="outline"
-                className="px-8 py-3 text-lg border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
+                className="px-8 py-3 text-lg border-primary/40 text-primary hover:bg-primary/10"
                 onClick={() => window.open("https://github.com/VladPocris/InteractiveCV", "_blank")}
               >
                 <Github className="h-5 w-5 mr-2" />

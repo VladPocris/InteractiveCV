@@ -1,12 +1,41 @@
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
-import educationImage from "@/assets/education-bg.jpg";
 
 const EducationSection = () => {
   const [activeTab, setActiveTab] = useState(0);
   const [activeYear, setActiveYear] = useState(0);
   const [activeSemester, setActiveSemester] = useState(0);
   const [isVisible, setIsVisible] = useState(false);
+  const [animatedItems, setAnimatedItems] = useState<Set<string>>(new Set());
+
+  const getGpaBadge = (gpa: string) => {
+    const numGpa = parseFloat(gpa.replace(/[^0-9.]/g, ""));
+    if (gpa.includes("Distinction") || gpa.includes("1st Class") || gpa.includes("Eminent") || gpa.includes("1:1") || numGpa >= 3.5) {
+      return { className: "gpa-badge-gold", label: "🏆 Excellent" };
+    }
+    if (numGpa >= 3.0 || gpa.includes("2:1")) {
+      return { className: "gpa-badge-silver", label: "🌟 Good" };
+    }
+    return { className: "gpa-badge-bronze", label: "📈 Satisfactory" };
+  };
+
+  const getGradeFromPercentage = (percentage: number) => {
+    if (percentage >= 90) return "A+";
+    if (percentage >= 85) return "A";
+    if (percentage >= 80) return "B+";
+    if (percentage >= 75) return "B";
+    if (percentage >= 70) return "C+";
+    if (percentage >= 65) return "C";
+    if (percentage >= 60) return "D+";
+    if (percentage >= 55) return "D";
+    return "F";
+  };
+
+  const getProgressClass = (progress: number) => {
+    if (progress >= 80) return "progress-bar-high";
+    if (progress >= 60) return "progress-bar-mid";
+    return "progress-bar-low";
+  };
 
   const educationData = [
     {
@@ -170,7 +199,7 @@ const EducationSection = () => {
           gpa: "87.3 (Eminent)",
           semesters: [
             {
-              name: "General Grades for Years X-XII",
+              name: "General Grades",
               subjects: [
                 { name: "Personal Development", progress: 100 },
                 { name: "Physical Education", progress: 100 },
@@ -181,7 +210,7 @@ const EducationSection = () => {
                 { name: "Physics and Astronomy", progress: 87.4 },
                 { name: "Civic Education", progress: 87 },
                 { name: "English Language", progress: 82.2 },
-                { name: "History of the Romanians and World History", progress: 81.2 },
+                { name: "History", progress: 81.2 },
                 { name: "Romanian Language and Literature", progress: 79.2 },
                 { name: "Chemistry", progress: 75.7 },
               ],
@@ -200,7 +229,7 @@ const EducationSection = () => {
       ]
     },
     {
-      title: "Gymnasium (Lower Secondary Education, equivalent to Junior Cycle)",
+      title: "Gymnasium (Lower Secondary Education)",
       institution: "Republic of Moldova",
       years: [
         {
@@ -208,7 +237,7 @@ const EducationSection = () => {
           gpa: "84.2 (Eminent)",
           semesters: [
             {
-              name: "General Grades for Years I-IX",
+              name: "General Grades",
               subjects: [
                 { name: "Visual Arts", progress: 100 },
                 { name: "Physical Education", progress: 94.5 },
@@ -225,7 +254,7 @@ const EducationSection = () => {
                 { name: "Romanian Language and Literature", progress: 77 },
                 { name: "Computer Science", progress: 76.2 },
                 { name: "English Language", progress: 73.7 },
-                { name: "History of the Romanians and World History", progress: 72.8 },
+                { name: "History", progress: 72.8 },
               ],
             },
             {
@@ -258,17 +287,19 @@ const EducationSection = () => {
     return () => observer.disconnect();
   }, []);
 
+  // Trigger staggered animation when semester changes
+  useEffect(() => {
+    setAnimatedItems(new Set());
+    const subjects = educationData[activeTab].years[activeYear].semesters?.[activeSemester]?.subjects || [];
+    const timer = setTimeout(() => {
+      setAnimatedItems(new Set(subjects.map((_, i) => `subject-${i}`)));
+    }, 100);
+    return () => clearTimeout(timer);
+  }, [activeTab, activeYear, activeSemester]);
+
   return (
-    <section 
-      id="education" 
-      className="parallax-section relative"
-      style={{ 
-        backgroundImage: `linear-gradient(rgba(34, 34, 34, 0.8), rgba(34, 34, 34, 0.6)), url(${educationImage})`,
-      }}
-    >
-      <div className="absolute inset-0 bg-gradient-secondary opacity-60" />
-      
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 py-20">
+    <section id="education" className="relative min-h-screen flex items-center justify-center overflow-hidden py-20">
+      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 w-full">
         {/* Section Title */}
         <div className={`text-center mb-16 animate-slide-up ${isVisible ? "in-view" : ""}`}>
           <h2 className="gradient-text text-5xl lg:text-6xl font-bold mb-4">EDUCATION</h2>
@@ -276,72 +307,67 @@ const EducationSection = () => {
         </div>
 
         {/* Education Tabs Container */}
-        <div className={`glass-card rounded-2xl overflow-hidden animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.3s" }}>
+        <div className={`glass-card rounded-2xl overflow-hidden animate-scale-in ${isVisible ? "in-view" : ""}`}>
           {/* Main Education Tabs */}
           <div className="border-b border-white/10">
-            <div className="flex flex-col space-y-2 lg:flex-row lg:flex-wrap lg:justify-between p-4 lg:space-y-0 overflow-x-auto">
+            <div className="flex overflow-x-auto gap-1 p-3 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:bg-primary/40 [&::-webkit-scrollbar-track]:bg-transparent">
               {educationData.map((education, index) => (
-                <Button
+                <button
                   key={index}
-                  variant={activeTab === index ? "default" : "ghost"}
                   onClick={() => {
                     setActiveTab(index);
                     setActiveYear(0);
                     setActiveSemester(0);
                   }}
-                  className={`text-xs sm:text-sm px-2 sm:px-3 py-2 w-full lg:w-auto lg:flex-1 lg:mx-1 mb-2 lg:mb-0 text-center break-words break-anywhere ${
-                    activeTab === index 
-                      ? "btn-gradient" 
-                      : "text-foreground hover:bg-white/10"
+                  className={`px-3 py-2 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
+                    activeTab === index
+                      ? "btn-gradient"
+                      : "text-foreground/70 hover:text-foreground hover:bg-white/5"
                   }`}
                 >
-                  <span className="break-words hyphens-auto" style={{ wordBreak: "break-word" }}>
-                    {education.title}
-                  </span>
-                </Button>
+                  {education.title}
+                </button>
               ))}
             </div>
           </div>
 
-          {/* Year Tabs (if multiple years available) */}
+          {/* Year Tabs */}
           {educationData[activeTab].years.length > 1 && (
             <div className="border-b border-white/10 bg-black/20">
-              <div className="flex flex-wrap justify-center p-4 gap-2">
+              <div className="flex overflow-x-auto gap-2 p-3 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:bg-primary/40 [&::-webkit-scrollbar-track]:bg-transparent">
                 {educationData[activeTab].years.map((yearData, index) => (
-                  <Button
+                  <button
                     key={index}
-                    variant={activeYear === index ? "secondary" : "ghost"}
-                    onClick={() => setActiveYear(index)}
-                    className={`text-sm flex-shrink-0 ${
-                      activeYear === index 
-                        ? "bg-primary/20 text-primary border-primary" 
-                        : "text-foreground hover:bg-white/10"
+                    onClick={() => { setActiveYear(index); setActiveSemester(0); }}
+                    className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
+                      activeYear === index
+                        ? "bg-primary/20 text-primary border border-primary/40"
+                        : "text-foreground/70 hover:text-foreground hover:bg-white/5"
                     }`}
                   >
                     {yearData.year}
-                  </Button>
+                  </button>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Semester Tabs (when a year has multiple semesters) */}
+          {/* Semester Tabs */}
           {educationData[activeTab].years[activeYear].semesters && educationData[activeTab].years[activeYear].semesters.length > 1 && (
             <div className="border-b border-white/10 bg-black/10">
-              <div className="flex flex-wrap justify-center p-4 gap-2">
+              <div className="flex overflow-x-auto gap-2 p-3 [&::-webkit-scrollbar]:h-2 [&::-webkit-scrollbar-thumb]:bg-primary/40 [&::-webkit-scrollbar-track]:bg-transparent">
                 {educationData[activeTab].years[activeYear].semesters.map((sem, index) => (
-                  <Button
+                  <button
                     key={index}
-                    variant={activeSemester === index ? "secondary" : "ghost"}
                     onClick={() => setActiveSemester(index)}
-                    className={`text-sm flex-shrink-0 ${
-                      activeSemester === index 
-                        ? "bg-primary/20 text-primary border-primary" 
-                        : "text-foreground hover:bg-white/10"
+                    className={`px-3 py-1.5 rounded-lg text-xs sm:text-sm font-medium whitespace-nowrap transition-all duration-200 flex-shrink-0 ${
+                      activeSemester === index
+                        ? "bg-primary/20 text-primary border border-primary/40"
+                        : "text-foreground/70 hover:text-foreground hover:bg-white/5"
                     }`}
                   >
                     {sem.name}
-                  </Button>
+                  </button>
                 ))}
               </div>
             </div>
@@ -350,26 +376,33 @@ const EducationSection = () => {
           {/* Content Display */}
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="text-center mb-8">
-              <h3 className="gradient-text text-xl sm:text-2xl font-bold mb-2 break-words break-anywhere">
+              <h3 className="gradient-text text-xl sm:text-2xl font-bold mb-2">
                 {educationData[activeTab].years[activeYear].year}
               </h3>
-              <h4 className="text-primary text-lg sm:text-xl font-semibold mb-1 break-words break-anywhere">
+              <h4 className="text-primary text-lg sm:text-xl font-semibold mb-2">
                 {educationData[activeTab].institution}
               </h4>
-              <p className="text-foreground text-sm sm:text-base">
-                GPA: {educationData[activeTab].years[activeYear].gpa}
-              </p>
+              <div className="flex items-center justify-center gap-3">
+                <p className="text-foreground text-sm sm:text-base">
+                  GPA: {educationData[activeTab].years[activeYear].gpa}
+                </p>
+                {educationData[activeTab].years[activeYear].gpa && (
+                  <span className={`gpa-badge ${getGpaBadge(educationData[activeTab].years[activeYear].gpa).className}`}>
+                    {getGpaBadge(educationData[activeTab].years[activeYear].gpa).label}
+                  </span>
+                )}
+              </div>
             </div>
 
             {/* Subjects and Progress */}
             <div className="space-y-6">
-              <h5 className="text-base sm:text-lg font-semibold text-foreground text-center mb-6">
+              <h5 className="text-base sm:text-lg font-semibold text-foreground/80 text-center mb-6">
                 {educationData[activeTab].years[activeYear].semesters
                   ? educationData[activeTab].years[activeYear].semesters[activeSemester]?.name
                   : ""}
               </h5>
-              
-              <div className="grid gap-4 sm:grid-cols-1 lg:grid-cols-2">
+
+              <div className="grid gap-5 sm:grid-cols-1 lg:grid-cols-2">
                 {(educationData[activeTab].years[activeYear].semesters?.[activeSemester]?.subjects || []).map((subject, index) => (
                   <div key={index} className="space-y-2">
                     <div className="flex flex-wrap justify-between items-start gap-1 min-w-0">
@@ -377,7 +410,7 @@ const EducationSection = () => {
                       <span className="edu-percent text-primary text-xs sm:text-sm flex-shrink-0">{subject.progress}%</span>
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-2">
-                      <div 
+                      <div
                         className="bg-gradient-primary rounded-full h-2 transition-all duration-1000"
                         style={{ width: `${subject.progress}%` }}
                       />
