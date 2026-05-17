@@ -166,17 +166,19 @@ const AboutSection = () => {
                 </div>
 
                 {/* Link button */}
-                {slides[activeSlide].link && (
-                  <Button
-                    size="sm"
-                    variant="ghost"
-                    className="text-primary hover:bg-primary/10"
-                    onClick={() => window.open(slides[activeSlide].link, "_blank")}
-                  >
-                    <ExternalLink className="h-4 w-4 mr-2" />
-                    Visit Channel
-                  </Button>
-                )}
+                <div className="h-10">
+                  {slides[activeSlide].link && (
+                    <Button
+                      size="sm"
+                      variant="ghost"
+                      className="text-primary hover:bg-primary/10"
+                      onClick={() => window.open(slides[activeSlide].link, "_blank")}
+                    >
+                      <ExternalLink className="h-4 w-4 mr-2" />
+                      Visit Channel
+                    </Button>
+                  )}
+                </div>
               </div>
             </div>
           </div>

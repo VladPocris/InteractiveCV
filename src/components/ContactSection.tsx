@@ -155,7 +155,7 @@ const ContactSection = () => {
                   {info.copyValue && (
                     <button
                       onClick={() => copyToClipboard(info.copyValue, info.title)}
-                      className="p-2 text-muted-foreground hover:text-primary transition-colors shrink-0"
+                      className="p-2 text-muted-foreground hover:text-primary transition-colors shrink-0 w-8 h-8 flex items-center justify-center"
                       aria-label={`Copy ${info.title}`}
                     >
                       {copiedField === info.title ? <CheckCircle className="h-4 w-4 text-green-400" /> : <Copy className="h-4 w-4" />}
@@ -203,7 +203,7 @@ const ContactSection = () => {
                       placeholder="Your full name"
                       aria-invalid={touched.name && !!errors.name}
                       aria-describedby={errors.name ? "name-error" : undefined} />
-                    {touched.name && errors.name && <p id="name-error" className="text-red-400 text-xs mt-1">{errors.name}</p>}
+                    <p id="name-error" className="text-red-400 text-xs mt-1 min-h-[1.25rem]">{touched.name && errors.name ? errors.name : ""}</p>
                   </div>
                   <div>
                     <label className="text-foreground font-medium mb-1.5 block text-sm" htmlFor="email">Email *</label>
@@ -213,7 +213,7 @@ const ContactSection = () => {
                       placeholder="your.email@example.com"
                       aria-invalid={touched.email && !!errors.email}
                       aria-describedby={errors.email ? "email-error" : undefined} />
-                    {touched.email && errors.email && <p id="email-error" className="text-red-400 text-xs mt-1">{errors.email}</p>}
+                    <p id="email-error" className="text-red-400 text-xs mt-1 min-h-[1.25rem]">{touched.email && errors.email ? errors.email : ""}</p>
                   </div>
                 </div>
 
@@ -225,7 +225,7 @@ const ContactSection = () => {
                     placeholder="What's this about?"
                     aria-invalid={touched.subject && !!errors.subject}
                     aria-describedby={errors.subject ? "subject-error" : undefined} />
-                  {touched.subject && errors.subject && <p id="subject-error" className="text-red-400 text-xs mt-1">{errors.subject}</p>}
+                  <p id="subject-error" className="text-red-400 text-xs mt-1 min-h-[1.25rem]">{touched.subject && errors.subject ? errors.subject : ""}</p>
                 </div>
 
                 <div>
@@ -236,10 +236,10 @@ const ContactSection = () => {
                     placeholder="Tell me about your project or opportunity..."
                     aria-invalid={touched.message && !!errors.message}
                     aria-describedby={errors.message ? "message-error" : undefined} />
-                  {touched.message && errors.message && <p id="message-error" className="text-red-400 text-xs mt-1">{errors.message}</p>}
+                  <p id="message-error" className="text-red-400 text-xs mt-1 min-h-[1.25rem]">{touched.message && errors.message ? errors.message : ""}</p>
                 </div>
 
-                <Button type="submit" disabled={isSubmitting} className="w-full btn-gradient py-3 text-lg font-medium">
+                <Button type="submit" disabled={isSubmitting} className="w-full btn-gradient py-3 text-lg font-medium min-h-[3rem] flex items-center justify-center">
                   {isSubmitting ? (
                     <div className="flex items-center justify-center gap-2">
                       <div className="animate-spin rounded-full h-5 w-5 border-2 border-white border-t-transparent" />

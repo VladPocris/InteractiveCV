@@ -157,12 +157,10 @@ const ProjectsSection = () => {
                       <h3 className="section-title text-2xl font-bold">
                         {project.title}
                       </h3>
-                      {project.featured && (
-                        <span className="inline-flex items-center gap-1 px-2.5 py-0.5 bg-yellow-500/15 text-yellow-400 text-xs font-semibold rounded-full border border-yellow-500/30">
-                          <Star className="h-3 w-3 fill-yellow-400" />
-                          Featured
-                        </span>
-                      )}
+                      <span className={`inline-flex items-center gap-1 px-2.5 py-0.5 text-xs font-semibold rounded-full border transition-opacity duration-300 ${project.featured ? "bg-yellow-500/15 text-yellow-400 border-yellow-500/30 opacity-100" : "opacity-0 pointer-events-none absolute"}`}>
+                        <Star className="h-3 w-3 fill-yellow-400" />
+                        Featured
+                      </span>
                     </div>
                     <p className="text-primary font-semibold mb-2">
                       {project.subtitle}

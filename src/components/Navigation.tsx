@@ -95,9 +95,9 @@ const Navigation = ({ isScrolled }: NavigationProps) => {
 
       {/* Desktop Navigation */}
       <nav aria-label="Main navigation"
-        className={`hidden lg:block fixed top-0 left-0 right-0 z-40 transition-all duration-300 ${
+        className={`hidden lg:block fixed top-0 left-0 right-0 z-40 transition-all duration-300 py-3 ${
           isVisible ? "translate-y-0" : "-translate-y-full"
-        } ${isScrolled ? "glass-card py-2 mt-0 rounded-none border-x-0 border-t-0" : "bg-transparent py-4"}`}
+        } ${isScrolled ? "glass-card border-x-0 border-t-0 rounded-none" : "bg-transparent"}`}
       >
         <div className="max-w-6xl mx-auto px-6">
           <div className="flex items-center justify-center space-x-1">
@@ -115,9 +115,7 @@ const Navigation = ({ isScrolled }: NavigationProps) => {
               >
                 <span>{item.icon}</span>
                 {item.name}
-                {activeSection === item.href.slice(1) && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full" />
-                )}
+                <span className={`absolute bottom-0 left-1/2 -translate-x-1/2 w-8 h-0.5 bg-primary rounded-full transition-opacity duration-300 ${activeSection === item.href.slice(1) ? "opacity-100" : "opacity-0"}`} />
               </button>
             ))}
           </div>
