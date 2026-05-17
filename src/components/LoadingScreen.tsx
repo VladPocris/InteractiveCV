@@ -18,12 +18,25 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0);
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      onComplete();
-    }, 2200);
+    let mounted = true;
+    const interval = setInterval(() => {
+      setProgress((prev) => {
+        if (!mounted) return prev;
+        const done = visibleLines.length >= lines.length;
+        const step = done ? 6 : 1;
+        const next = Math.min(100, prev + step);
+        if (next >= 100) {
+          setTimeout(() => onComplete(), 120);
+        }
+        return next;
+      });
+    }, 18);
 
-    return () => clearTimeout(timer);
-  }, [onComplete]);
+    return () => {
+      mounted = false;
+      clearInterval(interval);
+    };
+  }, [visibleLines, onComplete]);
 
   useEffect(() => {
     const line = lines[typingLine];
@@ -40,45 +53,29 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
         setCurrentText("");
         setTypingLine((prev) => prev + 1);
       }
-    }, 30);
+    }, 14);
 
     return () => clearInterval(typeInterval);
   }, [typingLine]);
 
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setProgress((prev) => {
-        if (prev >= 100) {
-          clearInterval(interval);
-          return 100;
-        }
-        return prev + 1;
-      });
-    }, 18);
-
-    return () => clearInterval(interval);
-  }, []);
-
   return (
     <div className="fixed inset-0 z-50 flex items-center justify-center bg-background">
       <div className="w-full max-w-lg mx-auto px-6">
-        {/* Logo */}
-        <div className="text-center mb-10">
-          <span className="text-5xl">VP</span>
+        <div className="text-center mb-8">
+          <div className="mx-auto w-28 h-28 rounded-full bg-gradient-to-r from-indigo-500 via-sky-400 to-emerald-400 flex items-center justify-center shadow-xl transform-gpu animate-[pulse_2.5s_ease-in-out_infinite]">
+            <span className="text-4xl font-bold text-white">VP</span>
+          </div>
         </div>
 
-        {/* Terminal Window */}
         <div className="rounded-xl border border-white/10 bg-black/60 backdrop-blur-sm overflow-hidden shadow-2xl">
-          {/* Terminal Header */}
           <div className="flex items-center gap-2 px-4 py-3 border-b border-white/10 bg-white/5">
             <div className="w-3 h-3 rounded-full bg-red-500/80" />
             <div className="w-3 h-3 rounded-full bg-yellow-500/80" />
             <div className="w-3 h-3 rounded-full bg-green-500/80" />
-            <span className="text-xs text-muted-foreground ml-2 font-mono">portfolio — bash</span>
+            <span className="text-xs text-muted-foreground ml-2 font-mono">portfolio � bash</span>
           </div>
 
-          {/* Terminal Body */}
-          <div className="p-5 font-mono text-sm space-y-2 min-h-[160px]">
+          <div className="p-5 font-mono text-sm space-y-2 min-h-[160px]" aria-live="polite">
             {visibleLines.map((lineIndex, i) => (
               <div key={i} className="flex animate-fade-in">
                 <span className="text-primary mr-2 shrink-0">$</span>
@@ -89,15 +86,12 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
               <div className="flex">
                 <span className="text-primary mr-2 shrink-0">$</span>
                 <span className="text-foreground/90">{currentText}</span>
-                {typingLine < lines.length && (
-                  <span className="w-2 h-4 bg-primary ml-0.5 animate-pulse" />
-                )}
+                <span className="w-2 h-4 bg-primary ml-0.5 animate-pulse" />
               </div>
             )}
           </div>
         </div>
 
-        {/* Progress Bar */}
         <div className="mt-6">
           <div className="flex justify-between text-xs text-muted-foreground mb-2 font-mono">
             <span>Loading assets...</span>
@@ -116,3 +110,4 @@ const LoadingScreen = ({ onComplete }: LoadingScreenProps) => {
 };
 
 export default LoadingScreen;
+

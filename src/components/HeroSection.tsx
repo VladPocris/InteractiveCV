@@ -40,10 +40,78 @@ const CountUp = ({ end, suffix = "" }: { end: number; suffix?: string }) => {
 
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const titles = [
+    "Front-End Web Developer",
+    "Back-End Web Developer",
+    "Full-Stack Web Developer",
+    "Problem Solver",
+  ];
+  const [titleIndex, setTitleIndex] = useState(0);
+  const [displayTitle, setDisplayTitle] = useState("");
+  const [isDeleting, setIsDeleting] = useState(false);
+  const pauseTimer = useRef<number | null>(null);
 
   useEffect(() => {
     const timer = setTimeout(() => setIsLoaded(true), 500);
     return () => clearTimeout(timer);
+  }, []);
+
+  useEffect(() => {
+    const fullText = titles[titleIndex];
+    const typeSpeed = 45; // faster typing
+    const deleteSpeed = 25; // faster deleting
+    const pauseBeforeDelete = 2500; // wait 2.5s at end before deleting
+    const pauseBetween = 200;
+
+    // (don't clear pauseTimer here — preserve scheduled pauses across renders)
+
+    const timeout = setTimeout(() => {
+      if (!isDeleting) {
+        setDisplayTitle((prev) => {
+          const next = fullText.slice(0, prev.length + 1);
+          if (next === prev) return prev;
+          // if reached full word, schedule delete
+          if (next.length === fullText.length) {
+            if (pauseTimer.current == null) {
+              pauseTimer.current = window.setTimeout(() => {
+                setIsDeleting(true);
+                pauseTimer.current = null;
+              }, pauseBeforeDelete);
+            }
+          }
+          return next;
+        });
+      } else {
+        setDisplayTitle((prev) => {
+          const next = prev.slice(0, Math.max(0, prev.length - 1));
+          if (next === "") {
+            // small pause then move to next title
+            if (pauseTimer.current == null) {
+              pauseTimer.current = window.setTimeout(() => {
+                setIsDeleting(false);
+                setTitleIndex((i) => (i + 1) % titles.length);
+                pauseTimer.current = null;
+              }, pauseBetween);
+            }
+          }
+          return next;
+        });
+      }
+    }, isDeleting ? deleteSpeed : typeSpeed);
+
+    return () => {
+      clearTimeout(timeout);
+    };
+  }, [displayTitle, isDeleting, titleIndex]);
+
+  // clear pause timer on unmount
+  useEffect(() => {
+    return () => {
+      if (pauseTimer.current) {
+        clearTimeout(pauseTimer.current);
+        pauseTimer.current = null;
+      }
+    };
   }, []);
 
   const scrollTo = (id: string) => {
@@ -83,7 +151,8 @@ const HeroSection = () => {
                 Vlad Pocris
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground/90 mb-4 min-h-[2.5rem] sm:min-h-[3rem]">
-                Front-End Web Developer
+                <span>{displayTitle}</span>
+                <span className="typewriter-cursor" />
               </h2>
             </div>
 
