@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 const FocusSection = () => {
   const [isVisible, setIsVisible] = useState(false);
-  const [activeSkill, setActiveSkill] = useState(0);
+  const [activeFocus, setActiveFocus] = useState(0);
 
   const focusAreas = [
     {
@@ -82,20 +82,21 @@ const FocusSection = () => {
     return () => observer.disconnect();
   }, []);
 
-  // Auto-rotate active skill
   useEffect(() => {
     if (!isVisible) return;
+
     const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
     if (prefersReducedMotion) return;
 
-    const interval = setInterval(() => {
-      setActiveSkill((prev) => (prev + 1) % focusAreas.length);
+    const interval = window.setInterval(() => {
+      setActiveFocus((prev) => (prev + 1) % focusAreas.length);
     }, 5000);
-    return () => clearInterval(interval);
+
+    return () => window.clearInterval(interval);
   }, [isVisible, focusAreas.length]);
 
   return (
-    <section id="focus" className="relative min-h-screen py-20">
+    <section id="focus" className="relative min-h-screen py-20 overflow-hidden">
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6">
         {/* Section Title */}
         <div className={`text-center mb-16 animate-slide-up ${isVisible ? "in-view" : ""}`}>
@@ -104,82 +105,69 @@ const FocusSection = () => {
           <p className="text-foreground text-lg max-w-2xl mx-auto">Areas of interest, recognition, and current goals.</p>
         </div>
 
-        {/* Focus Areas Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
-          {focusAreas.map((area, index) => (
-            <div
-              key={index}
-              className={`content-section cursor-pointer transition-all duration-300 animate-slide-up min-h-[320px] flex flex-col ${
-                activeSkill === index ? "ring-2 ring-primary shadow-glow scale-[1.02]" : "hover:scale-[1.02]"
-              } ${isVisible ? "in-view" : ""}`}
-              style={{ animationDelay: `${index * 0.08}s` }}
-              onClick={() => setActiveSkill(index)}
-              role="button"
-              tabIndex={0}
-              onKeyDown={(e) => { if (e.key === "Enter" || e.key === " ") setActiveSkill(index); }}
-              aria-label={`View ${area.title} details`}
-              aria-current={activeSkill === index ? "true" : undefined}
-            >
-              <div className="text-center mb-4 flex-1">
-                <div className="text-5xl mb-4">{area.icon}</div>
-                <h3 className="gradient-text text-xl font-bold mb-3">{area.title}</h3>
-                <p className="text-sm leading-relaxed text-foreground/90">{area.description}</p>
-              </div>
-
-              <div className="flex flex-wrap gap-2 justify-center mt-auto">
-                {area.skills.map((skill, skillIndex) => (
-                  <span key={skillIndex} className="tech-tag text-xs">{skill}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-
-        {/* Featured focus detail with crossfade */}
-        <div className={`glass-card rounded-2xl p-8 animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 items-start">
-            {/* Content */}
-            <div>
-              <div className="flex items-center gap-4 mb-6">
-                <span className="text-6xl">{focusAreas[activeSkill].icon}</span>
-                <div>
-                  <h3 className="gradient-text text-3xl font-bold">
-                    {focusAreas[activeSkill].title}
-                  </h3>
+        {/* Focus Carousel */}
+        <div className={`grid grid-cols-1 lg:grid-cols-12 gap-6 animate-scale-in ${isVisible ? "in-view" : ""}`} style={{ animationDelay: "0.6s" }}>
+          <div className="lg:col-span-12 content-section rounded-2xl p-6 md:p-8">
+            <div className="flex flex-col gap-6 mb-6">
+              <div className="flex flex-col sm:flex-row sm:items-end sm:justify-between gap-4">
+                <div className="flex items-center justify-center gap-4 min-w-0 flex-1 text-center">
+                  <span className="text-5xl md:text-6xl">{focusAreas[activeFocus].icon}</span>
+                  <h3 className="gradient-text text-3xl md:text-4xl font-bold whitespace-nowrap">{focusAreas[activeFocus].title}</h3>
                 </div>
               </div>
-              <p className="text-foreground text-lg leading-relaxed mb-6">
-                {focusAreas[activeSkill].description}
-              </p>
-            </div>
 
-            {/* Skills Display */}
-            <div>
-              <h4 className="text-primary font-semibold text-lg mb-4">Details</h4>
-              <ul className="achievement-list">
-                {focusAreas[activeSkill].skills.map((skill, index) => (
-                  <li key={index} className="transition-all duration-300" style={{ transitionDelay: `${index * 80}ms` }}>
-                    {skill}
-                  </li>
+              <div className="glass-card rounded-2xl p-5 md:p-6">
+                <p className="text-foreground text-lg leading-relaxed max-w-4xl whitespace-nowrap overflow-hidden text-ellipsis">
+                  {focusAreas[activeFocus].description}
+                </p>
+              </div>
+
+              <div className="flex flex-wrap gap-2 justify-center">
+                {focusAreas.map((area, index) => (
+                  <button
+                    key={area.title}
+                    type="button"
+                    onClick={() => setActiveFocus(index)}
+                    className={`px-4 py-2 rounded-full border text-sm font-medium transition-all duration-300 ${
+                      index === activeFocus
+                        ? "bg-primary/15 text-primary border-primary/30 shadow-glow scale-[1.03]"
+                        : "bg-secondary/50 text-foreground border-white/10 hover:bg-white/10 hover:border-white/20"
+                    }`}
+                    aria-label={`Show ${area.title}`}
+                    aria-current={activeFocus === index ? "true" : undefined}
+                  >
+                    {area.title}
+                  </button>
                 ))}
-              </ul>
+              </div>
             </div>
-          </div>
 
-          {/* Navigation dots */}
-          <div className="flex justify-center space-x-3 mt-12 pt-8 border-t border-white/10">
-            {focusAreas.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setActiveSkill(index)}
-                className={`w-3 h-3 rounded-full transition-all duration-300 ${
-                  index === activeSkill
-                    ? "bg-primary scale-125 shadow-glow"
-                    : "bg-white/30 hover:bg-white/50"
-                }`}
-                aria-label={`Go to ${focusAreas[index].title}`}
-              />
-            ))}
+            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              {focusAreas.map((area, index) => {
+                const isWide = index === 0;
+
+                return (
+                  <article
+                    key={area.title}
+                    className={`glass-card rounded-2xl p-5 md:p-6 ${isWide ? "md:col-span-2 xl:col-span-2" : ""}`}
+                  >
+                    <div className="flex items-start gap-4 mb-4">
+                      <span className="text-4xl leading-none">{area.icon}</span>
+                      <div className="min-w-0">
+                        <h4 className="gradient-text text-xl font-bold break-anywhere">{area.title}</h4>
+                        <p className="text-sm text-foreground/90 mt-2 leading-relaxed">{area.description}</p>
+                      </div>
+                    </div>
+
+                    <div className="flex flex-wrap gap-2">
+                      {area.skills.map((skill) => (
+                        <span key={skill} className="tech-tag text-xs break-anywhere">{skill}</span>
+                      ))}
+                    </div>
+                  </article>
+                );
+              })}
+            </div>
           </div>
         </div>
       </div>

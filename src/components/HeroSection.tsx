@@ -1,47 +1,7 @@
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import { Download, ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
 import profileImage from "@/assets/hero_profile_picture.jpg";
-
-const TypewriterText = () => {
-  const titles = ["Front-End Web Developer", "Full-Stack Web Developer", "Back-End Web Developer", "Software Developer"];
-  const [index, setIndex] = useState(0);
-  const [text, setText] = useState("");
-  const [isDeleting, setIsDeleting] = useState(false);
-
-  useEffect(() => {
-    const currentTitle = titles[index];
-    let timeout: ReturnType<typeof setTimeout>;
-
-    if (!isDeleting) {
-      if (text.length < currentTitle.length) {
-        timeout = setTimeout(() => {
-          setText(currentTitle.slice(0, text.length + 1));
-        }, 80);
-      } else {
-        timeout = setTimeout(() => setIsDeleting(true), 2000);
-      }
-    } else {
-      if (text.length > 0) {
-        timeout = setTimeout(() => {
-          setText(text.slice(0, -1));
-        }, 40);
-      } else {
-        setIsDeleting(false);
-        setIndex((prev) => (prev + 1) % titles.length);
-      }
-    }
-
-    return () => clearTimeout(timeout);
-  }, [text, isDeleting, index, titles]);
-
-  return (
-    <span className="inline-flex items-center">
-      <span>{text}</span>
-      <span className="typewriter-cursor" />
-    </span>
-  );
-};
 
 const CountUp = ({ end, suffix = "" }: { end: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
@@ -123,7 +83,7 @@ const HeroSection = () => {
                 Vlad Pocris
               </h1>
               <h2 className="text-xl sm:text-2xl lg:text-3xl font-bold text-foreground/90 mb-4 min-h-[2.5rem] sm:min-h-[3rem]">
-                <TypewriterText />
+                Front-End Web Developer
               </h2>
             </div>
 
