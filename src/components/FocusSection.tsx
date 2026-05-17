@@ -103,7 +103,7 @@ const FocusSection = () => {
           {focusAreas.map((area, index) => (
             <div
               key={index}
-              className={`content-section cursor-pointer transition-all duration-300 animate-slide-up ${
+              className={`content-section cursor-pointer transition-all duration-300 animate-slide-up min-h-[320px] flex flex-col ${
                 activeSkill === index ? "ring-2 ring-primary shadow-glow scale-[1.02]" : "hover:scale-[1.02]"
               } ${isVisible ? "in-view" : ""}`}
               style={{ animationDelay: `${index * 0.08}s` }}
@@ -114,13 +114,13 @@ const FocusSection = () => {
               aria-label={`View ${area.title} details`}
               aria-current={activeSkill === index ? "true" : undefined}
             >
-              <div className="text-center mb-4">
+              <div className="text-center mb-4 flex-1">
                 <div className="text-5xl mb-4">{area.icon}</div>
                 <h3 className="gradient-text text-xl font-bold mb-3">{area.title}</h3>
                 <p className="text-sm leading-relaxed text-foreground/90">{area.description}</p>
               </div>
 
-              <div className="flex flex-wrap gap-2 justify-center mt-4">
+              <div className="flex flex-wrap gap-2 justify-center mt-auto">
                 {area.skills.map((skill, skillIndex) => (
                   <span key={skillIndex} className="tech-tag text-xs">{skill}</span>
                 ))}

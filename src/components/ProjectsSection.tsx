@@ -8,6 +8,23 @@ const ProjectsSection = () => {
 
   const projects = [
     {
+      title: "Odys Global",
+      subtitle: "Premium Aged-Domain Marketplace Platform",
+      description: "Contributed to the frontend development of a premium aged-domain marketplace platform focused on usability and performance. Built responsive UI components and integrated dynamic marketplace listings using REST APIs.",
+      featured: true,
+      keyFeatures: [
+        "Responsive UI components with mobile-first design for marketplace platform",
+        "Dynamic marketplace listings integration using REST APIs",
+        "Improved page responsiveness and optimized rendering behavior",
+        "Smoother user experience across desktop and mobile devices"
+      ],
+      technologies: ["React.js", "JavaScript", "REST APIs", "Responsive Design", "Performance Optimization"],
+      github: null,
+      live: "https://www.odysglobal.com",
+      icon: "🌐",
+      color: "from-blue-500 to-cyan-500"
+    },
+    {
       title: "HTML & CSS Practice Portfolio",
       subtitle: "freeCodeCamp Responsive Web Design Certification",
       description: "A collection of HTML and CSS practice projects completed while earning freeCodeCamp's Responsive Web Design certification, showcasing fundamental web development skills and responsive design principles.",
@@ -172,16 +189,18 @@ const ProjectsSection = () => {
                 </div>
 
                 <div className="flex gap-3 shrink-0">
-                  <Button
-                    variant="outline"
-                    size="sm"
-                    className="border-primary/40 text-primary hover:bg-primary/10"
-                    onClick={() => window.open(project.github, "_blank")}
-                    aria-label={`View ${project.title} source code on GitHub`}
-                  >
-                    <Github className="h-4 w-4 mr-2" />
-                    Code
-                  </Button>
+                  {project.github && (
+                    <Button
+                      variant="outline"
+                      size="sm"
+                      className="border-primary/40 text-primary hover:bg-primary/10"
+                      onClick={() => window.open(project.github, "_blank")}
+                      aria-label={`View ${project.title} source code on GitHub`}
+                    >
+                      <Github className="h-4 w-4 mr-2" />
+                      Code
+                    </Button>
+                  )}
                   {project.live ? (
                     <Button
                       size="sm"

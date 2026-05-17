@@ -130,9 +130,7 @@ const HeroSection = () => {
             {/* Description */}
             <div className="glass-card p-6 rounded-2xl">
               <p className="text-foreground text-base leading-relaxed">
-                Computing & Software Development graduate from TU Dublin with hands-on experience in software engineering, cloud
-                technologies (AWS, Google Cloud, Azure), and full-stack web development. Thrive in diverse teams, tackling complex
-                challenges through internships, hackathons, and certifications.
+                Frontend Developer with 3+ years of professional experience building responsive web applications using React, TypeScript, and modern web technologies. Specializing in performance optimization, component architecture, and user-focused design. Proven track record delivering production features at startups and digital agencies, with expertise in full-stack web development and cloud integration (AWS, Azure).
               </p>
             </div>
 

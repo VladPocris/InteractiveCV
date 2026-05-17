@@ -9,25 +9,24 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Customer Assistant",
-      company: "Tesco · Ireland",
-      period: "Oct 2025 – Present",
-      location: "Ireland · On-site",
-      type: "Contract",
-      description: "Providing excellent customer service in a fast-paced retail environment, managing stock, and supporting daily store operations.",
+      title: "Frontend Developer",
+      company: "Open Tech · Chisinau, Republic of Moldova",
+      period: "Oct 2024 – Feb 2026",
+      location: "Chisinau, Moldova (Remote)",
+      type: "Full-time",
+      description: "Developed interactive frontend features using React.js for a startup web application, improving responsiveness and user experience across desktop and mobile devices.",
       achievements: [
-        "Delivering exceptional customer service and product knowledge across multiple departments",
-        "Efficiently handling checkouts and maintaining high accuracy in cash handling",
-        "Assisting with stock replenishment and maintaining store presentation standards",
-        "Supporting team members during peak hours to ensure smooth operations"
+        "Developed interactive frontend features using React.js for a startup web application, improving responsiveness and user experience across desktop and mobile devices.",
+        "Implemented API integrations using Express.js, AWS Lambda, and SendGrid to support application workflows and notifications.",
+        "Collaborated with designers and developers in an Agile environment to deliver new features and maintain consistent UI quality."
       ],
-      technologies: ["Customer Service", "Point of Sale", "Inventory Management", "Team Collaboration"],
-      icon: "🛒"
+      technologies: ["React.js", "JavaScript", "API Integration", "AWS Lambda", "SendGrid", "Responsive Design", "Agile"],
+      icon: "⚛️"
     },
     {
       title: "Dispatcher (Remote)",
-      company: "DWSmart LLC · Chisinau, Moldova Republic Of",
-      period: "Jun 2025 – Sep 2025",
+      company: "DWSmart LLC · Chisinau, Moldova",
+      period: "Jun 2024 – Sep 2024",
       location: "Chisinau, Moldova (Remote)",
       type: "Contract",
       description: "Coordinated daily logistics operations, optimized routes and managed client communications to maintain high on‑time delivery performance.",
@@ -41,7 +40,7 @@ const ExperienceSection = () => {
     {
       title: "Webflow Developer & Content Creator",
       company: "ItSpot · Tallaght, IE",
-      period: "Mar 2025 – Sep 2025",
+      period: "Mar 2024 – Sep 2024",
       location: "Tallaght, Ireland",
       type: "Freelance",
       description: "Designed and shipped a responsive marketing site in Webflow using CMS collections and integrated contact‑form submissions. Produced PC‑build video content for ItSpot's YouTube channel.",
@@ -56,48 +55,17 @@ const ExperienceSection = () => {
     {
       title: "OCIP — On Campus Internship",
       company: "Technological University Dublin · Tallaght, IE",
-      period: "Jun 2024 – Sep 2024",
+      period: "Jun 2023 – Sep 2023",
       location: "Tallaght, Ireland",
       type: "Internship",
       description: "Supported students and faculty with skills tracking and documentation while pursuing structured professional development.",
       achievements: [
-        "Positive feedback from ~80% of faculty for skill‑tracking reports",
-        "Awarded 100% discount for AWS Cloud Practitioner exam",
-        "Completed 5 technical certifications during the internship",
-        "Documented daily progress on skills and completed tasks"
+        "Facilitated faculty research projects by authoring technical documentation and implementing data-tracking templates; cut report turnaround time by 25%.",
+        "Streamlined reporting templates and programmed CSV exports that cut weekly report preparation time by 66%.",
+        "Awarded 100% discount for AWS Cloud Practitioner exam"
       ],
-      technologies: ["AWS", "Reporting", "Documentation", "Organization"],
+      technologies: ["AWS", "Reporting", "Documentation", "CSV Export", "Organization"],
       icon: "🎓"
-    },
-    {
-      title: "Cleaning Specialist",
-      company: "Derrycourt Cleaning Specialists · Ireland",
-      period: "Sep 2023 – Oct 2023",
-      location: "Ireland · On‑site",
-      type: "Part-time",
-      description: "Supported healthcare and commercial environments with high‑standard cleaning under strict protocols.",
-      achievements: [
-        "Followed infection‑control standards with specialized equipment/materials",
-        "Handled ad‑hoc requests with strong flexibility and time management",
-        "Completed daily logs and checklists for audit and H&S compliance"
-      ],
-      technologies: ["Infection Control", "H&S Compliance", "Time Management"],
-      icon: "🧹"
-    },
-    {
-      title: "Cleaner",
-      company: "Ashbrook Facility Management (AFM) Ireland · Bray, IE",
-      period: "Aug 2021 – Sep 2023",
-      location: "Bray, Ireland · On‑site",
-      type: "Part-time",
-      description: "Maintained cleanliness across specialized facilities with optimized scheduling and resource management.",
-      achievements: [
-        "Reduced daily cleaning time from 5.5h to 4h with schedule improvements",
-        "Coordinated cleaning across labs, gym, and sports hall with 100% protocol adherence",
-        "Supported 5 school events by aligning cleaning scope, timing, and supplies"
-      ],
-      technologies: ["Scheduling", "Resource Management", "Safety Protocols"],
-      icon: "🧽"
     },
     {
       title: "Network Engineer",
@@ -113,22 +81,6 @@ const ExperienceSection = () => {
       ],
       technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
       icon: "📶"
-    },
-    {
-      title: "Sales Assistant",
-      company: "Linella · Chisinau, Moldova",
-      period: "Jan 2019 – Jun 2019",
-      location: "Chisinau, Moldova",
-      type: "Full-time",
-      description: "Assisted customers with product selection, maintained store presentation, and supported the retail team to meet daily sales targets.",
-      achievements: [
-        "Guided customers through product selection, boosting sales and guaranteeing a consistently positive shopping experience.",
-        "Resolved over 30 customer queries per shift, achieving a 95% satisfaction rate through prompt issue resolution and clear communication.",
-        "Maintained store presentation and organized merchandise according to company standards.",
-        "Collaborated with retail team members to meet daily sales targets in a high‑traffic setting."
-      ],
-      technologies: ["Customer Service", "Merchandising", "Point of Sale"],
-      icon: "🛒"
     }
   ];
 
@@ -210,7 +162,7 @@ const ExperienceSection = () => {
                   </div>
 
                   {/* Content card */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? "mr-auto pr-12" : "ml-auto pl-12"}`}>
+                  <div className={`w-5/12 ${index % 2 === 0 ? "mr-auto pr-8" : "ml-auto pl-8"}`}>
                     <div className="glass-card rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow group">
                       <div className={`flex ${index % 2 === 0 ? "flex-row-reverse" : ""} items-start justify-between mb-4`}>
                         <div className={`flex ${index % 2 === 0 ? "flex-row-reverse" : ""} items-center gap-3 flex-1 min-w-0`}>
@@ -220,7 +172,7 @@ const ExperienceSection = () => {
                             <p className="text-primary font-semibold">{experience.company}</p>
                           </div>
                         </div>
-                        <span className={`px-3 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30 shrink-0 ${index % 2 === 0 ? "ml-3" : "mr-3"}`}>
+                        <span className={`px-3 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30 shrink-0 ${index % 2 === 0 ? "ml-2" : "mr-2"}`}>
                           {experience.type}
                         </span>
                       </div>
