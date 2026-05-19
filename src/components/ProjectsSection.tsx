@@ -96,17 +96,17 @@ const ProjectsSection = () => {
     },
     {
       title: "BreachExplorer",
-      subtitle: "Data Breach Visualization Tool",
-      description: "Blazor WebAssembly SPA that visualizes global 'Have I Been Pwned?' breach statistics with interactive charts and personalized breach checking.",
+      subtitle: "Public Breach Dashboard & Email Pwn Check",
+      description: "Blazor WebAssembly dashboard for exploring Have I Been Pwned breach data and checking whether an email appears in known leaks. A small ASP.NET Core proxy API avoids browser CORS limits. Email lookups discover sources via LeakCheck, then enrich each hit with HIBP breach details—without a paid HIBP subscription.",
       keyFeatures: [
-        "Top-15 global breach incidents visualization",
-        "Per-company breach charts with real-time toggles",
-        "Email breach checking via custom ASP.NET Core proxy",
-        "CORS bypass with Azure App Service backend",
-        "Personalized security guidance based on breach results",
-        "Responsive design with BlazorBootstrap"
+        "Latest verified breach highlight and top-15 bar charts with horizontal/vertical layout toggle",
+        "Custom breach chart: search by domain or name and add or remove bars dynamically",
+        "HIBP bypass: LeakCheck returns breached sources for an email; each breach is then fetched individually from HIBP's free single-breach-by-name endpoint (no paid account API needed)",
+        "Server-side password generator with configurable length, numbers, and special characters",
+        "CI/CD via GitHub custom workflow: publishes the site to GitHub Pages and runs Playwright E2E tests in the pipeline",
+        "Frontend on GitHub Pages; proxy API on Render (Docker) with env-based HIBP and LeakCheck configuration"
       ],
-      technologies: ["C#", ".NET 8", "Blazor WebAssembly", "ASP.NET Core", "Azure Static Sites", "Azure App Service", "Chart.js", "Playwright", "BlazorBootstrap"],
+      technologies: ["C#", ".NET 8", "Blazor WebAssembly", "ASP.NET Core", "Have I Been Pwned API", "LeakCheck", "Blazor.Bootstrap", "GitHub Actions", "GitHub Pages", "Render", "Docker", "Playwright", "MSTest"],
       github: "https://github.com/VladPocris/BreachExplorer",
       live: "https://vladpocris.github.io/BreachExplorer/",
       icon: "📊",
