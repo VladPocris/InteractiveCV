@@ -10,7 +10,7 @@ const ExperienceSection = () => {
   const experiences = [
     {
       title: "Frontend Developer",
-      company: "Open Tech · Chisinau, Republic of Moldova",
+      company: "Compire · Chisinau, Republic of Moldova",
       period: "Oct 2024 – Feb 2026",
       location: "Chisinau, Moldova (Remote)",
       type: "Full-time",
