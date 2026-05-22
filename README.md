@@ -107,7 +107,7 @@ src/
 
 ## 📝 License
 
-Personal portfolio website - © 2024 Vlad Pocris
+Personal portfolio website - © 2026 Vlad Pocris
 
 ---
 
