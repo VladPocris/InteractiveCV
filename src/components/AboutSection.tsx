@@ -14,7 +14,7 @@ const AboutSection = () => {
     {
       title: "Youtube Content Creator",
       icon: "🎥",
-      description: "Generated over 330,000 views in 3 months, holding over 900,000 views in total, fully Youtube monetized. Which contributed on my social media analysis & video editing skills.",
+      description: "Reached 1M+ views and 15,000+ hours watch-time as an Official YouTube Partner. Content creation strengthened my social media analysis, storytelling, and video editing skills.",
       image: "🎬",
       link: "https://www.youtube.com/@cinema_creativity"
     },

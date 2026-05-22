@@ -56,15 +56,38 @@ const FocusSection = () => {
     {
       title: "Career Goal",
       icon: "💼",
-      description: "Actively pursuing roles as a Software Developer or Web Developer.",
+      description: "Actively pursuing frontend and full-stack developer roles where I can ship production features and grow with a product-focused team.",
       skills: [
-        "Software Development",
-        "Web Development",
-        "Open to internships & graduate roles"
+        "Frontend Development (React, TypeScript)",
+        "Full-Stack Web Development",
+        "Open to junior–mid level roles"
       ],
       color: "from-indigo-500 to-purple-500"
     }
   ];
+
+  const [certifications, ...otherFocusAreas] = focusAreas;
+
+  const renderFocusCard = (area: (typeof focusAreas)[number], wide = false) => (
+    <article
+      key={area.title}
+      className={`glass-card rounded-2xl p-5 md:p-6 ${wide ? "col-span-full" : ""}`}
+    >
+      <div className="flex items-start gap-4 mb-4">
+        <span className="text-4xl leading-none">{area.icon}</span>
+        <div className="min-w-0">
+          <h4 className="gradient-text text-xl font-bold break-anywhere">{area.title}</h4>
+          <p className="text-sm text-foreground/90 mt-2 leading-relaxed">{area.description}</p>
+        </div>
+      </div>
+
+      <div className="flex flex-wrap gap-2">
+        {area.skills.map((skill) => (
+          <span key={skill} className="tech-tag text-xs break-anywhere">{skill}</span>
+        ))}
+      </div>
+    </article>
+  );
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -117,7 +140,7 @@ const FocusSection = () => {
               </div>
 
               <div className="glass-card rounded-2xl p-5 md:p-6">
-                <p className="text-foreground text-lg leading-relaxed max-w-4xl whitespace-nowrap overflow-hidden text-ellipsis">
+                <p className="text-foreground text-lg leading-relaxed max-w-4xl">
                   {focusAreas[activeFocus].description}
                 </p>
               </div>
@@ -142,31 +165,12 @@ const FocusSection = () => {
               </div>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
-              {focusAreas.map((area, index) => {
-                const isWide = index === 0;
+            <div className="space-y-4">
+              {renderFocusCard(certifications, true)}
 
-                return (
-                  <article
-                    key={area.title}
-                    className={`glass-card rounded-2xl p-5 md:p-6 ${isWide ? "md:col-span-2 xl:col-span-2" : ""}`}
-                  >
-                    <div className="flex items-start gap-4 mb-4">
-                      <span className="text-4xl leading-none">{area.icon}</span>
-                      <div className="min-w-0">
-                        <h4 className="gradient-text text-xl font-bold break-anywhere">{area.title}</h4>
-                        <p className="text-sm text-foreground/90 mt-2 leading-relaxed">{area.description}</p>
-                      </div>
-                    </div>
-
-                    <div className="flex flex-wrap gap-2">
-                      {area.skills.map((skill) => (
-                        <span key={skill} className="tech-tag text-xs break-anywhere">{skill}</span>
-                      ))}
-                    </div>
-                  </article>
-                );
-              })}
+              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+                {otherFocusAreas.map((area) => renderFocusCard(area))}
+              </div>
             </div>
           </div>
         </div>

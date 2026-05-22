@@ -18,7 +18,7 @@ const ExperienceSection = () => {
       achievements: [
         "Developed interactive frontend features using React.js for a startup web application, improving responsiveness and user experience across desktop and mobile devices.",
         "Implemented API integrations using Express.js, AWS Lambda, and SendGrid to support application workflows and notifications.",
-        "Collaborated with designers and developers in an Agile environment to deliver new features and maintain consistent UI quality."
+        "Collaborated with designers and developers in an Agile environment to deliver features and consistent UI quality."
       ],
       technologies: ["React.js", "JavaScript", "API Integration", "AWS Lambda", "SendGrid", "Responsive Design", "Agile"],
       icon: "⚛️"
@@ -43,14 +43,30 @@ const ExperienceSection = () => {
       period: "Mar 2024 – Sep 2024",
       location: "Tallaght, Ireland",
       type: "Freelance",
-      description: "Designed and shipped a responsive marketing site in Webflow using CMS collections and integrated contact‑form submissions. Produced PC‑build video content for ItSpot's YouTube channel.",
+      description: "Designed and shipped a responsive marketing site in Webflow using CMS collections and integrated contact-form submissions. Produced PC-build video content for ItSpot's YouTube channel.",
       achievements: [
-        "Custom animations/interactions while keeping Core Web Vitals in the green",
-        "Created step‑by‑step Editor docs + delivered 30‑minute staff training",
-        "Scripted, recorded, and edited walkthrough videos end‑to‑end (VO + post)"
+        "Designed and launched a responsive marketing site using Webflow, improving client engagement by 28%.",
+        "Improved mobile performance (4.2s to 2.6s) via CMS restructure and lazy-loading.",
+        "Created step-by-step Editor docs and delivered 30-minute staff training.",
+        "Scripted, recorded, and edited walkthrough videos end-to-end (VO + post)."
       ],
       technologies: ["Webflow", "CMS Collections", "Interactions", "Core Web Vitals", "SEO", "CapCut", "Adobe After Effects"],
       icon: "🌐"
+    },
+    {
+      title: "Cleaning Specialist",
+      company: "Derrycourt Cleaning Specialists · Ireland",
+      period: "Sep 2023 – Oct 2023",
+      location: "Ireland · On-site",
+      type: "Part-time",
+      description: "Supported healthcare and commercial environments with high-standard cleaning under strict protocols.",
+      achievements: [
+        "Followed infection-control standards with specialized equipment and materials",
+        "Handled ad-hoc requests with strong flexibility and time management",
+        "Completed daily logs and checklists for audit and health & safety compliance"
+      ],
+      technologies: ["Infection Control", "H&S Compliance", "Time Management"],
+      icon: "🧹"
     },
     {
       title: "OCIP — On Campus Internship",
@@ -68,6 +84,21 @@ const ExperienceSection = () => {
       icon: "🎓"
     },
     {
+      title: "Cleaner",
+      company: "Ashbrook Facility Management (AFM) Ireland · Bray, IE",
+      period: "Aug 2021 – Sep 2023",
+      location: "Bray, Ireland · On-site",
+      type: "Part-time",
+      description: "Maintained cleanliness across specialized facilities with optimized scheduling and resource management.",
+      achievements: [
+        "Reduced daily cleaning time from 5.5h to 4h with schedule improvements",
+        "Coordinated cleaning across labs, gym, and sports hall with 100% protocol adherence",
+        "Supported 5 school events by aligning cleaning scope, timing, and supplies"
+      ],
+      technologies: ["Scheduling", "Resource Management", "Safety Protocols"],
+      icon: "🧽"
+    },
+    {
       title: "Network Engineer",
       company: "Capri · Bray, IE",
       period: "Jun 2021 – Feb 2022",
@@ -81,6 +112,22 @@ const ExperienceSection = () => {
       ],
       technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
       icon: "📶"
+    },
+    {
+      title: "Sales Assistant",
+      company: "Linella · Chisinau, Moldova",
+      period: "Jan 2019 – Jun 2019",
+      location: "Chisinau, Moldova",
+      type: "Full-time",
+      description: "Assisted customers with product selection, maintained store presentation, and supported the retail team to meet daily sales targets.",
+      achievements: [
+        "Guided customers through product selection, boosting sales and ensuring a consistently positive shopping experience",
+        "Resolved 30+ customer queries per shift with a 95% satisfaction rate through prompt issue resolution",
+        "Maintained store presentation and organized merchandise according to company standards",
+        "Collaborated with retail team members to meet daily sales targets in a high-traffic setting"
+      ],
+      technologies: ["Customer Service", "Merchandising", "Point of Sale"],
+      icon: "🏪"
     }
   ];
 
@@ -117,7 +164,7 @@ const ExperienceSection = () => {
         if (cardRect.top < window.innerHeight - 100) {
           // Stagger achievement visibility
           setTimeout(() => {
-            setVisibleAchievements(prev => new Set(prev).add(`exp-${idx}`).add(`exp-m-${idx}`));
+            setVisibleAchievements(prev => new Set(prev).add(`exp-${idx}`));
           }, idx * 100);
         }
       });
@@ -150,92 +197,30 @@ const ExperienceSection = () => {
           <div className="space-y-8 lg:space-y-16">
             {experiences.map((experience, index) => (
               <div
-                key={index}
+                key={`${experience.company}-${experience.period}`}
                 className={`exp-card relative animate-slide-up ${isVisible ? "in-view" : ""}`}
                 style={{ animationDelay: `${index * 0.15}s` }}
               >
-                {/* Desktop layout */}
-                <div className="hidden lg:flex items-start">
-                  {/* Timeline dot */}
-                  <div className="absolute left-1/2 w-4 h-4 -translate-x-1/2 z-10">
-                    <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-glow" />
-                  </div>
-
-                  {/* Content card */}
-                  <div className={`w-5/12 ${index % 2 === 0 ? "mr-auto pr-8" : "ml-auto pl-8"}`}>
-                    <div className="glass-card rounded-xl p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow group">
-                      <div className={`flex ${index % 2 === 0 ? "flex-row-reverse" : ""} items-start justify-between mb-4`}>
-                        <div className={`flex ${index % 2 === 0 ? "flex-row-reverse" : ""} items-center gap-3 flex-1 min-w-0`}>
-                          <span className="text-3xl shrink-0">{experience.icon}</span>
-                          <div className="min-w-0">
-                            <h3 className="gradient-text text-xl font-bold">{experience.title}</h3>
-                            <p className="text-primary font-semibold">{experience.company}</p>
-                          </div>
-                        </div>
-                        <span className={`px-3 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30 shrink-0 ${index % 2 === 0 ? "ml-2" : "mr-2"}`}>
-                          {experience.type}
-                        </span>
-                      </div>
-
-                      <div className={`flex flex-col text-sm text-muted-foreground mb-4`}>
-                        <span>📅 {experience.period}</span>
-                        <span>📍 {experience.location}</span>
-                      </div>
-
-                      <p className="text-foreground text-sm leading-relaxed mb-4">
-                        {experience.description}
-                      </p>
-
-                      {/* Achievements */}
-                      <div className="mb-4">
-                        <h4 className="text-primary font-semibold mb-2 text-sm">Key Achievements:</h4>
-                        <ul className="text-sm text-foreground space-y-1">
-                          {experience.achievements.map((achievement, achIndex) => (
-                            <li
-                              key={achIndex}
-                              className={`transition-all duration-300 ${
-                                visibleAchievements.has(`exp-${index}`)
-                                  ? "opacity-100 translate-y-0"
-                                  : "opacity-0 translate-y-2"
-                              }`}
-                              style={{ transitionDelay: `${achIndex * 50}ms` }}
-                            >
-                              {achievement}
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-
-                      {/* Technologies */}
-                      <div className="flex flex-wrap gap-2">
-                        {experience.technologies.map((tech, techIndex) => (
-                          <span
-                            key={techIndex}
-                            className="px-2 py-1 bg-secondary/50 text-foreground text-xs rounded border border-white/10"
-                          >
-                            {tech}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-                  </div>
+                <div className="hidden lg:block absolute left-1/2 w-4 h-4 -translate-x-1/2 z-10">
+                  <div className="w-4 h-4 bg-primary rounded-full border-4 border-background shadow-glow" />
                 </div>
 
-                {/* Mobile layout */}
-                <div className="lg:hidden">
-                  <div className="glass-card rounded-xl p-4 sm:p-6 w-full">
-                    <div className="flex items-start gap-3 mb-3">
-                      <span className="text-2xl shrink-0">{experience.icon}</span>
-                      <div className="flex-1 min-w-0">
-                        <h3 className="gradient-text text-lg font-bold">{experience.title}</h3>
-                        <p className="text-primary font-semibold text-sm">{experience.company}</p>
+                <div className={`lg:w-5/12 ${index % 2 === 0 ? "lg:mr-auto lg:pr-8" : "lg:ml-auto lg:pl-8"}`}>
+                  <div className="glass-card rounded-xl p-4 sm:p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-glow">
+                    <div className={`flex items-start justify-between gap-3 mb-3 lg:mb-4 ${index % 2 === 0 ? "lg:flex-row-reverse" : ""}`}>
+                      <div className={`flex items-start gap-3 flex-1 min-w-0 ${index % 2 === 0 ? "lg:flex-row-reverse lg:text-right" : ""}`}>
+                        <span className="text-2xl lg:text-3xl shrink-0">{experience.icon}</span>
+                        <div className="min-w-0">
+                          <h3 className="gradient-text text-lg lg:text-xl font-bold">{experience.title}</h3>
+                          <p className="text-primary font-semibold text-sm lg:text-base">{experience.company}</p>
+                        </div>
                       </div>
-                      <span className="px-2 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30 shrink-0">
+                      <span className={`px-2 lg:px-3 py-1 bg-primary/20 text-primary text-xs rounded-full border border-primary/30 shrink-0 ${index % 2 === 0 ? "lg:ml-2" : "lg:mr-2"}`}>
                         {experience.type}
                       </span>
                     </div>
 
-                    <div className="flex flex-col space-y-1 text-sm text-muted-foreground mb-3">
+                    <div className="flex flex-col text-sm text-muted-foreground mb-3 lg:mb-4">
                       <span>📅 {experience.period}</span>
                       <span>📍 {experience.location}</span>
                     </div>
@@ -249,13 +234,13 @@ const ExperienceSection = () => {
                           <li
                             key={achIndex}
                             className={`flex items-start transition-all duration-300 ${
-                              visibleAchievements.has(`exp-m-${index}`)
+                              visibleAchievements.has(`exp-${index}`)
                                 ? "opacity-100 translate-y-0"
                                 : "opacity-0 translate-y-2"
                             }`}
                             style={{ transitionDelay: `${achIndex * 50}ms` }}
                           >
-                            <span className="text-primary mr-2 shrink-0">•</span>
+                            <span className="text-primary mr-2 shrink-0 lg:hidden">•</span>
                             <span>{achievement}</span>
                           </li>
                         ))}

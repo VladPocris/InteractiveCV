@@ -9,7 +9,7 @@ const ProjectsSection = () => {
   const projects = [
     {
       title: "Odys Global",
-      subtitle: "Premium Aged-Domain Marketplace Platform",
+      subtitle: "Premium Aged-Domain Marketplace Platform · Nov 2025 – Apr 2026",
       description: "Contributed to the frontend development of a premium aged-domain marketplace platform focused on usability and performance. Built responsive UI components and integrated dynamic marketplace listings using REST APIs.",
       featured: true,
       keyFeatures: [
@@ -25,8 +25,24 @@ const ProjectsSection = () => {
       color: "from-blue-500 to-cyan-500"
     },
     {
+      title: "Assembly Endgame",
+      subtitle: "Interactive Programming Language Guessing Game · Nov 2025 – Jan 2026",
+      description: "Hangman-style React game where players guess tech-themed words by revealing letters. Each wrong guess eliminates a programming language from the stack, with Assembly as the final challenge.",
+      keyFeatures: [
+        "React state-driven UI with keyboard input handling and real-time game state updates",
+        "Win/lose conditions with modular components for word display, keyboard, and status",
+        "Progressive difficulty as wrong guesses remove languages from the stack",
+        "Visual feedback with animations and Canvas Confetti celebration on win"
+      ],
+      technologies: ["React 18", "Vite", "JavaScript", "Canvas Confetti", "CSS3"],
+      github: "https://github.com/VladPocris/AssemblyEndgame",
+      live: "https://assembly-endgame-khaki-iota.vercel.app/",
+      icon: "🎯",
+      color: "from-yellow-500 to-orange-500"
+    },
+    {
       title: "HTML & CSS Practice Portfolio",
-      subtitle: "freeCodeCamp Responsive Web Design Certification",
+      subtitle: "freeCodeCamp Responsive Web Design Certification · Dec 2025 – Jan 2026",
       description: "A collection of HTML and CSS practice projects completed while earning freeCodeCamp's Responsive Web Design certification, showcasing fundamental web development skills and responsive design principles.",
       keyFeatures: [
         "Responsive layouts with mobile-first design",
@@ -43,7 +59,7 @@ const ProjectsSection = () => {
     },
     {
       title: "CivPlayers Civ3 League",
-      subtitle: "Online Gaming Community Platform",
+      subtitle: "Online Gaming Community Platform · Sept 2025 – Oct 2025",
       description: "Front-end web application for a Civilization III multiplayer league featuring live leaderboards, event management, and ELO-based team generation.",
       featured: true,
       keyFeatures: [
@@ -59,8 +75,24 @@ const ProjectsSection = () => {
       color: "from-purple-500 to-pink-500"
     },
     {
+      title: "ChefClaude",
+      subtitle: "AI-Powered Recipe Generator · Sept 2025 – Oct 2025",
+      description: "AI cooking assistant that generates personalized recipes from user-provided ingredients using the Hugging Face Inference API and Mistral AI, with responsive UI and markdown recipe rendering.",
+      keyFeatures: [
+        "Ingredient input with validation and duplicate detection",
+        "AI recipe generation via Hugging Face Inference API (Mistral AI)",
+        "Markdown-rendered recipe output with responsive layout",
+        "Built with React 19 and Vite for fast iteration"
+      ],
+      technologies: ["React 19", "Vite", "JavaScript", "Hugging Face Inference API", "Mistral AI", "React Markdown"],
+      github: "https://github.com/VladPocris/ChefClaude",
+      live: "https://chef-claude-ten-ashen.vercel.app/",
+      icon: "👨‍🍳",
+      color: "from-red-500 to-orange-500"
+    },
+    {
       title: "SmartRoute",
-      subtitle: "Multi-Stop Journey Planning App",
+      subtitle: "Multi-Stop Journey Planning App · Sept 2024 – May 2025",
       description: "Android application that plans optimized multi-stop journeys with Google Places autocomplete and route visualization on Google Maps.",
       keyFeatures: [
         "Google Places autocomplete for destination search",
@@ -77,26 +109,8 @@ const ProjectsSection = () => {
       color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "RenCloud",
-      subtitle: "Windows Video Editing Environment",
-      description: "Professional Windows-based video editing application with timeline controls, live thumbnails, and audio waveforms.",
-      keyFeatures: [
-        "Timeline trim/split/rearrange with frame-accurate control",
-        "Live thumbnail previews and audio waveform visualization",
-        "FFmpeg integration for advanced video processing",
-        "VLC/LibVLC for seamless playback",
-        "CI/CD with GitHub Actions and SonarQube quality gates",
-        "MSI installer packaging with WiX Toolset"
-      ],
-      technologies: ["C#", ".NET 8", "Windows Forms", "FFmpeg", "LibVLC", "SonarQube", "GitHub Actions", "WiX Toolset"],
-      github: "https://github.com/VladPocris/RenCloud",
-      live: "https://github.com/VladPocris/RenCloud/releases",
-      icon: "🎬",
-      color: "from-orange-500 to-red-500"
-    },
-    {
       title: "BreachExplorer",
-      subtitle: "Public Breach Dashboard & Email Pwn Check",
+      subtitle: "Public Breach Dashboard & Email Pwn Check · Oct 2024 – Dec 2024",
       description: "Blazor WebAssembly dashboard for exploring Have I Been Pwned breach data and checking whether an email appears in known leaks. A small ASP.NET Core proxy API avoids browser CORS limits. Email lookups discover sources via LeakCheck, then enrich each hit with HIBP breach details—without a paid HIBP subscription.",
       keyFeatures: [
         "Latest verified breach highlight and top-15 bar charts with horizontal/vertical layout toggle",
@@ -111,6 +125,24 @@ const ProjectsSection = () => {
       live: "https://vladpocris.github.io/BreachExplorer/",
       icon: "📊",
       color: "from-green-500 to-emerald-500"
+    },
+    {
+      title: "RenCloud",
+      subtitle: "Windows Video Editing Environment · Jan 2024 – Aug 2024",
+      description: "Professional Windows-based video editing application with timeline controls, live thumbnails, and audio waveforms.",
+      keyFeatures: [
+        "Timeline trim/split/rearrange with frame-accurate control",
+        "Live thumbnail previews and audio waveform visualization",
+        "FFmpeg integration for advanced video processing",
+        "VLC/LibVLC for seamless playback",
+        "CI/CD with GitHub Actions and SonarQube quality gates",
+        "MSI installer packaging with WiX Toolset"
+      ],
+      technologies: ["C#", ".NET 8", "Windows Forms", "FFmpeg", "LibVLC", "SonarQube", "GitHub Actions", "WiX Toolset"],
+      github: "https://github.com/VladPocris/RenCloud",
+      live: "https://github.com/VladPocris/RenCloud/releases",
+      icon: "🎬",
+      color: "from-orange-500 to-red-500"
     }
   ];
 

@@ -159,7 +159,7 @@ const HeroSection = () => {
             {/* Description */}
             <div className="glass-card p-6 rounded-2xl">
               <p className="text-foreground text-base leading-relaxed">
-                Frontend Developer with 3+ years of professional experience building responsive web applications using React, TypeScript, and modern web technologies. Specializing in performance optimization, component architecture, and user-focused design. Proven track record delivering production features at startups and digital agencies, with expertise in full-stack web development and cloud integration (AWS, Azure).
+                Software Developer with 3+ years hands-on coding experience — from university projects and shipped apps to production web work. I build responsive interfaces with React, TypeScript, JavaScript, and .NET, focusing on performance, component architecture, and user-focused design. Comfortable delivering full-stack features and integrating cloud services (AWS, Azure) in Agile teams.
               </p>
             </div>
 
