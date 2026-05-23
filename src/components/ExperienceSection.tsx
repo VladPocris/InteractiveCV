@@ -103,7 +103,7 @@ const ExperienceSection = () => {
       company: "Capri · Bray, IE",
       period: "Jun 2021 – Feb 2022",
       location: "Bray, Ireland",
-      type: "Full-time",
+      type: "Internship",
       description: "Delivered network performance improvements and end‑user enablement across the site.",
       achievements: [
         "Increased internet/Wi‑Fi throughput by ~120 Mbps",
