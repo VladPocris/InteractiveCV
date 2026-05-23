@@ -1,7 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { Download, ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
-import profileImage from "@/assets/hero_profile_picture.jpg";
+import profileImage from "@/assets/hero_profile_picture.png";
 
 const CountUp = ({ end, suffix = "" }: { end: number; suffix?: string }) => {
   const [count, setCount] = useState(0);
