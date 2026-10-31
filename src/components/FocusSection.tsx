@@ -35,8 +35,10 @@ const FocusSection = () => {
       icon: "🎥",
       description: "Continuous learning, content creation and sport outside of software work.",
       skills: [
-        "Continuous learning: web development, testing, cloud and systems engineering",
-        "YouTube content creation and video editing",
+        "Web development",
+        "Testing",
+        "Cloud & systems",
+        "YouTube content & video editing",
         "Sports"
       ],
       color: "from-purple-500 to-pink-500"
@@ -46,7 +48,8 @@ const FocusSection = () => {
       icon: "🏆",
       description: "Competitive results in martial arts.",
       skills: [
-        "Five-time Taekwondo champion (Republic of Moldova, Ukraine, Bulgaria)"
+        "Five-time Taekwondo champion",
+        "Moldova · Ukraine · Bulgaria"
       ],
       color: "from-orange-500 to-red-500"
     },
@@ -55,33 +58,37 @@ const FocusSection = () => {
       icon: "💼",
       description: "Looking for fully remote frontend or full-stack development work where I can ship production features and keep growing as an engineer.",
       skills: [
-        "Frontend Development (React, TypeScript, Next.js)",
-        "Full-Stack Web Development",
-        "EU citizen · Authorised to work across the EU without sponsorship · Open to relocation within the EU",
-        "Languages: Romanian (native), English (fluent), Russian (fluent)"
+        "Frontend (React, TypeScript, Next.js)",
+        "Full-stack web development",
+        "Fully remote",
+        "EU work authorisation, no sponsorship",
+        "Open to EU relocation",
+        "Romanian (native)",
+        "English (fluent)",
+        "Russian (fluent)"
       ],
       color: "from-indigo-500 to-purple-500"
     }
   ];
 
-  const [certifications, ...otherFocusAreas] = focusAreas;
+  const wideTitles = ["Certifications", "Career Goal"];
+  const wideAreas = focusAreas.filter((area) => wideTitles.includes(area.title));
+  const otherFocusAreas = focusAreas.filter((area) => !wideTitles.includes(area.title));
 
   const renderFocusCard = (area: (typeof focusAreas)[number], wide = false) => (
     <article
       key={area.title}
       className={`glass-card rounded-2xl p-5 md:p-6 ${wide ? "col-span-full" : ""}`}
     >
-      <div className="flex items-start gap-4 mb-4">
-        <span className="text-4xl leading-none">{area.icon}</span>
-        <div className="min-w-0">
-          <h4 className="gradient-text text-xl font-bold break-anywhere">{area.title}</h4>
-          <p className="text-sm text-foreground/90 mt-2 leading-relaxed">{area.description}</p>
-        </div>
+      <div className="flex items-center gap-3 mb-3">
+        <span className="text-3xl leading-none shrink-0" aria-hidden="true">{area.icon}</span>
+        <h4 className="gradient-text text-xl font-bold">{area.title}</h4>
       </div>
+      <p className="text-sm text-foreground/90 leading-relaxed mb-4">{area.description}</p>
 
       <div className="flex flex-wrap gap-2">
         {area.skills.map((skill) => (
-          <span key={skill} className="tech-tag text-xs break-anywhere">{skill}</span>
+          <span key={skill} className="tech-tag text-xs [overflow-wrap:break-word]">{skill}</span>
         ))}
       </div>
     </article>
@@ -164,9 +171,9 @@ const FocusSection = () => {
             </div>
 
             <div className="space-y-4">
-              {renderFocusCard(certifications, true)}
+              {wideAreas.map((area) => renderFocusCard(area, true))}
 
-              <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4">
+              <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
                 {otherFocusAreas.map((area) => renderFocusCard(area))}
               </div>
             </div>
