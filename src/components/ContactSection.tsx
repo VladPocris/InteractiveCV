@@ -118,12 +118,12 @@ const ContactSection = () => {
   const contactInfo = [
     { icon: <Mail className="h-5 w-5" />, title: "Email", value: "vpocris@gmail.com", link: "mailto:vpocris@gmail.com", copyValue: "vpocris@gmail.com" },
     { icon: <Phone className="h-5 w-5" />, title: "Phone", value: "+353 85 872 5445", link: "tel:+353858725445", copyValue: "+353858725445" },
-    { icon: <MapPin className="h-5 w-5" />, title: "Location", value: "Wicklow, Ireland", link: "https://www.google.com/maps/place/Ballybeg,+Rathnew,+Co.+Wicklow,+Ireland" }
+    { icon: <MapPin className="h-5 w-5" />, title: "Location", value: "Wicklow, Ireland", link: "https://www.google.com/maps/place/County+Wicklow,+Ireland" }
   ];
 
   const socialLinks = [
     { icon: <Github className="h-5 w-5" />, name: "GitHub", url: "https://github.com/vladpocris", color: "hover:text-white" },
-    { icon: <Linkedin className="h-5 w-5" />, name: "LinkedIn", url: "https://www.linkedin.com/in/vlad-pocris-315aa7212/", color: "hover:text-blue-400" }
+    { icon: <Linkedin className="h-5 w-5" />, name: "LinkedIn", url: "https://www.linkedin.com/in/vladpocris/", color: "hover:text-blue-400" }
   ];
 
   return (

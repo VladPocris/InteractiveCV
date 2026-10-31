@@ -8,22 +8,21 @@ const FocusSection = () => {
     {
       title: "Certifications",
       icon: "📜",
-      description: "Continuous learning and formal certifications across web development, cloud, and virtualization.",
+      description: "Earned freeCodeCamp certifications, plus cloud and virtualisation training completed during my studies.",
       skills: [
-        "FreeCodeCamp Responsive Web Design (2026)",
-        "FreeCodeCamp Legacy Responsive Web Design (2026)",
-        "FreeCodeCamp JavaScript Developer (2026)",
-        "Red Hat Academy – Program Learner (2024)",
-        "AWS Academy Graduate – AWS Academy Cloud Foundations",
-        "VMware Cloud and Virtualization Concepts",
-        "VMware Data Centre Virtualization Core Technical Skills (CTA‑DCV)"
+        "freeCodeCamp — Responsive Web Design Certification (2026)",
+        "freeCodeCamp — JavaScript Certification (2026)",
+        "AWS Academy — Cloud Foundations (course completion)",
+        "Red Hat Academy — Program Learner badge (2024)",
+        "VMware IT Academy — Cloud and Virtualization Concepts (course)",
+        "VMware IT Academy — Data Center Virtualization Core Technical Skills (course)"
       ],
       color: "from-blue-500 to-cyan-500"
     },
     {
       title: "Hackathons",
       icon: "🏁",
-      description: "Hands‑on teamwork under time pressure across health and R&D themes.",
+      description: "Took part in three hackathons during my degree, working in teams under time pressure on health and R&D themes.",
       skills: [
         "Ethicon Hackathon (May 2024)",
         "RAD Hackathon (Apr 2024)",
@@ -34,10 +33,10 @@ const FocusSection = () => {
     {
       title: "Interests",
       icon: "🎥",
-      description: "Continuous learning, content creation and sports — practical projects and community reach.",
+      description: "Continuous learning, content creation and sport outside of software work.",
       skills: [
-        "Continuous learning: web dev, testing, cloud & systems engineering",
-        "YouTube content creation — 1M+ views, 15,000+ hours watch-time (YouTube Partner)",
+        "Continuous learning: web development, testing, cloud and systems engineering",
+        "YouTube content creation and video editing",
         "Sports"
       ],
       color: "from-purple-500 to-pink-500"
@@ -45,22 +44,21 @@ const FocusSection = () => {
     {
       title: "Awards & Achievements",
       icon: "🏆",
-      description: "Competitive results in martial arts and athletics plus event participation.",
+      description: "Competitive results in martial arts.",
       skills: [
-        "Five-time Taekwondo champion (Republic of Moldova, Ukraine, Bulgaria)",
-        "High‑school long‑distance marathon winner",
-        "Consecutive 60m sprint winner"
+        "Five-time Taekwondo champion (Republic of Moldova, Ukraine, Bulgaria)"
       ],
       color: "from-orange-500 to-red-500"
     },
     {
       title: "Career Goal",
       icon: "💼",
-      description: "Actively pursuing frontend and full-stack developer roles where I can ship production features and grow with a product-focused team.",
+      description: "Looking for fully remote frontend or full-stack development work where I can ship production features and keep growing as an engineer.",
       skills: [
-        "Frontend Development (React, TypeScript)",
+        "Frontend Development (React, TypeScript, Next.js)",
         "Full-Stack Web Development",
-        "Open to junior–mid level roles"
+        "EU citizen · Authorised to work across the EU without sponsorship · Open to relocation within the EU",
+        "Languages: Romanian (native), English (fluent), Russian (fluent)"
       ],
       color: "from-indigo-500 to-purple-500"
     }

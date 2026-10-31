@@ -39,12 +39,13 @@ const EducationSection = () => {
 
   const educationData = [
     {
-      title: "BSc in Computing with Software Development (Level 8)",
+      title: "BSc (Hons) Computing with Software Development",
       institution: "Technological University Dublin",
+      award: "2022 – 2025 · First Class Honours · Final GPA 3.73/4.00",
       years: [
         {
           year: "Y4 (2024-2025)",
-          gpa: "3.73 (1st Class Honours - 1:1)",
+          gpa: "3.73/4.00 (final award: First Class Honours)",
           semesters: [
             {
               name: "Semester 1",
@@ -130,8 +131,9 @@ const EducationSection = () => {
       ]
     },
     {
-      title: "Computer Networking and Cyber Security (Level 6)",
-      institution: "Bray Institute Of Further Education",
+      title: "QQI Level 6 — Computer Networking and Cyber Security",
+      institution: "Bray Institute of Further Education",
+      award: "2021 – 2022 · Distinction",
       years: [
         {
           year: "2021-2022",
@@ -161,8 +163,9 @@ const EducationSection = () => {
       ]
     },
     {
-      title: "Computer Science (Level 5)",
-      institution: "Bray Institute Of Further Education",
+      title: "QQI Level 5 — Computer Systems and Networks",
+      institution: "Bray Institute of Further Education",
+      award: "2020 – 2021 · Distinction",
       years: [
         {
           year: "2020-2021",
@@ -382,9 +385,14 @@ const EducationSection = () => {
               <h4 className="text-primary text-lg sm:text-xl font-semibold mb-2">
                 {educationData[activeTab].institution}
               </h4>
+              {educationData[activeTab].award && (
+                <p className="text-foreground font-semibold text-sm sm:text-base mb-2">
+                  {educationData[activeTab].award}
+                </p>
+              )}
               <div className="flex items-center justify-center gap-3">
                 <p className="text-foreground text-sm sm:text-base">
-                  GPA: {educationData[activeTab].years[activeYear].gpa}
+                  {educationData[activeTab].years.length > 1 ? "Year result" : "Result"}: {educationData[activeTab].years[activeYear].gpa}
                 </p>
                 {educationData[activeTab].years[activeYear].gpa && (
                   <span className={`gpa-badge ${getGpaBadge(educationData[activeTab].years[activeYear].gpa).className}`}>

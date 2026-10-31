@@ -6,143 +6,170 @@ const ProjectsSection = () => {
   const [isVisible, setIsVisible] = useState(false);
   const [expandedProject, setExpandedProject] = useState<number | null>(null);
 
-  const projects = [
+  type Project = {
+    title: string;
+    relationship: "DOT Client" | "Independent Project" | "University Project";
+    subtitle: string;
+    description: string;
+    featured?: boolean;
+    keyFeatures: string[];
+    technologies: string[];
+    github: string | null;
+    live: string | null;
+    icon: string;
+    color: string;
+  };
+
+  // Client projects were delivered as an independent contractor for DOT; their source code is private.
+  const projects: Project[] = [
     {
-      title: "Odys Global",
-      subtitle: "Premium Aged-Domain Marketplace Platform · Nov 2025 – Apr 2026",
-      description: "Contributed to the frontend development of a premium aged-domain marketplace platform focused on usability and performance. Built responsive UI components and integrated dynamic marketplace listings using REST APIs.",
+      title: "VGR — Headless Shopify Storefront",
+      relationship: "DOT Client",
+      subtitle: "UK retailer · Sep 2026",
+      description: "Feature work on a production headless storefront: shipped 33 reviewed pull requests in three weeks while working directly with the client.",
       featured: true,
       keyFeatures: [
-        "Responsive UI components with mobile-first design for marketplace platform",
-        "Dynamic marketplace listings integration using REST APIs",
-        "Improved page responsiveness and optimized rendering behavior",
-        "Smoother user experience across desktop and mobile devices"
+        "Product comparison table and specification filters driven by one shared metafield data model, with the logic in pure TypeScript modules covered by 80+ unit tests",
+        "Diagnosed a broken price-range filter as the Storefront API narrowing price bounds to the active filter; fixed it with a separate, unfiltered bounds query and a regression test",
+        "Metaobject-driven video components (a scroller that plays only the centred clip, with reduced-motion support) and an accessible gallery lightbox on the native dialog element",
+        "Node.js Admin API scripts that provision metaobject and metafield definitions so the client edits videos, specifications and FAQs in Shopify admin"
       ],
-      technologies: ["React.js", "JavaScript", "REST APIs", "Responsive Design", "Performance Optimization"],
+      technologies: ["Next.js 16", "React 19", "TypeScript", "Tailwind CSS", "Shopify Storefront API", "Admin API", "Vitest"],
       github: null,
-      live: "https://www.odysglobal.com",
-      icon: "🌐",
+      live: "https://vgr.store",
+      icon: "🛒",
       color: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Assembly Endgame",
-      subtitle: "Interactive Programming Language Guessing Game · Nov 2025 – Jan 2026",
-      description: "Hangman-style React game where players guess tech-themed words by revealing letters. Each wrong guess eliminates a programming language from the stack, with Assembly as the final challenge.",
+      title: "Parflab — Headless Perfume Store",
+      relationship: "DOT Client",
+      subtitle: "Romania · Sep 2026",
+      description: "First versions of seven storefront features from Figma, plus consent-aware analytics and an automated product-image pipeline.",
+      featured: true,
       keyFeatures: [
-        "React state-driven UI with keyboard input handling and real-time game state updates",
-        "Win/lose conditions with modular components for word display, keyboard, and status",
-        "Progressive difficulty as wrong guesses remove languages from the stack",
-        "Visual feedback with animations and Canvas Confetti celebration on win"
+        "Consent-gated Meta Pixel tracking backed by a useSyncExternalStore consent store (cross-tab sync, no hydration mismatch) with one PageView per navigation",
+        "Node.js pipeline that composites product photos into a Figma-defined template, checks geometry and publishes 2,300+ images through the Admin GraphQL API in resumable, read-back-verified runs",
+        "First versions of seven storefront features in 13 pull requests, later integrated with Shopify by the agency lead"
       ],
-      technologies: ["React 18", "Vite", "JavaScript", "Canvas Confetti", "CSS3"],
-      github: "https://github.com/VladPocris/AssemblyEndgame",
-      live: "https://assembly-endgame-khaki-iota.vercel.app/",
-      icon: "🎯",
-      color: "from-yellow-500 to-orange-500"
+      technologies: ["Next.js", "TypeScript", "next-intl", "Node.js", "Shopify Admin GraphQL API"],
+      github: null,
+      live: "https://www.parflab.ro",
+      icon: "🧴",
+      color: "from-purple-500 to-pink-500"
     },
     {
-      title: "HTML & CSS Practice Portfolio",
-      subtitle: "freeCodeCamp Responsive Web Design Certification · Dec 2025 – Jan 2026",
-      description: "A collection of HTML and CSS practice projects completed while earning freeCodeCamp's Responsive Web Design certification, showcasing fundamental web development skills and responsive design principles.",
+      title: "Ella Cosmetic (SKYA) — Liquid Theme Extension",
+      relationship: "DOT Client",
+      subtitle: "Moldova · Sep 2026",
+      description: "Extended a premium Shopify theme with custom sections, templates and a metaobject-driven ingredient library.",
       keyFeatures: [
-        "Responsive layouts with mobile-first design",
-        "Semantic HTML5 markup and accessibility best practices",
-        "CSS animations and transitions for interactive elements",
-        "Form validation and user input handling",
-        "Cross-browser compatible implementations"
+        "9 custom sections, 5 snippets and 15 JavaScript/CSS assets (~3.4k lines) used across 15 JSON templates",
+        "Ingredient library generated from metaobjects, with search and an A–Z index",
+        "Per-range product templates and a drag, swipe and keyboard product rail",
+        "Legacy-site content migrated into metaobjects and metafields with Admin API scripts, with backups and verification"
       ],
-      technologies: ["HTML5", "CSS3", "Flexbox", "CSS Grid", "Responsive Design", "Media Queries", "CSS Animations"],
-      github: "https://github.com/VladPocris/HTML-CSS-WORK",
-      live: null,
-      icon: "📝",
+      technologies: ["Shopify Liquid", "Online Store 2.0", "Metaobjects", "Metafields", "JavaScript", "CSS"],
+      github: null,
+      live: "https://ella.md",
+      icon: "🌿",
+      color: "from-green-500 to-emerald-500"
+    },
+    {
+      title: "Florentino Delure — Campaign Landing Page",
+      relationship: "DOT Client",
+      subtitle: "Menswear brand · Sep 2026",
+      description: "Developed the first version of a CSR campaign landing page from editor-configurable Liquid sections and blocks; the page was later extended by others.",
+      keyFeatures: [
+        "Editor-configurable Liquid sections and blocks on a Dawn-based theme"
+      ],
+      technologies: ["Shopify Liquid", "Sections & Blocks", "Dawn"],
+      github: null,
+      live: "https://florentinodelure.com/pages/best-for-romania",
+      icon: "👔",
       color: "from-indigo-500 to-purple-500"
     },
     {
+      title: "MonManor — Theme Configuration & Localisation",
+      relationship: "DOT Client",
+      subtitle: "Home textiles store · Sep 2026",
+      description: "Configured store templates on the agency's base theme and completed the Romanian locale to clear missing translations.",
+      keyFeatures: [
+        "Template configuration and full Romanian localisation of the storefront"
+      ],
+      technologies: ["Shopify Liquid", "Theme Configuration", "Localisation"],
+      github: null,
+      live: "https://monmanor.md",
+      icon: "🏡",
+      color: "from-yellow-500 to-orange-500"
+    },
+    {
       title: "CivPlayers Civ3 League",
-      subtitle: "Online Gaming Community Platform · Sept 2025 – Oct 2025",
-      description: "Front-end web application for a Civilization III multiplayer league featuring live leaderboards, event management, and ELO-based team generation.",
+      relationship: "Independent Project",
+      subtitle: "Online gaming community platform · Sep 2025 – Oct 2025",
+      description: "React and TypeScript web app for a Civilization III multiplayer league, with leaderboards, player profiles, events and an Elo-based team generator.",
       featured: true,
       keyFeatures: [
-        "Real-time CSV data integration from Google Sheets with <200ms fetch latency",
-        "Brute-force team balancing algorithm for optimal 4-8 player splits with probability analysis (<100ms computation)",
-        "Comprehensive admin panel with ordered content management and drag-and-drop functionality",
-        "Responsive SPA built with React 18 and TypeScript"
+        "Team generator that evaluates every captain-draft split for 4–8 players to balance rating totals and shows each side's Elo win probability",
+        "Sortable, searchable leaderboards for 8 game modes, loaded from published Google Sheets CSV data",
+        "Player profiles with charts, plus events, guides and admin pages",
+        "Deployed with a GitHub Actions workflow to a custom domain"
       ],
-      technologies: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Google Sheets API", "shadcn/ui", "Radix UI", "GitHub Actions", "GitHub Pages"],
+      technologies: ["React 18", "TypeScript", "Vite", "Tailwind CSS", "Chart.js", "GitHub Actions"],
       github: "https://github.com/VladPocris/CivPlayers-Civ3-League",
       live: "https://civplayersciv3league.com/",
       icon: "🎮",
       color: "from-purple-500 to-pink-500"
     },
     {
-      title: "ChefClaude",
-      subtitle: "AI-Powered Recipe Generator · Sept 2025 – Oct 2025",
-      description: "AI cooking assistant that generates personalized recipes from user-provided ingredients using the Hugging Face Inference API and Mistral AI, with responsive UI and markdown recipe rendering.",
+      title: "BreachExplorer — Data-Breach Dashboard",
+      relationship: "University Project",
+      subtitle: "Full-stack .NET web app · Nov 2024",
+      description: "Blazor WebAssembly dashboard of public breach data, backed by an ASP.NET Core proxy API that keeps the Have I Been Pwned key server-side and avoids browser CORS limits.",
       keyFeatures: [
-        "Ingredient input with validation and duplicate detection",
-        "AI recipe generation via Hugging Face Inference API (Mistral AI)",
-        "Markdown-rendered recipe output with responsive layout",
-        "Built with React 19 and Vite for fast iteration"
+        "Latest-breach highlight, top-15 chart and a searchable comparison chart",
+        "Email check that discovers sources through LeakCheck's public API and enriches each with Have I Been Pwned breach details, de-duplicating sources and throttling requests",
+        "API containerised with Docker and hosted on Render; client published to GitHub Pages",
+        "GitHub Actions pipeline that runs Playwright UI tests before publishing"
       ],
-      technologies: ["React 19", "Vite", "JavaScript", "Hugging Face Inference API", "Mistral AI", "React Markdown"],
-      github: "https://github.com/VladPocris/ChefClaude",
-      live: "https://chef-claude-ten-ashen.vercel.app/",
-      icon: "👨‍🍳",
-      color: "from-red-500 to-orange-500"
-    },
-    {
-      title: "SmartRoute",
-      subtitle: "Multi-Stop Journey Planning App · Sept 2024 – May 2025",
-      description: "Android application that plans optimized multi-stop journeys with Google Places autocomplete and route visualization on Google Maps.",
-      keyFeatures: [
-        "Google Places autocomplete for destination search",
-        "Optimized routing using Google Maps Directions API",
-        "Six-digit trip code generation for easy sharing",
-        "ASP.NET Core Web API backend with Azure SQL persistence",
-        "Per-leg detail cards with distance/time and map previews",
-        "Offline caching for instant reload"
-      ],
-      technologies: ["Java 17", "Android Studio", "Google Maps SDK", "Directions API", "Places API", "Retrofit", "ASP.NET Core", "Azure SQL", "Azure App Service"],
-      github: "https://github.com/VladPocris/SmartRoute",
-      live: "https://smartroute-i92g.onrender.com/api/trips",
-      icon: "🗺️",
-      color: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "BreachExplorer",
-      subtitle: "Public Breach Dashboard & Email Pwn Check · Oct 2024 – Dec 2024",
-      description: "Blazor WebAssembly dashboard for exploring Have I Been Pwned breach data and checking whether an email appears in known leaks. A small ASP.NET Core proxy API avoids browser CORS limits. Email lookups discover sources via LeakCheck, then enrich each hit with HIBP breach details—without a paid HIBP subscription.",
-      keyFeatures: [
-        "Latest verified breach highlight and top-15 bar charts with horizontal/vertical layout toggle",
-        "Custom breach chart: search by domain or name and add or remove bars dynamically",
-        "HIBP bypass: LeakCheck returns breached sources for an email; each breach is then fetched individually from HIBP's free single-breach-by-name endpoint (no paid account API needed)",
-        "Server-side password generator with configurable length, numbers, and special characters",
-        "CI/CD via GitHub custom workflow: publishes the site to GitHub Pages and runs Playwright E2E tests in the pipeline",
-        "Frontend on GitHub Pages; proxy API on Render (Docker) with env-based HIBP and LeakCheck configuration"
-      ],
-      technologies: ["C#", ".NET 8", "Blazor WebAssembly", "ASP.NET Core", "Have I Been Pwned API", "LeakCheck", "Blazor.Bootstrap", "GitHub Actions", "GitHub Pages", "Render", "Docker", "Playwright", "MSTest"],
+      technologies: ["C#", ".NET 8", "Blazor WebAssembly", "ASP.NET Core", "Docker", "Playwright", "MSTest", "GitHub Actions"],
       github: "https://github.com/VladPocris/BreachExplorer",
       live: "https://vladpocris.github.io/BreachExplorer/",
       icon: "📊",
       color: "from-green-500 to-emerald-500"
     },
     {
-      title: "RenCloud",
-      subtitle: "Windows Video Editing Environment · Jan 2024 – Aug 2024",
-      description: "Professional Windows-based video editing application with timeline controls, live thumbnails, and audio waveforms.",
+      title: "RenCloud — Windows Video Editor",
+      relationship: "University Project",
+      subtitle: "Final-year project (individual) · Oct 2024 – Apr 2025",
+      description: "Windows video editor with a custom timeline engine, live preview, frame thumbnails and audio waveforms.",
       keyFeatures: [
-        "Timeline trim/split/rearrange with frame-accurate control",
-        "Live thumbnail previews and audio waveform visualization",
-        "FFmpeg integration for advanced video processing",
-        "VLC/LibVLC for seamless playback",
-        "CI/CD with GitHub Actions and SonarQube quality gates",
-        "MSI installer packaging with WiX Toolset"
+        "Custom timeline engine with no UI SDK: a segment model with split, delete and drag-reorder that recalculates every clip position",
+        "Frame thumbnails and audio waveform rendering on the timeline",
+        "LibVLC for continuous scrub preview and FFmpeg for rendering",
+        "GitHub Actions CI with a SonarQube quality gate and a WiX MSI installer"
       ],
-      technologies: ["C#", ".NET 8", "Windows Forms", "FFmpeg", "LibVLC", "SonarQube", "GitHub Actions", "WiX Toolset"],
+      technologies: ["C#", ".NET Framework", "Windows Forms", "FFmpeg", "LibVLC", "MSTest", "SonarQube", "GitHub Actions"],
       github: "https://github.com/VladPocris/RenCloud",
       live: "https://github.com/VladPocris/RenCloud/releases",
       icon: "🎬",
       color: "from-orange-500 to-red-500"
+    },
+    {
+      title: "SmartRoute — Route-Planning App",
+      relationship: "University Project",
+      subtitle: "Android app with REST API · May 2025 – Jun 2025",
+      description: "Android application that plans optimised multi-stop routes, backed by an ASP.NET Core REST API.",
+      keyFeatures: [
+        "Google Places autocomplete and optimised routing with the Google Directions API",
+        "Trips shared through a six-digit code",
+        "REST API for trips and route steps (create, read, update and delete by share code)",
+        "Storage migrated from Azure SQL to Supabase PostgreSQL and the API redeployed on Render"
+      ],
+      technologies: ["Java", "Android", "ASP.NET Core", "PostgreSQL (Supabase)", "Google Maps APIs", "Docker"],
+      github: "https://github.com/VladPocris/SmartRoute",
+      live: null,
+      icon: "🗺️",
+      color: "from-blue-500 to-cyan-500"
     }
   ];
 
@@ -169,7 +196,7 @@ const ProjectsSection = () => {
           <h2 className="section-title text-5xl lg:text-6xl font-bold mb-4">PROJECTS</h2>
           <div className="w-24 h-1 bg-gradient-primary mx-auto mb-6" />
           <p className="text-foreground text-lg max-w-2xl mx-auto">
-            A selection of my recent development work showcasing full-stack capabilities, cloud integration, and modern frameworks.
+            Commercial work delivered for DOT clients, an independent project and university projects – from headless React storefronts and Shopify themes to full-stack .NET applications.
           </p>
         </div>
 
@@ -192,7 +219,7 @@ const ProjectsSection = () => {
         <div className="space-y-6 mb-16">
           {projects.map((project, index) => (
             <div
-              key={index}
+              key={project.title}
               className={`content-section transition-all duration-500 animate-slide-up ${isVisible ? "in-view" : ""}`}
               style={{ animationDelay: `${index * 0.12}s` }}
             >
@@ -212,6 +239,9 @@ const ProjectsSection = () => {
                       </span>
                     </div>
                     <p className="text-primary font-semibold mb-2">
+                      <span className="inline-block mr-2 px-2 py-0.5 text-xs font-semibold rounded-full border border-primary/30 bg-primary/10 align-middle">
+                        {project.relationship}
+                      </span>
                       {project.subtitle}
                     </p>
                     <p className="text-foreground leading-relaxed">
@@ -226,7 +256,7 @@ const ProjectsSection = () => {
                       variant="outline"
                       size="sm"
                       className="border-primary/40 text-primary hover:bg-primary/10"
-                      onClick={() => window.open(project.github, "_blank")}
+                      onClick={() => window.open(project.github!, "_blank")}
                       aria-label={`View ${project.title} source code on GitHub`}
                     >
                       <Github className="h-4 w-4 mr-2" />
@@ -237,10 +267,10 @@ const ProjectsSection = () => {
                     <Button
                       size="sm"
                       className="btn-gradient"
-                      onClick={() => window.open(project.live, "_blank")}
+                      onClick={() => window.open(project.live!, "_blank")}
                     >
                       <ExternalLink className="h-4 w-4 mr-2" />
-                      Live Demo
+                      {project.relationship === "DOT Client" ? "Live Site" : "Live Demo"}
                     </Button>
                   ) : (
                     <Button

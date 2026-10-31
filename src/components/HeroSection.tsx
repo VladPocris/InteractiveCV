@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
-import { Download, ChevronDown, ArrowRight } from "lucide-react";
+import { ChevronDown, ArrowRight } from "lucide-react";
 import { Button } from "./ui/button";
+import CvDownloadMenu from "./CvDownloadMenu";
 import profileImage from "@/assets/hero_profile_picture.png";
 
 const CountUp = ({ end, suffix = "" }: { end: number; suffix?: string }) => {
@@ -41,10 +42,10 @@ const CountUp = ({ end, suffix = "" }: { end: number; suffix?: string }) => {
 const HeroSection = () => {
   const [isLoaded, setIsLoaded] = useState(false);
   const titles = [
-    "Front-End Web Developer",
-    "Back-End Web Developer",
+    "Software Developer",
+    "Frontend Developer",
+    "React & TypeScript Developer",
     "Full-Stack Web Developer",
-    "Problem Solver",
   ];
   const [titleIndex, setTitleIndex] = useState(0);
   const [displayTitle, setDisplayTitle] = useState("");
@@ -159,23 +160,26 @@ const HeroSection = () => {
             {/* Description */}
             <div className="glass-card p-6 rounded-2xl">
               <p className="text-foreground text-base leading-relaxed">
-                Software Developer with 3+ years hands-on coding experience — from university projects and shipped apps to production web work. I build responsive interfaces with React, TypeScript, JavaScript, and .NET, focusing on performance, component architecture, and user-focused design. Comfortable delivering full-stack features and integrating cloud services (AWS, Azure) in Agile teams.
+                Software Developer focused on frontend and full-stack web development. As an independent contractor for a Shopify Partner agency, I build React, Next.js and TypeScript features for live headless storefronts and Shopify themes. I have also built full-stack C#/.NET applications, a Windows video editor and a React platform for an online gaming community. First Class Honours BSc in Computing, TU Dublin (GPA 3.73/4.00).
+              </p>
+              <p className="text-muted-foreground text-sm leading-relaxed mt-3">
+                EU citizen · Authorised to work across the EU without sponsorship · Open to relocation within the EU · Seeking fully remote work
               </p>
             </div>
 
             {/* Stats Row */}
             <div className="grid grid-cols-3 gap-4">
               <div className="glass-card rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold gradient-text"><CountUp end={3} suffix="+" /></div>
-                <div className="text-xs text-muted-foreground mt-1">Years Coding</div>
+                <div className="text-2xl font-bold gradient-text"><CountUp end={5} /></div>
+                <div className="text-xs text-muted-foreground mt-1">Live Client Stores</div>
               </div>
               <div className="glass-card rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold gradient-text"><CountUp end={10} suffix="+" /></div>
-                <div className="text-xs text-muted-foreground mt-1">Projects</div>
+                <div className="text-2xl font-bold gradient-text"><CountUp end={46} /></div>
+                <div className="text-xs text-muted-foreground mt-1">Merged Pull Requests</div>
               </div>
               <div className="glass-card rounded-xl p-4 text-center">
-                <div className="text-2xl font-bold gradient-text"><CountUp end={8} suffix="" /></div>
-                <div className="text-xs text-muted-foreground mt-1">Certifications</div>
+                <div className="text-2xl font-bold gradient-text"><CountUp end={190} suffix="+" /></div>
+                <div className="text-xs text-muted-foreground mt-1">Unit Tests Written</div>
               </div>
             </div>
 
@@ -188,14 +192,7 @@ const HeroSection = () => {
                 <ArrowRight className="h-4 w-4 mr-2" />
                 View My Work
               </Button>
-              <Button
-                variant="outline"
-                className="flex-1 border-primary/40 text-primary hover:bg-primary/10 hover:border-primary/60"
-                onClick={() => window.open(`${import.meta.env.BASE_URL}cv/Vlad_Pocris_CV.pdf`, "_blank")}
-              >
-                <Download className="h-4 w-4 mr-2" />
-                Download CV
-              </Button>
+              <CvDownloadMenu className="flex-1" />
               <Button
                 variant="ghost"
                 className="text-foreground hover:bg-white/10"

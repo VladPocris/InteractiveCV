@@ -9,125 +9,61 @@ const ExperienceSection = () => {
 
   const experiences = [
     {
-      title: "Frontend Developer",
-      company: "Compire · Chisinau, Republic of Moldova",
-      period: "Oct 2024 – Feb 2026",
-      location: "Chisinau, Moldova (Remote)",
-      type: "Full-time",
-      description: "Developed interactive frontend features using React.js for a startup web application, improving responsiveness and user experience across desktop and mobile devices.",
+      title: "Frontend Developer (Independent Contractor)",
+      company: "DOT (High Quality Digital SRL) · Shopify Partner agency",
+      period: "Sep 2026 – Present",
+      location: "Remote",
+      type: "Contract",
+      description: "Project-based independent contractor agreement with a Shopify Partner agency, delivering frontend work for its clients' headless Next.js storefronts and Shopify Liquid themes.",
       achievements: [
-        "Developed interactive frontend features using React.js for a startup web application, improving responsiveness and user experience across desktop and mobile devices.",
-        "Implemented API integrations using Express.js, AWS Lambda, and SendGrid to support application workflows and notifications.",
-        "Collaborated with designers and developers in an Agile environment to deliver features and consistent UI quality."
+        "Delivered frontend work for five of the agency's client stores, all now live – two headless Next.js storefronts (VGR, Parflab) and three Shopify Liquid themes (Ella Cosmetic, Florentino Delure, MonManor).",
+        "Shipped 46 merged pull requests through review by the agency lead – 33 of them on VGR in three weeks – and wrote 190+ Vitest unit tests across the two headless codebases.",
+        "Worked directly with the VGR client day to day, clarifying requirements, walking through changes and turning feedback rounds into shipped features."
       ],
-      technologies: ["React.js", "JavaScript", "API Integration", "AWS Lambda", "SendGrid", "Responsive Design", "Agile"],
+      technologies: ["React 19", "Next.js", "TypeScript", "Tailwind CSS", "Shopify Storefront & Admin APIs", "Liquid", "Vitest"],
       icon: "⚛️"
     },
     {
-      title: "Dispatcher (Remote)",
-      company: "DWSmart LLC · Chisinau, Moldova",
-      period: "Jun 2024 – Sep 2024",
-      location: "Chisinau, Moldova (Remote)",
-      type: "Contract",
-      description: "Coordinated daily logistics operations, optimized routes and managed client communications to maintain high on‑time delivery performance.",
-      achievements: [
-        "Coordinated daily logistics operations, optimizing routes and managing client communications; maintained 98% on‑time delivery rate and ensured revenue targets of $1.80+/mile.",
-        "Maintained consistent service quality while multitasking in a fast‑paced environment handling 2–3 trucks daily."
-      ],
-      technologies: ["Logistics Coordination", "Route Optimization", "Client Communications"],
-      icon: "🚚"
-    },
-    {
       title: "Webflow Developer & Content Creator",
-      company: "ItSpot · Tallaght, IE",
+      company: "ItSpot Tallaght Computer Repairs · Tallaght, IE",
       period: "Mar 2024 – Sep 2024",
-      location: "Tallaght, Ireland",
+      location: "Tallaght, Dublin, Ireland",
       type: "Freelance",
-      description: "Designed and shipped a responsive marketing site in Webflow using CMS collections and integrated contact-form submissions. Produced PC-build video content for ItSpot's YouTube channel.",
+      description: "Built the business's responsive marketing website on Webflow CMS and produced PC build and repair video content.",
       achievements: [
-        "Designed and launched a responsive marketing site using Webflow, improving client engagement by 28%.",
-        "Improved mobile performance (4.2s to 2.6s) via CMS restructure and lazy-loading.",
-        "Created step-by-step Editor docs and delivered 30-minute staff training.",
-        "Scripted, recorded, and edited walkthrough videos end-to-end (VO + post)."
+        "Built and launched the business's responsive Webflow CMS website, set up so staff publish their own updates.",
+        "Wrote editor documentation and trained staff to maintain the site.",
+        "Scripted, recorded and edited PC build and repair walkthrough videos."
       ],
-      technologies: ["Webflow", "CMS Collections", "Interactions", "Core Web Vitals", "SEO", "CapCut", "Adobe After Effects"],
+      technologies: ["Webflow", "CMS Collections", "Responsive Design", "Technical Documentation", "Video Editing"],
       icon: "🌐"
     },
     {
-      title: "Cleaning Specialist",
-      company: "Derrycourt Cleaning Specialists · Ireland",
-      period: "Sep 2023 – Oct 2023",
-      location: "Ireland · On-site",
-      type: "Part-time",
-      description: "Supported healthcare and commercial environments with high-standard cleaning under strict protocols.",
+      title: "Service Dispatcher",
+      company: "DWSmart LLC",
+      period: "Jun 2024 – Sep 2024",
+      location: "Remote",
+      type: "Contract",
+      description: "Remote dispatch role coordinating daily operations and client communication for a small trucking fleet.",
       achievements: [
-        "Followed infection-control standards with specialized equipment and materials",
-        "Handled ad-hoc requests with strong flexibility and time management",
-        "Completed daily logs and checklists for audit and health & safety compliance"
+        "Coordinated daily truck dispatch and kept clients informed in a fast-paced remote role."
       ],
-      technologies: ["Infection Control", "H&S Compliance", "Time Management"],
-      icon: "🧹"
+      technologies: ["Remote Coordination", "Client Communication", "Prioritisation"],
+      icon: "🚚"
     },
     {
-      title: "OCIP — On Campus Internship",
+      title: "Student Intern (On-Campus Internship)",
       company: "Technological University Dublin · Tallaght, IE",
       period: "Jun 2023 – Sep 2023",
-      location: "Tallaght, Ireland",
+      location: "Tallaght, Dublin, Ireland",
       type: "Internship",
-      description: "Supported students and faculty with skills tracking and documentation while pursuing structured professional development.",
+      description: "Supported faculty with reporting and documentation during a summer on-campus internship.",
       achievements: [
-        "Facilitated faculty research projects by authoring technical documentation and implementing data-tracking templates; cut report turnaround time by 25%.",
-        "Streamlined reporting templates and programmed CSV exports that cut weekly report preparation time by 66%.",
-        "Awarded 100% discount for AWS Cloud Practitioner exam"
+        "Created data-tracking templates and scripted CSV exports for faculty reporting.",
+        "Wrote technical documentation for faculty research projects."
       ],
-      technologies: ["AWS", "Reporting", "Documentation", "CSV Export", "Organization"],
+      technologies: ["Reporting", "CSV Export", "Documentation"],
       icon: "🎓"
-    },
-    {
-      title: "Cleaner",
-      company: "Ashbrook Facility Management (AFM) Ireland · Bray, IE",
-      period: "Aug 2021 – Sep 2023",
-      location: "Bray, Ireland · On-site",
-      type: "Part-time",
-      description: "Maintained cleanliness across specialized facilities with optimized scheduling and resource management.",
-      achievements: [
-        "Reduced daily cleaning time from 5.5h to 4h with schedule improvements",
-        "Coordinated cleaning across labs, gym, and sports hall with 100% protocol adherence",
-        "Supported 5 school events by aligning cleaning scope, timing, and supplies"
-      ],
-      technologies: ["Scheduling", "Resource Management", "Safety Protocols"],
-      icon: "🧽"
-    },
-    {
-      title: "Network Engineer",
-      company: "Capri · Bray, IE",
-      period: "Jun 2021 – Feb 2022",
-      location: "Bray, Ireland",
-      type: "Internship",
-      description: "Delivered network performance improvements and end‑user enablement across the site.",
-      achievements: [
-        "Increased internet/Wi‑Fi throughput by ~120 Mbps",
-        "Trained 20 staff members, boosting productivity by ~15%",
-        "Improved connectivity for 20+ users; reduced downtime by ~80%"
-      ],
-      technologies: ["Networking", "Wi‑Fi Optimization", "Troubleshooting", "End‑User Training"],
-      icon: "📶"
-    },
-    {
-      title: "Sales Assistant",
-      company: "Linella · Chisinau, Moldova",
-      period: "Jan 2019 – Jun 2019",
-      location: "Chisinau, Moldova",
-      type: "Full-time",
-      description: "Assisted customers with product selection, maintained store presentation, and supported the retail team to meet daily sales targets.",
-      achievements: [
-        "Guided customers through product selection, boosting sales and ensuring a consistently positive shopping experience",
-        "Resolved 30+ customer queries per shift with a 95% satisfaction rate through prompt issue resolution",
-        "Maintained store presentation and organized merchandise according to company standards",
-        "Collaborated with retail team members to meet daily sales targets in a high-traffic setting"
-      ],
-      technologies: ["Customer Service", "Merchandising", "Point of Sale"],
-      icon: "🏪"
     }
   ];
 

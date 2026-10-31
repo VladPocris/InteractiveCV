@@ -14,7 +14,7 @@ const AboutSection = () => {
     {
       title: "Youtube Content Creator",
       icon: "🎥",
-      description: "Reached 1M+ views and 15,000+ hours watch-time as an Official YouTube Partner. Content creation strengthened my social media analysis, storytelling, and video editing skills.",
+      description: "Running my own YouTube channel strengthened my storytelling, audience analysis and video editing skills – the same editing background that fed into RenCloud, my final-year video editor.",
       image: "🎬",
       link: "https://www.youtube.com/@cinema_creativity"
     },
@@ -27,7 +27,7 @@ const AboutSection = () => {
     {
       title: "Strategic Thinker",
       icon: "💡",
-      description: "Have been a former captain of Ialoveni soccer team from Republic of Moldova achieving great results in the Moldavian league. Participated in multiple hackathons, leading teams to solve real-world problems.",
+      description: "Former captain of the Ialoveni football team in the Republic of Moldova, and a participant in several university hackathons, working in teams on real-world problems.",
       image: "⚽"
     }
   ];
